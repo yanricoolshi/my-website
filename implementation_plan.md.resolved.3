@@ -1,0 +1,44 @@
+# Implementation Plan - Frutiger Aero / Windows 7 Theme
+
+I will completely overhaul the website's design to match the "Frutiger Aero" and Windows 7 aesthetic. This involves a glossy "Aero Glass" UI, vibrant nature/tech backgrounds, and skeuomorphic elements.
+
+## User Review Required
+
+> [!NOTE]
+> I will be generating new assets to replace the previous "grunge" and "green" themes. The layout will shift to look like a floating window on a desktop.
+
+## Proposed Changes
+
+### Assets Generation
+I will generate the following assets using the image generation tool:
+- **Background**: A classic Frutiger Aero wallpaper (green grass, blue sky, lens flares, abstract waves).
+- **Window Controls**: Close/Minimize/Maximize buttons.
+- **Start Button/Orb**: A glossy orb for the home button or menu.
+- **Icons**: Skeuomorphic icons for Art and Music.
+
+### Styling Overhaul
+
+#### [MODIFY] [style.css](file:///C:/Users/akoda/.gemini/antigravity/brain/b3dc8f9a-8701-45a6-9bc0-a049d36ab941/style.css)
+- **Aero Glass Effect**:
+    - Use `background: rgba(255, 255, 255, 0.5)` with `backdrop-filter: blur(10px)`.
+    - Add white inner borders (`box-shadow: inset ...`) to mimic the glass edge shine.
+    - Add heavy drop shadows.
+- **Typography**: Switch to `Segoe UI` (or sans-serif fallback) with text shadows.
+- **Layout**:
+    - The `#content` div will become the "Window".
+    - The `#header` will become the "Title Bar".
+    - The `#menu` will be styled like a toolbar or taskbar.
+
+### HTML Structure
+
+#### [MODIFY] [index.html](file:///C:/Users/akoda/.gemini/antigravity/brain/b3dc8f9a-8701-45a6-9bc0-a049d36ab941/index.html), [art.html](file:///C:/Users/akoda/.gemini/antigravity/brain/b3dc8f9a-8701-45a6-9bc0-a049d36ab941/art.html), [music.html](file:///C:/Users/akoda/.gemini/antigravity/brain/b3dc8f9a-8701-45a6-9bc0-a049d36ab941/music.html)
+- Adjust the header structure to include "Window Controls" (purely visual or functional links).
+- Ensure the main container has the classes needed for the glass effect.
+
+## Verification Plan
+
+### Manual Verification
+- Open [index.html](file:///C:/Users/akoda/.gemini/antigravity/brain/b3dc8f9a-8701-45a6-9bc0-a049d36ab941/index.html).
+- Verify the background is the new Frutiger Aero landscape.
+- Verify the main content area looks like a glass window.
+- Check that buttons have a glossy, convex look.

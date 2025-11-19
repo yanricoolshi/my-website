@@ -1,0 +1,47 @@
+# Implementation Plan - Replicate zeffdakilla.neocities.org Layout
+
+I will replicate the layout of `https://zeffdakilla.neocities.org/` using HTML and CSS. The layout is a classic fixed-width (600px) centered design with a sidebar and main content area, typical of early 2000s web design.
+
+## User Review Required
+
+> [!NOTE]
+> I will use generated placeholder images for the background textures and header to match the "retro" vibe, as I cannot directly copy the copyrighted assets from the original site.
+
+## Proposed Changes
+
+### Project Structure
+
+#### [NEW] [index.html](file:///C:/Users/akoda/.gemini/antigravity/brain/b3dc8f9a-8701-45a6-9bc0-a049d36ab941/index.html)
+- Structure will mirror the original:
+    - `#header`
+    - `#menu` (Navigation)
+    - `#content` (Container)
+        - `#colOne` (Sidebar)
+        - `#colTwo` (Main Content)
+    - `#footer`
+
+#### [NEW] [style.css](file:///C:/Users/akoda/.gemini/antigravity/brain/b3dc8f9a-8701-45a6-9bc0-a049d36ab941/style.css)
+- Will contain the CSS rules extracted from `default.css` of the target site.
+- Adjusted to point to local generated images.
+
+#### [NEW] Images
+I will generate the following assets to match the aesthetic:
+- `images/bg_body.jpg` (Dark textured background)
+- `images/bg_header.jpg` (Header banner)
+- `images/bg_menu.jpg` (Menu button background)
+- `images/bg_menu_hover.jpg` (Menu button hover background)
+- `images/bg_content.jpg` (Content area background pattern)
+
+## Verification Plan
+
+### Automated Tests
+- None (Visual layout task).
+
+### Manual Verification
+- Open `index.html` in the browser.
+- Verify the layout matches the target:
+    - Centered 600px container.
+    - Sidebar on the left, content on the right.
+    - Navigation bar below the header.
+    - Footer at the bottom.
+    - Hover effects on menu items.

@@ -1,0 +1,255 @@
+/*
+Yanri's Website - Retro Layout (Zeffdakilla Style)
+*/
+
+body {
+    margin: 0;
+    padding: 0;
+    /* User's Water GIF Background - Stretched */
+    background-image: url('images/watergif.gif');
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    color: #000000;
+}
+
+/* Main Container - Centered on page */
+#container {
+    width: 800px;
+    margin: 20px auto;
+    /* Transparent container to let water background show through */
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+}
+
+/* Header Banner */
+#header {
+    width: 100%;
+    height: auto;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: none;
+    background-image: none;
+    margin-bottom: 10px;
+}
+
+#header img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+#header h1 {
+    display: none;
+    /* Hide text title in favor of banner */
+}
+
+/* Horizontal Menu Bar */
+#menu {
+    width: 100%;
+    height: 40px;
+    background-color: rgba(62, 77, 34, 0.8);
+    /* Semi-transparent dark green */
+    background-image: url('images/orengesho.png');
+    /* User's texture */
+    background-repeat: repeat;
+    border-bottom: 3px solid DarkOliveGreen;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#menu ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+#menu li {
+    display: inline-block;
+    margin: 0 10px;
+}
+
+#menu a {
+    display: block;
+    padding: 8px 20px;
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 14px;
+    background-color: rgba(107, 142, 35, 0.8);
+    /* OliveDrab with opacity */
+    border: 2px outset #8aa848;
+}
+
+#menu a:hover {
+    background-color: rgba(154, 205, 50, 0.9);
+    /* YellowGreen with opacity */
+    color: #2e3b19;
+    border: 2px outset #bce85d;
+    cursor: pointer;
+    box-shadow: 0 0 15px rgba(154, 205, 50, 0.8), 0 0 25px rgba(154, 205, 50, 0.5);
+}
+
+#menu a:active,
+#menu .active a {
+    background-color: rgba(85, 107, 47, 0.9);
+    /* DarkOliveGreen */
+    border: 2px inset #3e4d22;
+}
+
+/* Content Wrapper (Sidebar + Main) */
+#content-wrapper {
+    display: flex;
+    width: 100%;
+    min-height: 500px;
+    /* Green gradient background for content area */
+    background: linear-gradient(to bottom, rgba(143, 188, 143, 0.8), rgba(143, 188, 143, 0.4));
+    border: 2px solid DarkOliveGreen;
+}
+
+/* Sidebar (Left) */
+#sidebar {
+    width: 200px;
+    background-color: transparent;
+    background-image: none;
+    /* Remove texture from sidebar to blend with gradient */
+    border-right: 2px solid rgba(85, 107, 47, 0.5);
+    padding: 15px;
+    box-sizing: border-box;
+}
+
+#sidebar h3 {
+    font-size: 16px;
+    color: DarkOliveGreen;
+    border-bottom: 2px solid OliveDrab;
+    padding-bottom: 5px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    background-color: rgba(255, 255, 255, 0.5);
+    /* Readability */
+    padding: 5px;
+}
+
+#sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#sidebar li {
+    margin-bottom: 8px;
+}
+
+#sidebar a {
+    color: OliveDrab;
+    text-decoration: none;
+    font-weight: bold;
+    display: block;
+    padding: 3px 5px;
+    background-color: rgba(255, 255, 255, 0.4);
+    /* Readability */
+}
+
+#sidebar a:hover {
+    color: YellowGreen;
+    text-decoration: underline;
+    background-color: rgba(255, 255, 255, 0.7);
+    box-shadow: 0 0 10px rgba(154, 205, 50, 0.6);
+}
+
+/* Main Content (Right) */
+#main-content {
+    flex: 1;
+    /* Takes remaining width */
+    padding: 25px;
+    background-color: transparent;
+    /* Transparent to show gradient */
+    box-sizing: border-box;
+}
+
+h2 {
+    font-size: 28px;
+    color: DarkOliveGreen;
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-family: "Trebuchet MS", sans-serif;
+}
+
+p {
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+/* Music Grid Styles */
+.music-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: space-between;
+}
+
+.song-card {
+    width: 48%;
+    background-color: rgba(240, 248, 240, 0.8);
+    /* Semi-transparent card */
+    border: 2px solid DarkOliveGreen;
+    padding: 10px;
+    box-sizing: border-box;
+    text-align: center;
+    margin-bottom: 15px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.song-card img {
+    width: 100%;
+    height: auto;
+    border: 1px solid OliveDrab;
+    margin-bottom: 8px;
+}
+
+.song-card a {
+    display: block;
+    font-weight: bold;
+    color: DarkOliveGreen;
+    text-decoration: none;
+    font-size: 13px;
+}
+
+.song-card a:hover {
+    color: YellowGreen;
+    text-decoration: underline;
+}
+
+/* Placeholders */
+.placeholder-box {
+    width: 100%;
+    height: 200px;
+    background-color: rgba(232, 240, 232, 0.6);
+    border: 2px dashed DarkSeaGreen;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: OliveDrab;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* Footer */
+#footer {
+    width: 100%;
+    padding: 10px 0;
+    background-color: rgba(85, 107, 47, 0.9);
+    /* DarkOliveGreen */
+    color: #fff;
+    text-align: center;
+    font-size: 11px;
+    border-top: 3px solid OliveDrab;
+}

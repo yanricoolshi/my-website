@@ -1,0 +1,38 @@
+# Implementation Plan - Yanri's Website (Mockup Match)
+
+I will update the website's visual style to match the provided "Anri" mockup. This involves making the containers semi-transparent to show the water background, updating the color scheme to a specific green/orange palette, and renaming the "About" page.
+
+## User Review Required
+
+> [!NOTE]
+> **Visual Overhaul**: The white "paper" look will be replaced with a **semi-transparent green** design to match the mockup.
+> **Header**: I will style the header to display "Anri" in a handwritten-style font (Orange) with a green symbol placeholder, as seen in the image.
+> **Navigation**: "About" will be renamed to "About Me...".
+
+## Proposed Changes
+
+### HTML Updates
+
+#### [MODIFY] [index.html](file:///C:/Users/akoda/.gemini/antigravity/brain/b3dc8f9a-8701-45a6-9bc0-a049d36ab941/index.html), [art.html](file:///C:/Users/akoda/.gemini/antigravity/brain/b3dc8f9a-8701-45a6-9bc0-a049d36ab941/art.html), [music.html](file:///C:/Users/akoda/.gemini/antigravity/brain/b3dc8f9a-8701-45a6-9bc0-a049d36ab941/music.html)
+- **Navigation**: Change "About" link text to "About Me...".
+- **Header**: Update `<h1>` to display "Anri" and potentially add a `div` for the symbol/logo.
+
+### CSS Styling
+
+#### [MODIFY] [style.css](file:///C:/Users/akoda/.gemini/antigravity/brain/b3dc8f9a-8701-45a6-9bc0-a049d36ab941/style.css)
+- **`#container`**: Remove white background/border. Make it transparent or remove specific styling so it acts as a wrapper.
+- **`#content-wrapper`**: Apply a **linear gradient** or **semi-transparent green** background (`rgba(..., 0.7)`) to match the mockup's content box.
+- **`#header`**: Transparent background.
+    - `h1`: "Marker" or handwritten font (e.g., `Comic Sans MS`, `Chalkboard SE`, or a web font if available, but sticking to safe fonts first), Color: **Orange**.
+- **`#menu`**: Dark green semi-transparent background.
+- **Text Colors**: Update to **Dark Green** or **White** depending on contrast with the new background.
+- **`#sidebar`**: Transparent or blended with the content wrapper.
+
+## Verification Plan
+
+### Manual Verification
+- Open [index.html](file:///C:/Users/akoda/.gemini/antigravity/brain/b3dc8f9a-8701-45a6-9bc0-a049d36ab941/index.html).
+- Verify "About Me..." is in the menu.
+- Check that the **Water GIF** is visible *through* the content areas (transparency).
+- Verify the header says "Anri" in Orange.
+- Compare with the uploaded mockup image.

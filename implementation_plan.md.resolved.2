@@ -1,0 +1,33 @@
+# Implementation Plan - Green Theme & Asset Cleanup
+
+I will update the website's color scheme to a green palette and remove all image references, replacing them with comments indicating where the user should put their own assets.
+
+## User Review Required
+
+> [!NOTE]
+> All background images will be removed from [style.css](file:///C:/Users/akoda/.gemini/antigravity/brain/b3dc8f9a-8701-45a6-9bc0-a049d36ab941/style.css) and replaced with solid colors and comments. You will need to add your own images back if you want textures.
+
+## Proposed Changes
+
+### Styling
+
+#### [MODIFY] [style.css](file:///C:/Users/akoda/.gemini/antigravity/brain/b3dc8f9a-8701-45a6-9bc0-a049d36ab941/style.css)
+- **Colors**: Update all purple/pink hex codes to green variations.
+    - Text: Dark Green
+    - Links/Headings: Medium/Forest Green
+    - Backgrounds: Light Green/Transparent
+- **Images**: Remove all `url(...)` properties. Add comments explaining how to re-add them.
+
+### Content
+
+#### [MODIFY] [index.html](file:///C:/Users/akoda/.gemini/antigravity/brain/b3dc8f9a-8701-45a6-9bc0-a049d36ab941/index.html), [art.html](file:///C:/Users/akoda/.gemini/antigravity/brain/b3dc8f9a-8701-45a6-9bc0-a049d36ab941/art.html), [music.html](file:///C:/Users/akoda/.gemini/antigravity/brain/b3dc8f9a-8701-45a6-9bc0-a049d36ab941/music.html)
+- Ensure no default `<img>` tags remain.
+- Verify placeholders are clear.
+
+## Verification Plan
+
+### Manual Verification
+- Open [index.html](file:///C:/Users/akoda/.gemini/antigravity/brain/b3dc8f9a-8701-45a6-9bc0-a049d36ab941/index.html).
+- Verify the color scheme is green.
+- Verify no images are loaded (should be solid colors or empty).
+- Check code comments for clarity on adding assets.

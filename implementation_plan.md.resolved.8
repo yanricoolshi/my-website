@@ -1,0 +1,42 @@
+# Implementation Plan - Yanri's Website (Zeffdakilla Layout)
+
+I will restructure the website to match the layout shown in the uploaded image (`zeffdakilla`), while keeping the "Yanri's Website" branding and Green/Olive color scheme.
+
+## User Review Required
+
+> [!NOTE]
+> **Layout Change**: Moving to a Header -> Horizontal Menu -> Two-Column (Sidebar/Content) structure.
+> **Navigation**: Main pages (Home, Art, Music) will move to the **Horizontal Menu**.
+> **Sidebar**: Will contain "Links" and "Contact" sections, as seen in the image.
+> **Colors**: Retaining the **Green/Olive** palette.
+
+## Proposed Changes
+
+### HTML Structure
+
+#### [MODIFY] [index.html](file:///C:/Users/akoda/.gemini/antigravity/brain/b3dc8f9a-8701-45a6-9bc0-a049d36ab941/index.html), [art.html](file:///C:/Users/akoda/.gemini/antigravity/brain/b3dc8f9a-8701-45a6-9bc0-a049d36ab941/art.html), [music.html](file:///C:/Users/akoda/.gemini/antigravity/brain/b3dc8f9a-8701-45a6-9bc0-a049d36ab941/music.html)
+- **Header**: Full-width banner at the top.
+- **Menu**: Horizontal navigation bar below the header.
+- **Page Body**: A container holding:
+    - **Sidebar (Left)**: "Links" (Twitter, etc.) and "Contact".
+    - **Main Content (Right)**: The page content.
+- **Footer**: At the bottom.
+
+### Styling
+
+#### [MODIFY] [style.css](file:///C:/Users/akoda/.gemini/antigravity/brain/b3dc8f9a-8701-45a6-9bc0-a049d36ab941/style.css)
+- **Layout**: Flexbox or Float layout for the columns.
+- **Menu**: Horizontal bar styling (Green/Olive buttons).
+- **Sidebar**: Vertical list styling for links.
+- **Container**: Fixed width (likely 800px-900px) centered.
+
+## Verification Plan
+
+### Manual Verification
+- Open [index.html](file:///C:/Users/akoda/.gemini/antigravity/brain/b3dc8f9a-8701-45a6-9bc0-a049d36ab941/index.html).
+- Verify the layout matches the `zeffdakilla` structure:
+    - Header on top.
+    - Menu bar underneath.
+    - Sidebar on the left with links.
+    - Content on the right.
+- Check that navigation works and colors are correct.
