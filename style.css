@@ -413,3 +413,100 @@ p {
     font-weight: bold;
     font-size: 14px;
 }
+
+/* Shake animations for poop button */
+@keyframes shake {
+
+    0%,
+    100% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+
+    10% {
+        transform: translate(-2px, -2px) rotate(-2deg);
+    }
+
+    20% {
+        transform: translate(2px, 2px) rotate(2deg);
+    }
+
+    30% {
+        transform: translate(-2px, 2px) rotate(-2deg);
+    }
+
+    40% {
+        transform: translate(2px, -2px) rotate(2deg);
+    }
+
+    50% {
+        transform: translate(-2px, -2px) rotate(-2deg);
+    }
+
+    60% {
+        transform: translate(2px, 2px) rotate(2deg);
+    }
+
+    70% {
+        transform: translate(-2px, 2px) rotate(-2deg);
+    }
+
+    80% {
+        transform: translate(2px, -2px) rotate(2deg);
+    }
+
+    90% {
+        transform: translate(-2px, -2px) rotate(-2deg);
+    }
+}
+
+@keyframes shake-violent {
+
+    0%,
+    100% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+
+    10% {
+        transform: translate(-5px, -5px) rotate(-5deg);
+    }
+
+    20% {
+        transform: translate(5px, 5px) rotate(5deg);
+    }
+
+    30% {
+        transform: translate(-5px, 5px) rotate(-5deg);
+    }
+
+    40% {
+        transform: translate(5px, -5px) rotate(5deg);
+    }
+
+    50% {
+        transform: translate(-5px, -5px) rotate(-5deg);
+    }
+
+    60% {
+        transform: translate(5px, 5px) rotate(5deg);
+    }
+
+    70% {
+        transform: translate(-5px, 5px) rotate(-5deg);
+    }
+
+    80% {
+        transform: translate(5px, -5px) rotate(5deg);
+    }
+
+    90% {
+        transform: translate(-5px, -5px) rotate(-5deg);
+    }
+}
+
+.shake {
+    animation: shake 0.3s infinite;
+}
+
+.shake-violent {
+    animation: shake-violent 0.15s infinite;
+}

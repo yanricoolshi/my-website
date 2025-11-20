@@ -81,11 +81,14 @@
                     I love 2000's/early 2010's<br />
                     I LIVE 4 VIDEO GAMES!!!</p>
 
-                <!-- Button with poop1.png image - bigger size -->
-                <button
+                <!-- Button with poop images - interactive -->
+                <button id="poop-button"
                     style="position: absolute; top: 10px; right: 10px; border: none; background: none; cursor: pointer; padding: 0;">
-                    <img src="images/poop1.png" alt="Button" style="width: 110px; height: auto;" />
+                    <img id="poop-img" src="images/poop1.png" alt="Button" style="width: 140px; height: auto;" />
                 </button>
+
+                <!-- Audio for button -->
+                <audio id="poop-audio" src="images/waarrrr.ogg"></audio>
 
                 <h2 class="latest-updates">Latest Updates</h2>
                 <p><!-- TEXT PLACEHOLDER: Updates go here --></p>
@@ -104,6 +107,45 @@
     </div>
 
     <script>
+        // Poop Button Interactive Functionality
+        let isAnimating = false;
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const poopButton = document.getElementById('poop-button');
+            const poopImg = document.getElementById('poop-img');
+            const poopAudio = document.getElementById('poop-audio');
+
+            if (poopButton && poopImg && poopAudio) {
+                poopButton.addEventListener('click', function () {
+                    if (isAnimating) return; // Prevent multiple clicks
+                    isAnimating = true;
+
+                    // Step 1: Change to poop2.png and shake for 3 seconds
+                    poopImg.src = 'images/poop2.png';
+                    poopImg.classList.add('shake');
+
+                    setTimeout(function () {
+                        // Step 2: Change to poop3.png and shake violently with audio
+                        poopImg.src = 'images/poop3.png';
+                        poopImg.classList.remove('shake');
+                        poopImg.classList.add('shake-violent');
+
+                        // Play audio
+                        poopAudio.currentTime = 0;
+                        poopAudio.play();
+
+                        // Wait for audio to finish
+                        poopAudio.onended = function () {
+                            // Step 3: Return to poop1.png and remove animations
+                            poopImg.classList.remove('shake-violent');
+                            poopImg.src = 'images/poop1.png';
+                            isAnimating = false;
+                        };
+                    }, 3000); // 3 seconds
+                });
+            }
+        });
+
         // Mozzart Audio Player
         function playMozzartAudio() {
             var audio = document.getElementById('mozzart-audio');
