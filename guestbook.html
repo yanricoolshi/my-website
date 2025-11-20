@@ -78,6 +78,8 @@
                 <h2>Guestbook</h2>
                 <p>Sign my guestbook! Leave a message and let me know you were here!</p>
 
+                <p id="storage-notice" style="color: OliveDrab; font-size: 11px; font-style: italic;"></p>
+
                 <!-- Guestbook Form -->
                 <div class="guestbook-form">
                     <h3>Leave a Message</h3>
@@ -164,36 +166,18 @@
             });
         });
 
-        // Guestbook Functionality using JSONbin.io
+        // Guestbook Functionality
         const guestbookForm = document.getElementById('guestbook-form');
         const entriesContainer = document.getElementById('entries-container');
         const entryCount = document.getElementById('entry-count');
         const submitBtn = document.getElementById('submit-btn');
+        const storageNotice = document.getElementById('storage-notice');
 
         // Escape HTML to prevent XSS
         function escapeHtml(text) {
             const div = document.createElement('div');
             div.textContent = text;
             return div.innerHTML;
-        }
-
-        // Load entries from JSONbin
-        function loadEntries() {
-            fetch(GUESTBOOK_BIN_URL, {
-                method: 'GET',
-                headers: {
-                    'X-Master-Key': JSONBIN_API_KEY
-                }
-            })
-                .then(response => response.json())
-                .then(data => {
-                    const entries = data.record.entries || [];
-                    displayEntries(entries);
-                })
-                .catch(error => {
-                    console.error('Error loading entries:', error);
-                    entriesContainer.innerHTML = '<p class="no-entries">Error loading messages. Please refresh the page.</p>';
-                });
         }
 
         // Display entries
@@ -225,12 +209,55 @@
             });
         }
 
-        // Save new entry
-        function saveEntry(name, message) {
+        // LOCAL STORAGE FUNCTIONS
+        function loadEntriesLocal() {
+            const entries = JSON.parse(localStorage.getItem('guestbook_entries') || '[]');
+            storageNotice.textContent = '⚠ Using local storage - messages only visible on this device. See GUESTBOOK_SETUP.md to enable online sharing.';
+            displayEntries(entries);
+        }
+
+        function saveEntryLocal(name, message) {
+            const entries = JSON.parse(localStorage.getItem('guestbook_entries') || '[]');
+            entries.push({
+                name: name,
+                message: message,
+                timestamp: Date.now()
+            });
+            localStorage.setItem('guestbook_entries', JSON.stringify(entries));
+            loadEntriesLocal();
+        }
+
+        // JSONBIN FUNCTIONS
+        function loadEntriesOnline() {
+            storageNotice.textContent = '✓ Online mode - messages visible to everyone!';
+
+            fetch(GUESTBOOK_BIN_URL, {
+                method: 'GET',
+                headers: {
+                    'X-Master-Key': JSONBIN_API_KEY
+                }
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Failed to load from JSONbin');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    const entries = data.record.entries || [];
+                    displayEntries(entries);
+                })
+                .catch(error => {
+                    console.error('Error loading entries:', error);
+                    storageNotice.textContent = '⚠ Error connecting to online storage. Falling back to local mode.';
+                    loadEntriesLocal();
+                });
+        }
+
+        function saveEntryOnline(name, message) {
             submitBtn.disabled = true;
             submitBtn.textContent = 'Posting...';
 
-            // First, get current entries
             fetch(GUESTBOOK_BIN_URL, {
                 method: 'GET',
                 headers: {
@@ -240,15 +267,12 @@
                 .then(response => response.json())
                 .then(data => {
                     const entries = data.record.entries || [];
-
-                    // Add new entry
                     entries.push({
                         name: name,
                         message: message,
                         timestamp: Date.now()
                     });
 
-                    // Update the bin
                     return fetch(GUESTBOOK_BIN_URL, {
                         method: 'PUT',
                         headers: {
@@ -260,19 +284,19 @@
                 })
                 .then(response => response.json())
                 .then(data => {
-                    loadEntries();
+                    loadEntriesOnline();
                     guestbookForm.reset();
                     submitBtn.disabled = false;
                     submitBtn.textContent = 'Sign Guestbook';
 
-                    // Scroll to entries
                     setTimeout(function () {
                         entriesContainer.scrollIntoView({ behavior: 'smooth' });
                     }, 500);
                 })
                 .catch(error => {
                     console.error('Error saving entry:', error);
-                    alert('Error posting message. Please try again!');
+                    alert('Error posting online. Saving locally instead.');
+                    saveEntryLocal(name, message);
                     submitBtn.disabled = false;
                     submitBtn.textContent = 'Sign Guestbook';
                 });
@@ -286,15 +310,26 @@
             const message = document.getElementById('message').value.trim();
 
             if (name && message) {
-                saveEntry(name, message);
+                if (USE_LOCAL_STORAGE) {
+                    saveEntryLocal(name, message);
+                    guestbookForm.reset();
+                    setTimeout(function () {
+                        entriesContainer.scrollIntoView({ behavior: 'smooth' });
+                    }, 500);
+                } else {
+                    saveEntryOnline(name, message);
+                }
             }
         });
 
         // Load entries on page load
-        loadEntries();
-
-        // Refresh entries every 30 seconds to show new messages
-        setInterval(loadEntries, 30000);
+        if (USE_LOCAL_STORAGE) {
+            loadEntriesLocal();
+        } else {
+            loadEntriesOnline();
+            // Refresh entries every 30 seconds when online
+            setInterval(loadEntriesOnline, 30000);
+        }
     </script>
 
 </body>
