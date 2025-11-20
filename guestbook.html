@@ -23,7 +23,7 @@
     <div class="video-player-widget">
         <div class="video-player-frame">
             <iframe id="soundcloud-player" width="260" height="160" scrolling="no" frameborder="no" allow="autoplay"
-                src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/yanri-risk/sets/stop-making-fun-of-me&color=%23556b2f&auto_play=true&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false">
+                src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/yanri-risk/sets/stop-making-fun-of-me&color=%23556b2f&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false">
             </iframe>
         </div>
     </div>
@@ -92,14 +92,16 @@
                             <textarea id="message" name="message" rows="4" required maxlength="500"></textarea>
                         </div>
 
-                        <button type="submit" class="submit-btn">Sign Guestbook</button>
+                        <button type="submit" class="submit-btn" id="submit-btn">Sign Guestbook</button>
                     </form>
                 </div>
 
                 <!-- Guestbook Entries -->
                 <div class="guestbook-entries">
                     <h3>Messages (<span id="entry-count">0</span>)</h3>
-                    <div id="entries-container"></div>
+                    <div id="entries-container">
+                        <p class="no-entries">Loading messages...</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -110,6 +112,7 @@
         </div>
     </div>
 
+    <script src="guestbook-config.js"></script>
     <script>
         // Mozzart Audio Player
         function playMozzartAudio() {
@@ -161,17 +164,42 @@
             });
         });
 
-        // Guestbook Functionality
+        // Guestbook Functionality using JSONbin.io
         const guestbookForm = document.getElementById('guestbook-form');
         const entriesContainer = document.getElementById('entries-container');
         const entryCount = document.getElementById('entry-count');
+        const submitBtn = document.getElementById('submit-btn');
 
-        // Load entries from localStorage
+        // Escape HTML to prevent XSS
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        // Load entries from JSONbin
         function loadEntries() {
-            const entries = JSON.parse(localStorage.getItem('guestbook_entries') || '[]');
-            entryCount.textContent = entries.length;
+            fetch(GUESTBOOK_BIN_URL, {
+                method: 'GET',
+                headers: {
+                    'X-Master-Key': JSONBIN_API_KEY
+                }
+            })
+                .then(response => response.json())
+                .then(data => {
+                    const entries = data.record.entries || [];
+                    displayEntries(entries);
+                })
+                .catch(error => {
+                    console.error('Error loading entries:', error);
+                    entriesContainer.innerHTML = '<p class="no-entries">Error loading messages. Please refresh the page.</p>';
+                });
+        }
 
+        // Display entries
+        function displayEntries(entries) {
             entriesContainer.innerHTML = '';
+            entryCount.textContent = entries.length;
 
             if (entries.length === 0) {
                 entriesContainer.innerHTML = '<p class="no-entries">No messages yet. Be the first to sign!</p>';
@@ -179,7 +207,7 @@
             }
 
             // Display entries in reverse order (newest first)
-            entries.reverse().forEach(function (entry) {
+            entries.slice().reverse().forEach(function (entry) {
                 const entryDiv = document.createElement('div');
                 entryDiv.className = 'guestbook-entry';
 
@@ -197,24 +225,57 @@
             });
         }
 
-        // Save entry to localStorage
+        // Save new entry
         function saveEntry(name, message) {
-            const entries = JSON.parse(localStorage.getItem('guestbook_entries') || '[]');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Posting...';
 
-            entries.push({
-                name: name,
-                message: message,
-                timestamp: new Date().toISOString()
-            });
+            // First, get current entries
+            fetch(GUESTBOOK_BIN_URL, {
+                method: 'GET',
+                headers: {
+                    'X-Master-Key': JSONBIN_API_KEY
+                }
+            })
+                .then(response => response.json())
+                .then(data => {
+                    const entries = data.record.entries || [];
 
-            localStorage.setItem('guestbook_entries', JSON.stringify(entries));
-        }
+                    // Add new entry
+                    entries.push({
+                        name: name,
+                        message: message,
+                        timestamp: Date.now()
+                    });
 
-        // Escape HTML to prevent XSS
-        function escapeHtml(text) {
-            const div = document.createElement('div');
-            div.textContent = text;
-            return div.innerHTML;
+                    // Update the bin
+                    return fetch(GUESTBOOK_BIN_URL, {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-Master-Key': JSONBIN_API_KEY
+                        },
+                        body: JSON.stringify({ entries: entries })
+                    });
+                })
+                .then(response => response.json())
+                .then(data => {
+                    loadEntries();
+                    guestbookForm.reset();
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Sign Guestbook';
+
+                    // Scroll to entries
+                    setTimeout(function () {
+                        entriesContainer.scrollIntoView({ behavior: 'smooth' });
+                    }, 500);
+                })
+                .catch(error => {
+                    console.error('Error saving entry:', error);
+                    alert('Error posting message. Please try again!');
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Sign Guestbook';
+                });
         }
 
         // Handle form submission
@@ -226,16 +287,14 @@
 
             if (name && message) {
                 saveEntry(name, message);
-                loadEntries();
-                guestbookForm.reset();
-
-                // Scroll to entries
-                entriesContainer.scrollIntoView({ behavior: 'smooth' });
             }
         });
 
         // Load entries on page load
         loadEntries();
+
+        // Refresh entries every 30 seconds to show new messages
+        setInterval(loadEntries, 30000);
     </script>
 
 </body>
