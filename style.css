@@ -188,44 +188,33 @@ p {
     margin-bottom: 15px;
 }
 
-/* Music Grid Styles */
-.music-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-    justify-content: space-between;
+/* Music List Styles */
+.music-list ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
-.song-card {
-    width: 48%;
-    background-color: rgba(240, 248, 240, 0.8);
-    /* Semi-transparent card */
-    border: 2px solid DarkOliveGreen;
-    padding: 10px;
-    box-sizing: border-box;
-    text-align: center;
-    margin-bottom: 15px;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+.music-list li {
+    margin-bottom: 12px;
+    padding: 8px;
+    background-color: rgba(240, 248, 240, 0.6);
+    border-bottom: 1px solid DarkOliveGreen;
 }
 
-.song-card img {
-    width: 100%;
-    height: auto;
-    border: 1px solid OliveDrab;
-    margin-bottom: 8px;
-}
-
-.song-card a {
+.music-list a {
     display: block;
-    font-weight: bold;
     color: DarkOliveGreen;
     text-decoration: none;
-    font-size: 13px;
+    font-weight: bold;
+    font-size: 14px;
 }
 
-.song-card a:hover {
+.music-list a:hover {
     color: YellowGreen;
-    text-decoration: underline;
+    text-decoration: none;
+    padding-left: 5px;
+    transition: padding-left 0.2s;
 }
 
 /* Placeholders */
@@ -252,4 +241,64 @@ p {
     text-align: center;
     font-size: 11px;
     border-top: 3px solid OliveDrab;
+}
+
+/* Corner Symbols */
+.corner-symbol {
+    position: fixed;
+    width: 200px;
+    height: 200px;
+    z-index: 1000;
+    opacity: 0.9;
+}
+
+.corner-symbol.top-left {
+    top: 10px;
+    left: 10px;
+}
+
+.corner-symbol.top-right {
+    top: 10px;
+    right: 10px;
+}
+
+/* SoundCloud Player Widget */
+.video-player-widget {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 999;
+}
+
+.video-player-frame {
+    width: 300px;
+    height: 200px;
+    background-image: url('images/aero-form.png');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    padding: 10px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#soundcloud-player {
+    width: 260px;
+    height: 160px;
+    border: none;
+}
+
+/* About Me Section - MedievalSharp Font */
+#main-content h2:first-of-type,
+#main-content p:first-of-type {
+    font-family: 'MedievalSharp', cursive;
+    font-size: 18px;
+}
+
+/* Latest Updates Glowing Text */
+.latest-updates {
+    color: #ffffff;
+    text-shadow: 0 0 5px #ffffff, 0 0 10px #ffffff, 0 0 20px #9acd32;
+    /* White with YellowGreen glow */
 }

@@ -4,10 +4,27 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Yanri's Website</title>
+    <link rel="icon" type="image/jpeg" href="images/icon.jpg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap" rel="stylesheet">
     <link href="style.css" rel="stylesheet" type="text/css" />
+    <script src="https://w.soundcloud.com/player/api.js"></script>
 </head>
 
 <body>
+    <!-- Corner Symbols -->
+    <img src="images/mysimbol.gif" alt="Symbol" class="corner-symbol top-left" />
+    <img src="images/mysimbol.gif" alt="Symbol" class="corner-symbol top-right" />
+
+    <!-- SoundCloud Player Widget -->
+    <div class="video-player-widget">
+        <div class="video-player-frame">
+            <iframe id="soundcloud-player" width="260" height="160" scrolling="no" frameborder="no" allow="autoplay"
+                src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/yanri-risk/sets/stop-making-fun-of-me&color=%23556b2f&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false">
+            </iframe>
+        </div>
+    </div>
 
     <div id="container">
         <!-- Header Banner -->
@@ -44,20 +61,23 @@
             <!-- Main Content (Right) -->
             <div id="main-content">
                 <h2>About Me</h2>
-                <p>Hi, I'm Yanri! Welcome to my personal corner of the web.</p>
-                <p><!-- TEXT PLACEHOLDER: Write more about yourself here --></p>
+                <p>HIIII i'm 21 years old<br />
+                    a starving artist from africa<br />
+                    I love 2000's/early 2010's<br />
+                    I LIVE 4 VIDEO GAMES!!!</p>
 
                 <div class="placeholder-box">
                     <!-- IMAGE PLACEHOLDER: Profile Picture -->
                     [Profile Picture Placeholder]
                 </div>
 
-                <h2>Latest Updates</h2>
+                <h2 class="latest-updates">Latest Updates</h2>
                 <p><!-- TEXT PLACEHOLDER: Updates go here --></p>
 
-                <div class="placeholder-box">
+                <div class="placeholder-box" style="height: auto; border: none; background: none;">
                     <!-- IMAGE PLACEHOLDER: Featured Image -->
-                    [Featured Image Placeholder]
+                    <img src="images/update-screenshot.jpg" alt="Latest Update"
+                        style="width: 100%; height: auto; border: 2px solid DarkOliveGreen;" />
                 </div>
             </div>
         </div>
@@ -67,6 +87,50 @@
             <p>Copyright &copy; 2024 Yanri. All rights reserved.</p>
         </div>
     </div>
+
+    <script>
+        // SoundCloud Widget API - Set volume low and persist playback state
+        var iframe = document.querySelector('#soundcloud-player');
+        var widget = SC.Widget(iframe);
+
+        widget.bind(SC.Widget.Events.READY, function () {
+            widget.setVolume(20);
+
+            // Check if there's a saved position and track
+            var savedPosition = sessionStorage.getItem('sc_position');
+            var savedTrack = sessionStorage.getItem('sc_track');
+            var wasPlaying = sessionStorage.getItem('sc_playing') === 'true';
+
+            if (savedPosition && savedTrack) {
+                // Try to seek to saved position
+                widget.getSounds(function (sounds) {
+                    var trackIndex = parseInt(savedTrack);
+                    if (trackIndex >= 0 && trackIndex < sounds.length) {
+                        widget.skip(trackIndex);
+                        widget.seekTo(parseInt(savedPosition));
+                        if (wasPlaying) {
+                            widget.play();
+                        }
+                    } else if (wasPlaying) {
+                        widget.play();
+                    }
+                });
+            }
+        });
+
+        // Save position and playing state before page unload
+        window.addEventListener('beforeunload', function () {
+            widget.getPosition(function (position) {
+                sessionStorage.setItem('sc_position', position);
+            });
+            widget.getCurrentSoundIndex(function (trackIndex) {
+                sessionStorage.setItem('sc_track', trackIndex);
+            });
+            widget.isPaused(function (paused) {
+                sessionStorage.setItem('sc_playing', !paused);
+            });
+        });
+    </script>
 
 </body>
 

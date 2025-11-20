@@ -4,10 +4,24 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Yanri's Website - Music</title>
+    <link rel="icon" type="image/jpeg" href="images/icon.jpg" />
     <link href="style.css" rel="stylesheet" type="text/css" />
+    <script src="https://w.soundcloud.com/player/api.js"></script>
 </head>
 
 <body>
+    <!-- Corner Symbols -->
+    <img src="images/mysimbol.gif" alt="Symbol" class="corner-symbol top-left" />
+    <img src="images/mysimbol.gif" alt="Symbol" class="corner-symbol top-right" />
+
+    <!-- SoundCloud Player Widget -->
+    <div class="video-player-widget">
+        <div class="video-player-frame">
+            <iframe id="soundcloud-player" width="280" height="180" scrolling="no" frameborder="no" allow="autoplay"
+                src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/yanri-risk/sets/stop-making-fun-of-me&color=%23556b2f&auto_play=true&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false">
+            </iframe>
+        </div>
+    </div>
 
     <div id="container">
         <!-- Header Banner -->
@@ -46,63 +60,50 @@
                 <h2>My Music</h2>
                 <p>Check out my favorite tracks.</p>
 
-                <div class="music-grid">
-                    <!-- Song 1 -->
-                    <div class="song-card">
-                        <a href="https://www.youtube.com/watch?v=rILO7bQEheY&list=PLTXibJayE9VpiOH-ADAL0f97Z5J42Kfna"
-                            target="_blank">
-                            <img src="https://img.youtube.com/vi/rILO7bQEheY/hqdefault.jpg" alt="SHOTGUN KILLER" />
-                            SHOTGUN KILLER
-                        </a>
-                    </div>
-
-                    <!-- Song 2 -->
-                    <div class="song-card">
-                        <a href="https://www.youtube.com/watch?v=kyaXX7ad_CE&list=PLTXibJayE9VpiOH-ADAL0f97Z5J42Kfna"
-                            target="_blank">
-                            <img src="https://img.youtube.com/vi/kyaXX7ad_CE/hqdefault.jpg"
-                                alt="Bruce & Bongo - Geil" />
-                            Bruce & Bongo - Geil
-                        </a>
-                    </div>
-
-                    <!-- Song 3 -->
-                    <div class="song-card">
-                        <a href="https://www.youtube.com/watch?v=w3oVCnL2sfw&list=PLTXibJayE9VpiOH-ADAL0f97Z5J42Kfna"
-                            target="_blank">
-                            <img src="https://img.youtube.com/vi/w3oVCnL2sfw/hqdefault.jpg"
-                                alt="Den Harrow - Future Brain" />
-                            Den Harrow - Future Brain
-                        </a>
-                    </div>
-
-                    <!-- Song 4 -->
-                    <div class="song-card">
-                        <a href="https://www.youtube.com/watch?v=UmiGXOXLa6Q&list=PLTXibJayE9VpiOH-ADAL0f97Z5J42Kfna"
-                            target="_blank">
-                            <img src="https://img.youtube.com/vi/UmiGXOXLa6Q/hqdefault.jpg" alt="M.P. - Flash Gordon" />
-                            M.P. - Flash Gordon
-                        </a>
-                    </div>
-
-                    <!-- Song 5 -->
-                    <div class="song-card">
-                        <a href="https://www.youtube.com/watch?v=c96OHfUR51A&list=PLTXibJayE9VpiOH-ADAL0f97Z5J42Kfna"
-                            target="_blank">
-                            <img src="https://img.youtube.com/vi/c96OHfUR51A/hqdefault.jpg"
-                                alt="Tom Hooker - Looking for love" />
-                            Tom Hooker - Looking for love
-                        </a>
-                    </div>
-
-                    <!-- Song 6 -->
-                    <div class="song-card">
-                        <a href="https://www.youtube.com/watch?v=pQA9BZRMitc&list=PLTXibJayE9VpiOH-ADAL0f97Z5J42Kfna"
-                            target="_blank">
-                            <img src="https://img.youtube.com/vi/pQA9BZRMitc/hqdefault.jpg" alt="Forever Lovers" />
-                            Forever Lovers
-                        </a>
-                    </div>
+                <div class="music-list">
+                    <ul>
+                        <li><a href="https://www.youtube.com/watch?v=JvwtIwUB6VM&list=PLTXibJayE9VpiOH-ADAL0f97Z5J42Kfna&index=1"
+                                target="_blank">Paul Paul - "Good Times" (1983)</a></li>
+                        <li><a href="https://www.youtube.com/watch?v=KUGE8_O4-6I&list=PLTXibJayE9VpiOH-ADAL0f97Z5J42Kfna&index=2"
+                                target="_blank">Green Mountaineer - (Vermont Republic Patriot Song) Better Version</a>
+                        </li>
+                        <li><a href="https://www.youtube.com/watch?v=rVTzv9qLyko&list=PLTXibJayE9VpiOH-ADAL0f97Z5J42Kfna&index=3"
+                                target="_blank">Field of Memories</a></li>
+                        <li><a href="https://www.youtube.com/watch?v=LpCoMpP-dyc&list=PLTXibJayE9VpiOH-ADAL0f97Z5J42Kfna&index=4"
+                                target="_blank">Ecuador (Original 12" Mix)</a></li>
+                        <li><a href="https://www.youtube.com/watch?v=023hH8uGPR0&list=PLTXibJayE9VpiOH-ADAL0f97Z5J42Kfna&index=5"
+                                target="_blank">Nathalie - To Beat Or Not To Beat</a></li>
+                        <li><a href="https://www.youtube.com/watch?v=AX9mhouBfCM&list=PLTXibJayE9VpiOH-ADAL0f97Z5J42Kfna&index=6"
+                                target="_blank">【MONGOLIAN ARMY SONG】Mongolian Soldier (蒙古士兵) w/ ENG lyrics</a></li>
+                        <li><a href="https://www.youtube.com/watch?v=TLhU4EgMiEw&list=PLTXibJayE9VpiOH-ADAL0f97Z5J42Kfna&index=7"
+                                target="_blank">u nedogled</a></li>
+                        <li><a href="https://www.youtube.com/watch?v=ktlAr5RQmFM&list=PLTXibJayE9VpiOH-ADAL0f97Z5J42Kfna&index=8"
+                                target="_blank">Darkwood Dub - Sudar</a></li>
+                        <li><a href="https://www.youtube.com/watch?v=NN2XXYQeLZo&list=PLTXibJayE9VpiOH-ADAL0f97Z5J42Kfna&index=9"
+                                target="_blank">Darkwood Dub - U novoj epizodi</a></li>
+                        <li><a href="https://www.youtube.com/watch?v=CYNf5Uva1Os&list=PLTXibJayE9VpiOH-ADAL0f97Z5J42Kfna&index=10"
+                                target="_blank">Твой день</a></li>
+                        <li><a href="https://www.youtube.com/watch?v=rILO7bQEheY&list=PLTXibJayE9VpiOH-ADAL0f97Z5J42Kfna&index=11"
+                                target="_blank">SHOTGUN KILLER</a></li>
+                        <li><a href="https://www.youtube.com/watch?v=kyaXX7ad_CE&list=PLTXibJayE9VpiOH-ADAL0f97Z5J42Kfna&index=12"
+                                target="_blank">Bruce & Bongo - Geil (Extended Version, 1986)</a></li>
+                        <li><a href="https://www.youtube.com/watch?v=w3oVCnL2sfw&list=PLTXibJayE9VpiOH-ADAL0f97Z5J42Kfna&index=13"
+                                target="_blank">Den Harrow - Future Brain</a></li>
+                        <li><a href="https://www.youtube.com/watch?v=UmiGXOXLa6Q&list=PLTXibJayE9VpiOH-ADAL0f97Z5J42Kfna&index=14"
+                                target="_blank">M.P. (München Paris) - Flash Gordon</a></li>
+                        <li><a href="https://www.youtube.com/watch?v=c96OHfUR51A&list=PLTXibJayE9VpiOH-ADAL0f97Z5J42Kfna&index=15"
+                                target="_blank">Tom Hooker - Looking for love</a></li>
+                        <li><a href="https://www.youtube.com/watch?v=pQA9BZRMitc&list=PLTXibJayE9VpiOH-ADAL0f97Z5J42Kfna&index=16"
+                                target="_blank">Forever Lovers</a></li>
+                        <li><a href="https://www.youtube.com/watch?v=gwSk0Afu0fc&list=PLTXibJayE9VpiOH-ADAL0f97Z5J42Kfna&index=17"
+                                target="_blank">Depeche mode - Hole To Feed (original instrumental)</a></li>
+                        <li><a href="https://www.youtube.com/watch?v=H5j4wYnpISY&list=PLTXibJayE9VpiOH-ADAL0f97Z5J42Kfna&index=18"
+                                target="_blank">FASTWAY - Make or Brake</a></li>
+                        <li><a href="https://www.youtube.com/watch?v=THGhHlVm_Gk&list=PLTXibJayE9VpiOH-ADAL0f97Z5J42Kfna&index=19"
+                                target="_blank">Miko Mission - The world is you (extended version)</a></li>
+                        <li><a href="https://www.youtube.com/watch?v=EK1z11V7WCk&list=PLTXibJayE9VpiOH-ADAL0f97Z5J42Kfna&index=20"
+                                target="_blank">Seventh - I am Gonna Fly (Operation Flashpoint OST)</a></li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -112,6 +113,16 @@
             <p>Copyright &copy; 2024 Yanri. All rights reserved.</p>
         </div>
     </div>
+
+    <script>
+        // SoundCloud Widget API - Set volume low
+        var iframe = document.querySelector('#soundcloud-player');
+        var widget = SC.Widget(iframe);
+
+        widget.bind(SC.Widget.Events.READY, function () {
+            widget.setVolume(20);
+        });
+    </script>
 
 </body>
 
