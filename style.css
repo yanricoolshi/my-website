@@ -63,6 +63,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
 }
 
 #menu ul {
@@ -217,6 +218,30 @@ p {
     transition: padding-left 0.2s;
 }
 
+/* Interest List Styles */
+.interest-list ul {
+    list-style-type: square;
+    padding-left: 20px;
+    color: DarkOliveGreen;
+}
+
+.interest-list li {
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.forpooper-img {
+    position: fixed;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    height: 250px;
+    /* Bigger size */
+    opacity: 0.6;
+    /* Lowered by 40% */
+    z-index: 997;
+}
+
 /* Placeholders */
 .placeholder-box {
     width: 100%;
@@ -301,4 +326,237 @@ p {
     color: #ffffff;
     text-shadow: 0 0 5px #ffffff, 0 0 10px #ffffff, 0 0 20px #9acd32;
     /* White with YellowGreen glow */
+}
+
+/* Mozzart Window - Bottom Left */
+.mozzart-window {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 998;
+    background: linear-gradient(to bottom, rgba(143, 188, 143, 0.9), rgba(143, 188, 143, 0.7));
+    border: 3px solid DarkOliveGreen;
+    padding: 15px;
+    box-shadow: 0 0 20px rgba(154, 205, 50, 0.6);
+    width: 200px;
+}
+
+.mozzart-window h3 {
+    margin: 0 0 10px 0;
+    text-align: center;
+    color: #ffffff;
+    font-size: 16px;
+    text-decoration: none;
+    font-weight: bold;
+    display: block;
+    padding: 3px 5px;
+    background-color: rgba(255, 255, 255, 0.4);
+    /* Readability */
+}
+
+#sidebar a:hover {
+    color: YellowGreen;
+    text-decoration: underline;
+    background-color: rgba(255, 255, 255, 0.7);
+    box-shadow: 0 0 10px rgba(154, 205, 50, 0.6);
+}
+
+/* Main Content (Right) */
+#main-content {
+    flex: 1;
+    /* Takes remaining width */
+    padding: 25px;
+    background-color: transparent;
+    /* Transparent to show gradient */
+    box-sizing: border-box;
+}
+
+h2 {
+    font-size: 28px;
+    color: DarkOliveGreen;
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-family: "Trebuchet MS", sans-serif;
+}
+
+p {
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+/* Music List Styles */
+.music-list ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.music-list li {
+    margin-bottom: 12px;
+    padding: 8px;
+    background-color: rgba(240, 248, 240, 0.6);
+    border-bottom: 1px solid DarkOliveGreen;
+}
+
+.music-list a {
+    display: block;
+    color: DarkOliveGreen;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.music-list a:hover {
+    color: YellowGreen;
+    text-decoration: none;
+    padding-left: 5px;
+    transition: padding-left 0.2s;
+}
+
+/* Interest List Styles */
+.interest-list ul {
+    list-style-type: square;
+    padding-left: 20px;
+    color: DarkOliveGreen;
+}
+
+.interest-list li {
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.forpooper-img {
+    position: fixed;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    height: 250px;
+    /* Bigger size */
+    opacity: 0.6;
+    /* Lowered by 40% */
+    z-index: 997;
+}
+
+/* Placeholders */
+.placeholder-box {
+    width: 100%;
+    height: 200px;
+    background-color: rgba(232, 240, 232, 0.6);
+    border: 2px dashed DarkSeaGreen;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: OliveDrab;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* Footer */
+#footer {
+    width: 100%;
+    padding: 10px 0;
+    background-color: rgba(85, 107, 47, 0.9);
+    /* DarkOliveGreen */
+    color: #fff;
+    text-align: center;
+    font-size: 11px;
+    border-top: 3px solid OliveDrab;
+}
+
+/* Corner Symbols */
+.corner-symbol {
+    position: fixed;
+    width: 200px;
+    height: 200px;
+    z-index: 1000;
+    opacity: 0.9;
+}
+
+.corner-symbol.top-left {
+    top: 10px;
+    left: 10px;
+}
+
+.corner-symbol.top-right {
+    top: 10px;
+    right: 10px;
+}
+
+/* SoundCloud Player Widget */
+.video-player-widget {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 999;
+}
+
+.video-player-frame {
+    width: 300px;
+    height: 200px;
+    background-image: url('images/aero-form.png');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    padding: 10px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#soundcloud-player {
+    width: 260px;
+    height: 160px;
+    border: none;
+}
+
+/* About Me Section - MedievalSharp Font */
+#main-content h2:first-of-type,
+#main-content p:first-of-type {
+    font-family: 'MedievalSharp', cursive;
+    font-size: 18px;
+}
+
+/* Latest Updates Glowing Text */
+.latest-updates {
+    color: #ffffff;
+    text-shadow: 0 0 5px #ffffff, 0 0 10px #ffffff, 0 0 20px #9acd32;
+    /* White with YellowGreen glow */
+}
+
+/* Mozzart Window - Bottom Left */
+.mozzart-window {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 998;
+    background: linear-gradient(to bottom, rgba(143, 188, 143, 0.9), rgba(143, 188, 143, 0.7));
+    border: 3px solid DarkOliveGreen;
+    padding: 15px;
+    box-shadow: 0 0 20px rgba(154, 205, 50, 0.6);
+    width: 200px;
+}
+
+.mozzart-window h3 {
+    margin: 0 0 10px 0;
+    text-align: center;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: bold;
+    text-shadow: 0 0 10px #ffffff, 0 0 20px #9acd32, 0 0 30px #9acd32;
+    /* Glowing text */
+}
+
+.mozzart-window img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border: 2px solid DarkOliveGreen;
+    box-shadow: 0 0 15px rgba(154, 205, 50, 0.8), 0 0 25px rgba(154, 205, 50, 0.5);
+    /* Glowing image */
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.mozzart-window img:hover {
+    transform: scale(1.05);
 }

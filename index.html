@@ -10,6 +10,88 @@
     <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap" rel="stylesheet">
     <link href="style.css" rel="stylesheet" type="text/css" />
     <script src="https://w.soundcloud.com/player/api.js"></script>
+    <style>
+        /* SPA Page Sections */
+        .page-section {
+            display: none;
+        }
+
+        .page-section.active {
+            display: block;
+        }
+
+        /* Art Gallery Slideshow Styles */
+        .slideshow-section {
+            width: 100%;
+            padding: 20px 0;
+            background: linear-gradient(to bottom, rgba(143, 188, 143, 0.6), rgba(143, 188, 143, 0.3));
+            border: 3px solid DarkOliveGreen;
+            margin-bottom: 20px;
+        }
+
+        .slideshow-section h2 {
+            text-align: center;
+            color: DarkOliveGreen;
+            margin: 0 0 20px 0;
+        }
+
+        .slideshow-container {
+            position: relative;
+            max-width: 800px;
+            height: 600px;
+            margin: 0 auto;
+            background-color: rgba(0, 0, 0, 0.8);
+            border: 3px solid DarkOliveGreen;
+            overflow: hidden;
+        }
+
+        .slideshow-container img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+        }
+
+        .slideshow-container img.active {
+            opacity: 1;
+        }
+
+        .slideshow-controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .slideshow-controls button {
+            padding: 12px 25px;
+            background-color: rgba(107, 142, 35, 0.9);
+            color: white;
+            border: 2px outset #8aa848;
+            font-weight: bold;
+            cursor: pointer;
+            font-family: Verdana, Arial, sans-serif;
+            font-size: 14px;
+        }
+
+        .slideshow-controls button:hover {
+            background-color: rgba(154, 205, 50, 0.9);
+            color: #2e3b19;
+            box-shadow: 0 0 10px rgba(154, 205, 50, 0.6);
+        }
+
+        .slideshow-info {
+            text-align: center;
+            margin-top: 15px;
+            color: DarkOliveGreen;
+            font-weight: bold;
+            font-size: 14px;
+        }
+    </style>
 </head>
 
 <body>
@@ -26,6 +108,16 @@
         </div>
     </div>
 
+    <!-- Mozzart Window - Bottom Left -->
+    <div class="mozzart-window">
+        <h3>THIS IS MOZZART</h3>
+        <img src="images/mozzart.jpg" alt="Mozzart" onclick="playMozzartAudio()" />
+        <audio id="mozzart-audio" src="images/Jasmin China Girl [xe4APfSQRYQ].ogg"></audio>
+    </div>
+
+    <!-- Forpooper Image - Right Side -->
+    <img src="images/forpooper.png" alt="For Pooper" class="forpooper-img" />
+
     <div id="container">
         <!-- Header Banner -->
         <div id="header">
@@ -35,49 +127,197 @@
         <!-- Horizontal Menu -->
         <div id="menu">
             <ul>
-                <li class="active"><a href="index.html">About Me...</a></li>
-                <li><a href="art.html">Art</a></li>
-                <li><a href="music.html">Music</a></li>
+                <li><a href="#about">About Me...</a></li>
+                <li><a href="#art">Art</a></li>
+                <li><a href="#music">Music</a></li>
+                <li><a href="#interests">Interests</a></li>
             </ul>
         </div>
 
-        <!-- Content Wrapper (Sidebar + Main) -->
-        <div id="content-wrapper">
-            <!-- Sidebar (Left) -->
-            <div id="sidebar">
-                <h3>Links</h3>
-                <ul>
-                    <li><a href="https://x.com/ASwindlr" target="_blank">Twitter</a></li>
-                    <li><a href="#">YouTube</a></li>
-                </ul>
+        <!-- PAGE: About Me -->
+        <div id="page-about" class="page-section active">
+            <div id="content-wrapper">
+                <div id="sidebar">
+                    <h3>Links</h3>
+                    <ul>
+                        <li><a href="https://x.com/ASwindlr" target="_blank">Twitter</a></li>
+                        <li><a href="#">YouTube</a></li>
+                    </ul>
 
-                <h3>Contact</h3>
-                <ul>
-                    <li><a href="#">Email Me</a></li>
-                    <li><a href="#">Discord</a></li>
-                </ul>
-            </div>
-
-            <!-- Main Content (Right) -->
-            <div id="main-content">
-                <h2>About Me</h2>
-                <p>HIIII i'm 21 years old<br />
-                    a starving artist from africa<br />
-                    I love 2000's/early 2010's<br />
-                    I LIVE 4 VIDEO GAMES!!!</p>
-
-                <div class="placeholder-box">
-                    <!-- IMAGE PLACEHOLDER: Profile Picture -->
-                    [Profile Picture Placeholder]
+                    <h3>Contact</h3>
+                    <ul>
+                        <li><a href="#">Email Me</a></li>
+                        <li><a href="#">Discord</a></li>
+                    </ul>
                 </div>
 
-                <h2 class="latest-updates">Latest Updates</h2>
-                <p><!-- TEXT PLACEHOLDER: Updates go here --></p>
+                <div id="main-content">
+                    <h2>About Me</h2>
+                    <p>HIIII i'm 21 years old<br />
+                        a starving artist from africa<br />
+                        I love 2000's/early 2010's<br />
+                        I LIVE 4 VIDEO GAMES!!!</p>
 
-                <div class="placeholder-box" style="height: auto; border: none; background: none;">
-                    <!-- IMAGE PLACEHOLDER: Featured Image -->
-                    <img src="images/update-screenshot.jpg" alt="Latest Update"
-                        style="width: 100%; height: auto; border: 2px solid DarkOliveGreen;" />
+                    <div class="placeholder-box">
+                        [Profile Picture Placeholder]
+                    </div>
+
+                    <h2 class="latest-updates">Latest Updates</h2>
+                    <p><!-- TEXT PLACEHOLDER: Updates go here --></p>
+
+                    <div class="placeholder-box" style="height: auto; border: none; background: none;">
+                        <img src="images/update-screenshot.jpg" alt="Latest Update"
+                            style="width: 100%; height: auto; border: 2px solid DarkOliveGreen;" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PAGE: Art -->
+        <div id="page-art" class="page-section">
+            <div class="slideshow-section">
+                <h2>My Art Gallery</h2>
+
+                <div class="slideshow-container" id="slideshow">
+                    <!-- Images loaded by JavaScript -->
+                </div>
+
+                <div class="slideshow-info" id="slideshow-info">
+                    Loading images...
+                </div>
+
+                <div class="slideshow-controls">
+                    <button onclick="previousImage()">← Previous</button>
+                    <button onclick="toggleAutoplay()" id="autoplayBtn">⏸ Pause</button>
+                    <button onclick="nextImage()">Next →</button>
+                </div>
+            </div>
+
+            <div id="content-wrapper">
+                <div id="sidebar">
+                    <h3>Links</h3>
+                    <ul>
+                        <li><a href="https://x.com/ASwindlr" target="_blank">Twitter</a></li>
+                        <li><a href="#">YouTube</a></li>
+                    </ul>
+
+                    <h3>Contact</h3>
+                    <ul>
+                        <li><a href="#">Email Me</a></li>
+                        <li><a href="#">Discord</a></li>
+                    </ul>
+                </div>
+
+                <div id="main-content">
+                    <h2>About This Gallery</h2>
+                    <p>Welcome to my art gallery! Use the controls above to browse through my collection.</p>
+                    <p>The slideshow automatically advances every 4 seconds, or you can use the Previous/Next buttons to
+                        navigate manually.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- PAGE: Music -->
+        <div id="page-music" class="page-section">
+            <div id="content-wrapper">
+                <div id="sidebar">
+                    <h3>Links</h3>
+                    <ul>
+                        <li><a href="https://x.com/ASwindlr" target="_blank">Twitter</a></li>
+                        <li><a href="#">YouTube</a></li>
+                    </ul>
+
+                    <h3>Contact</h3>
+                    <ul>
+                        <li><a href="#">Email Me</a></li>
+                        <li><a href="#">Discord</a></li>
+                    </ul>
+                </div>
+
+                <div id="main-content">
+                    <h2>My Music</h2>
+                    <p>Check out my favorite tracks.</p>
+
+                    <div class="music-list">
+                        <ul>
+                            <li><a href="https://www.youtube.com/watch?v=JvwtIwUB6VM&list=PLTXibJayE9VpiOH-ADAL0f97Z5J42Kfna&index=1"
+                                    target="_blank">Paul Paul - "Good Times" (1983)</a></li>
+                            <li><a href="https://www.youtube.com/watch?v=KUGE8_O4-6I&list=PLTXibJayE9VpiOH-ADAL0f97Z5J42Kfna&index=2"
+                                    target="_blank">Green Mountaineer - (Vermont Republic Patriot Song) Better
+                                    Version</a></li>
+                            <li><a href="https://www.youtube.com/watch?v=rVTzv9qLyko&list=PLTXibJayE9VpiOH-ADAL0f97Z5J42Kfna&index=3"
+                                    target="_blank">Field of Memories</a></li>
+                            <li><a href="https://www.youtube.com/watch?v=LpCoMpP-dyc&list=PLTXibJayE9VpiOH-ADAL0f97Z5J42Kfna&index=4"
+                                    target="_blank">Ecuador (Original 12" Mix)</a></li>
+                            <li><a href="https://www.youtube.com/watch?v=023hH8uGPR0&list=PLTXibJayE9VpiOH-ADAL0f97Z5J42Kfna&index=5"
+                                    target="_blank">Nathalie - To Beat Or Not To Beat</a></li>
+                            <li><a href="https://www.youtube.com/watch?v=AX9mhouBfCM&list=PLTXibJayE9VpiOH-ADAL0f97Z5J42Kfna&index=6"
+                                    target="_blank">【MONGOLIAN ARMY SONG】Mongolian Soldier (蒙古士兵) w/ ENG lyrics</a></li>
+                            <li><a href="https://www.youtube.com/watch?v=TLhU4EgMiEw&list=PLTXibJayE9VpiOH-ADAL0f97Z5J42Kfna&index=7"
+                                    target="_blank">u nedogled</a></li>
+                            <li><a href="https://www.youtube.com/watch?v=ktlAr5RQmFM&list=PLTXibJayE9VpiOH-ADAL0f97Z5J42Kfna&index=8"
+                                    target="_blank">Darkwood Dub - Sudar</a></li>
+                            <li><a href="https://www.youtube.com/watch?v=NN2XXYQeLZo&list=PLTXibJayE9VpiOH-ADAL0f97Z5J42Kfna&index=9"
+                                    target="_blank">Darkwood Dub - U novoj epizodi</a></li>
+                            <li><a href="https://www.youtube.com/watch?v=CYNf5Uva1Os&list=PLTXibJayE9VpiOH-ADAL0f97Z5J42Kfna&index=10"
+                                    target="_blank">Твой день</a></li>
+                            <li><a href="https://www.youtube.com/watch?v=rILO7bQEheY&list=PLTXibJayE9VpiOH-ADAL0f97Z5J42Kfna&index=11"
+                                    target="_blank">SHOTGUN KILLER</a></li>
+                            <li><a href="https://www.youtube.com/watch?v=kyaXX7ad_CE&list=PLTXibJayE9VpiOH-ADAL0f97Z5J42Kfna&index=12"
+                                    target="_blank">Bruce & Bongo - Geil (Extended Version, 1986)</a></li>
+                            <li><a href="https://www.youtube.com/watch?v=w3oVCnL2sfw&list=PLTXibJayE9VpiOH-ADAL0f97Z5J42Kfna&index=13"
+                                    target="_blank">Den Harrow - Future Brain</a></li>
+                            <li><a href="https://www.youtube.com/watch?v=UmiGXOXLa6Q&list=PLTXibJayE9VpiOH-ADAL0f97Z5J42Kfna&index=14"
+                                    target="_blank">M.P. (München Paris) - Flash Gordon</a></li>
+                            <li><a href="https://www.youtube.com/watch?v=c96OHfUR51A&list=PLTXibJayE9VpiOH-ADAL0f97Z5J42Kfna&index=15"
+                                    target="_blank">Tom Hooker - Looking for love</a></li>
+                            <li><a href="https://www.youtube.com/watch?v=pQA9BZRMitc&list=PLTXibJayE9VpiOH-ADAL0f97Z5J42Kfna&index=16"
+                                    target="_blank">Forever Lovers</a></li>
+                            <li><a href="https://www.youtube.com/watch?v=gwSk0Afu0fc&list=PLTXibJayE9VpiOH-ADAL0f97Z5J42Kfna&index=17"
+                                    target="_blank">Depeche mode - Hole To Feed (original instrumental)</a></li>
+                            <li><a href="https://www.youtube.com/watch?v=H5j4wYnpISY&list=PLTXibJayE9VpiOH-ADAL0f97Z5J42Kfna&index=18"
+                                    target="_blank">FASTWAY - Make or Brake</a></li>
+                            <li><a href="https://www.youtube.com/watch?v=THGhHlVm_Gk&list=PLTXibJayE9VpiOH-ADAL0f97Z5J42Kfna&index=19"
+                                    target="_blank">Miko Mission - The world is you (extended version)</a></li>
+                            <li><a href="https://www.youtube.com/watch?v=EK1z11V7WCk&list=PLTXibJayE9VpiOH-ADAL0f97Z5J42Kfna&index=20"
+                                    target="_blank">Seventh - I am Gonna Fly (Operation Flashpoint OST)</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PAGE: Interests -->
+        <div id="page-interests" class="page-section">
+            <div id="content-wrapper">
+                <div id="sidebar">
+                    <h3>Links</h3>
+                    <ul>
+                        <li><a href="https://x.com/ASwindlr" target="_blank">Twitter</a></li>
+                        <li><a href="#">YouTube</a></li>
+                    </ul>
+
+                    <h3>Contact</h3>
+                    <ul>
+                        <li><a href="#">Email Me</a></li>
+                        <li><a href="#">Discord</a></li>
+                    </ul>
+                </div>
+
+                <div id="main-content">
+                    <h2>Interests</h2>
+                    <p>Here are some things I'm interested in...</p>
+
+                    <div class="interest-list">
+                        <ul>
+                            <li>Video Games (Halo, Worms, Retro FPS)</li>
+                            <li>Digital Art & Design</li>
+                            <li>2000s Web Aesthetics</li>
+                            <li>Music (Eurobeat, Italo Disco, Synthpop)</li>
+                            <li>Coding & Web Development</li>
+                            <li>Collecting Retro Tech</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
@@ -89,28 +329,156 @@
     </div>
 
     <script>
-        // SoundCloud Widget API - Set volume low and persist playback state
+        // ==================== MOZZART AUDIO ====================
+        function playMozzartAudio() {
+            var audio = document.getElementById('mozzart-audio');
+            if (audio.paused) {
+                audio.play();
+            } else {
+                audio.pause();
+                audio.currentTime = 0;
+            }
+        }
+
+        // ==================== ART SLIDESHOW ====================
+        const imageFiles = [
+            "yanri predator.png", "yanri predator 2.png", "Illustration2.png", "Illustration3.jpg",
+            "Illustration6.png", "Illustration288.png", "Illustration28888.png", "Illustration42222.png",
+            "Illustration747555.jpg", "Illustrationghfghf.jpg", "Illustrationnnnnnnnnnn133765.png",
+            "Illustrationnnnnnnnnnn1337655.png", "my-image.png", "IMG_20250227_234352.jpg",
+            "predahhh.jpg", "pred.png", "gozzila halo.png", "halo reach.png", "worms map by me.png",
+            "wordart.png", "skin.png", "zobahhhhi.png", "zooba2.png", "Png.png", "Untitled.png",
+            "Untitled.png2.png", "imaghfhfe.png", "gjjhgjgj.png", "cup hair hate.png", "can flay 1.png",
+            "can flay 2.png", "broke ass nigga.png", "broke ass p.png", "poop.png", "poops 2.png",
+            "Vanity_638930613959391544.png", "x.comshit f.png", "Screenshot 2023-10-06 234330.png",
+            "Screenshot 2023-10-13 080416.png", "Screenshot 2023-10-14 002714.png", "Screenshot 2023-10-16 062109.png",
+            "Screenshot 2025-03-07 004522.jpg", "Screenshot 2025-03-07 004654.jpg", "Screenshot 2025-03-07 004740.jpg",
+            "Screenshot 2025-03-07 005150.jpg", "Screenshot 2025-03-08 150559.jpg", "Screenshot 2025-04-01 185530.jpg",
+            "Screenshot 2025-08-22 001337.jpg", "Screenshot 2025-09-10 002421.jpg", "Screenshot 2025-09-29 004646.jpg",
+            "Screenshot 2025-10-02 052248.jpg", "Screenshot 2025-10-02 052721.jpg", "Screenshot 2025-10-22 070312.jpg",
+            "Screenshot 2025-10-29 210242.jpg", "Screenshot 2025-10-29 210303.jpg", "Screenshot 2025-10-29 210356.jpg",
+            "Screenshot 2025-10-29 210412.jpg", "Screenshot 2025-10-29 210430.jpg", "Screenshot 2025-11-08 011301.jpg",
+            "Screenshot 2025-11-08 024255.jpg", "Screenshot 2025-11-08 042720.jpg", "10games.jpg",
+            "20230916_100112.jpg", "4 lo.jpg", "albenian.jpg", "bruh man.jpg", "chadacrack.jpg",
+            "cs.jpg", "deltapoopduhh.jpg", "dp 2.jpg", "en.jpg", "fox gay t.jpg", "fur lo y pfp.jpg",
+            "kup full.jpg", "KUP.jpg", "nmghgkg.jpg", "poop.jpg", "vitnam guy x.jpg"
+        ];
+
+        let currentIndex = 0;
+        let autoplayInterval = null;
+        let isAutoplayRunning = true;
+        let slideshowInitialized = false;
+
+        function loadImages() {
+            if (slideshowInitialized) return;
+            const container = document.getElementById('slideshow');
+            container.innerHTML = '';
+
+            imageFiles.forEach((filename, index) => {
+                const img = document.createElement('img');
+                img.src = 'images/' + filename;
+                img.alt = 'Art piece ' + (index + 1);
+                img.onerror = function () { console.log('Failed to load: ' + filename); };
+                if (index === 0) img.className = 'active';
+                container.appendChild(img);
+            });
+            updateInfo();
+            slideshowInitialized = true;
+        }
+
+        function showImage(index) {
+            const images = document.querySelectorAll('.slideshow-container img');
+            images.forEach((img, i) => { img.className = i === index ? 'active' : ''; });
+            currentIndex = index;
+            updateInfo();
+        }
+
+        function nextImage() {
+            currentIndex = (currentIndex + 1) % imageFiles.length;
+            showImage(currentIndex);
+        }
+
+        function previousImage() {
+            currentIndex = (currentIndex - 1 + imageFiles.length) % imageFiles.length;
+            showImage(currentIndex);
+        }
+
+        function toggleAutoplay() {
+            const btn = document.getElementById('autoplayBtn');
+            if (isAutoplayRunning) {
+                clearInterval(autoplayInterval);
+                btn.textContent = '▶ Play';
+                isAutoplayRunning = false;
+            } else {
+                autoplayInterval = setInterval(nextImage, 4000);
+                btn.textContent = '⏸ Pause';
+                isAutoplayRunning = true;
+            }
+        }
+
+        function updateInfo() {
+            const info = document.getElementById('slideshow-info');
+            info.textContent = 'Image ' + (currentIndex + 1) + ' of ' + imageFiles.length;
+        }
+
+        // ==================== SPA NAVIGATION ====================
+        function navigateTo(page) {
+            // Hide all pages
+            document.querySelectorAll('.page-section').forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // Show selected page
+            const targetPage = document.getElementById('page-' + page);
+            if (targetPage) {
+                targetPage.classList.add('active');
+            }
+
+            // Update menu active state
+            document.querySelectorAll('#menu a').forEach(link => {
+                const linkPage = link.getAttribute('href').substring(1);
+                link.parentElement.classList.toggle('active', linkPage === page);
+            });
+
+            // Initialize slideshow when navigating to art page
+            if (page === 'art' && !slideshowInitialized) {
+                loadImages();
+                autoplayInterval = setInterval(nextImage, 4000);
+            }
+        }
+
+        function handleHashChange() {
+            let hash = window.location.hash.substring(1);
+            if (!hash || hash === '') hash = 'about';
+            navigateTo(hash);
+        }
+
+        // Listen for hash changes (browser back/forward)
+        window.addEventListener('hashchange', handleHashChange);
+
+        // Initialize on page load
+        window.addEventListener('load', function () {
+            handleHashChange();
+        });
+
+        // ==================== SOUNDCLOUD PLAYER ====================
         var iframe = document.querySelector('#soundcloud-player');
         var widget = SC.Widget(iframe);
 
         widget.bind(SC.Widget.Events.READY, function () {
             widget.setVolume(20);
 
-            // Check if there's a saved position and track
             var savedPosition = sessionStorage.getItem('sc_position');
             var savedTrack = sessionStorage.getItem('sc_track');
             var wasPlaying = sessionStorage.getItem('sc_playing') === 'true';
 
             if (savedPosition && savedTrack) {
-                // Try to seek to saved position
                 widget.getSounds(function (sounds) {
                     var trackIndex = parseInt(savedTrack);
                     if (trackIndex >= 0 && trackIndex < sounds.length) {
                         widget.skip(trackIndex);
                         widget.seekTo(parseInt(savedPosition));
-                        if (wasPlaying) {
-                            widget.play();
-                        }
+                        if (wasPlaying) widget.play();
                     } else if (wasPlaying) {
                         widget.play();
                     }
@@ -118,7 +486,6 @@
             }
         });
 
-        // Save position and playing state before page unload
         window.addEventListener('beforeunload', function () {
             widget.getPosition(function (position) {
                 sessionStorage.setItem('sc_position', position);
