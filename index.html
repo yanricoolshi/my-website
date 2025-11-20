@@ -26,6 +26,16 @@
         </div>
     </div>
 
+    <!-- Mozzart Window - Bottom Left -->
+    <div class="mozzart-window">
+        <h3>THIS IS MOZZART</h3>
+        <img src="images/mozzart.jpg" alt="Mozzart" onclick="playMozzartAudio()" />
+        <audio id="mozzart-audio" src="images/Jasmin China Girl [xe4APfSQRYQ].ogg"></audio>
+    </div>
+
+    <!-- Forpooper Image - Right Side -->
+    <img src="images/forpooper.png" alt="For Pooper" class="forpooper-img" />
+
     <div id="container">
         <!-- Header Banner -->
         <div id="header">
@@ -38,6 +48,7 @@
                 <li class="active"><a href="index.html">About Me...</a></li>
                 <li><a href="art.html">Art</a></li>
                 <li><a href="music.html">Music</a></li>
+                <li><a href="interests.html">Interests</a></li>
             </ul>
         </div>
 
@@ -67,7 +78,6 @@
                     I LIVE 4 VIDEO GAMES!!!</p>
 
                 <div class="placeholder-box">
-                    <!-- IMAGE PLACEHOLDER: Profile Picture -->
                     [Profile Picture Placeholder]
                 </div>
 
@@ -75,7 +85,6 @@
                 <p><!-- TEXT PLACEHOLDER: Updates go here --></p>
 
                 <div class="placeholder-box" style="height: auto; border: none; background: none;">
-                    <!-- IMAGE PLACEHOLDER: Featured Image -->
                     <img src="images/update-screenshot.jpg" alt="Latest Update"
                         style="width: 100%; height: auto; border: 2px solid DarkOliveGreen;" />
                 </div>
@@ -89,6 +98,17 @@
     </div>
 
     <script>
+        // Mozzart Audio Player
+        function playMozzartAudio() {
+            var audio = document.getElementById('mozzart-audio');
+            if (audio.paused) {
+                audio.play();
+            } else {
+                audio.pause();
+                audio.currentTime = 0;
+            }
+        }
+
         // SoundCloud Widget API - Set volume low and persist playback state
         var iframe = document.querySelector('#soundcloud-player');
         var widget = SC.Widget(iframe);

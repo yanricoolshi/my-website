@@ -50,49 +50,51 @@ body {
     /* Hide text title in favor of banner */
 }
 
-/* Horizontal Menu Bar */
+/* Horizontal Menu */
 #menu {
     width: 100%;
-    height: 40px;
-    background-color: rgba(62, 77, 34, 0.8);
-    /* Semi-transparent dark green */
-    background-image: url('images/orengesho.png');
-    /* User's texture */
-    background-repeat: repeat;
-    border-bottom: 3px solid DarkOliveGreen;
+    background-color: rgba(152, 251, 152, 0.8);
+    /* PaleGreen */
+    background-image: url('images/Texture.png');
+    background-size: cover;
+    border: 2px solid DarkOliveGreen;
+    padding: 0;
+    margin-bottom: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 #menu ul {
-    margin: 0;
-    padding: 0;
     list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
 }
 
 #menu li {
-    display: inline-block;
-    margin: 0 10px;
+    margin: 0 3px;
 }
 
 #menu a {
     display: block;
-    padding: 8px 20px;
-    color: #fff;
-    text-decoration: none;
+    padding: 10px 20px;
+    background-color: rgba(143, 188, 143, 0.9);
+    /* DarkSeaGreen */
+    color: #2e3b19;
+    /* Very dark green */
     font-weight: bold;
-    font-size: 14px;
-    background-color: rgba(107, 142, 35, 0.8);
-    /* OliveDrab with opacity */
+    text-decoration: none;
     border: 2px outset #8aa848;
+    transition: all 0.2s;
 }
 
 #menu a:hover {
     background-color: rgba(154, 205, 50, 0.9);
-    /* YellowGreen with opacity */
+    /* YellowGreen */
     color: #2e3b19;
-    border: 2px outset #bce85d;
+    box-shadow: 0 0 10px rgba(154, 205, 50, 0.6);
     cursor: pointer;
     box-shadow: 0 0 15px rgba(154, 205, 50, 0.8), 0 0 25px rgba(154, 205, 50, 0.5);
 }
@@ -217,6 +219,18 @@ p {
     transition: padding-left 0.2s;
 }
 
+/* Interest List Styles */
+.interest-list ul {
+    list-style-type: square;
+    padding-left: 20px;
+    color: DarkOliveGreen;
+}
+
+.interest-list li {
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
 /* Placeholders */
 .placeholder-box {
     width: 100%;
@@ -301,4 +315,51 @@ p {
     color: #ffffff;
     text-shadow: 0 0 5px #ffffff, 0 0 10px #ffffff, 0 0 20px #9acd32;
     /* White with YellowGreen glow */
+}
+
+/* Mozzart Window - Bottom Left */
+.mozzart-window {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 998;
+    background: linear-gradient(to bottom, rgba(143, 188, 143, 0.9), rgba(143, 188, 143, 0.7));
+    border: 3px solid DarkOliveGreen;
+    padding: 15px;
+    box-shadow: 0 0 20px rgba(154, 205, 50, 0.6);
+    width: 200px;
+}
+
+.mozzart-window h3 {
+    margin: 0 0 10px 0;
+    text-align: center;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: bold;
+    text-shadow: 0 0 10px #ffffff, 0 0 20px #9acd32, 0 0 30px #9acd32;
+}
+
+.mozzart-window img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border: 2px solid DarkOliveGreen;
+    box-shadow: 0 0 15px rgba(154, 205, 50, 0.8), 0 0 25px rgba(154, 205, 50, 0.5);
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.mozzart-window img:hover {
+    transform: scale(1.05);
+}
+
+/* Forpooper Image - Right Side */
+.forpooper-img {
+    position: fixed;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    height: 250px;
+    opacity: 0.6;
+    z-index: 997;
 }

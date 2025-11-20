@@ -99,6 +99,16 @@
         </div>
     </div>
 
+    <!-- Mozzart Window - Bottom Left -->
+    <div class="mozzart-window">
+        <h3>THIS IS MOZZART</h3>
+        <img src="images/mozzart.jpg" alt="Mozzart" onclick="playMozzartAudio()" />
+        <audio id="mozzart-audio" src="images/Jasmin China Girl [xe4APfSQRYQ].ogg"></audio>
+    </div>
+
+    <!-- Forpooper Image - Right Side -->
+    <img src="images/forpooper.png" alt="For Pooper" class="forpooper-img" />
+
     <div id="container">
         <!-- Header Banner -->
         <div id="header">
@@ -111,6 +121,7 @@
                 <li><a href="index.html">About Me...</a></li>
                 <li class="active"><a href="art.html">Art</a></li>
                 <li><a href="music.html">Music</a></li>
+                <li><a href="interests.html">Interests</a></li>
             </ul>
         </div>
 
@@ -166,86 +177,39 @@
     </div>
 
     <script>
+        // Mozzart Audio Player
+        function playMozzartAudio() {
+            var audio = document.getElementById('mozzart-audio');
+            if (audio.paused) {
+                audio.play();
+            } else {
+                audio.pause();
+                audio.currentTime = 0;
+            }
+        }
+
         // Image list from Camera Roll
         const imageFiles = [
-            "yanri predator.png",
-            "yanri predator 2.png",
-            "Illustration2.png",
-            "Illustration3.jpg",
-            "Illustration6.png",
-            "Illustration288.png",
-            "Illustration28888.png",
-            "Illustration42222.png",
-            "Illustration747555.jpg",
-            "Illustrationghfghf.jpg",
-            "Illustrationnnnnnnnnnn133765.png",
-            "Illustrationnnnnnnnnnn1337655.png",
-            "my-image.png",
-            "IMG_20250227_234352.jpg",
-            "predahhh.jpg",
-            "pred.png",
-            "gozzila halo.png",
-            "halo reach.png",
-            "worms map by me.png",
-            "wordart.png",
-            "skin.png",
-            "zobahhhhi.png",
-            "zooba2.png",
-            "Png.png",
-            "Untitled.png",
-            "Untitled.png2.png",
-            "imaghfhfe.png",
-            "gjjhgjgj.png",
-            "cup hair hate.png",
-            "can flay 1.png",
-            "can flay 2.png",
-            "broke ass nigga.png",
-            "broke ass p.png",
-            "poop.png",
-            "poops 2.png",
-            "Vanity_638930613959391544.png",
-            "x.comshit f.png",
-            "Screenshot 2023-10-06 234330.png",
-            "Screenshot 2023-10-13 080416.png",
-            "Screenshot 2023-10-14 002714.png",
-            "Screenshot 2023-10-16 062109.png",
-            "Screenshot 2025-03-07 004522.jpg",
-            "Screenshot 2025-03-07 004654.jpg",
-            "Screenshot 2025-03-07 004740.jpg",
-            "Screenshot 2025-03-07 005150.jpg",
-            "Screenshot 2025-03-08 150559.jpg",
-            "Screenshot 2025-04-01 185530.jpg",
-            "Screenshot 2025-08-22 001337.jpg",
-            "Screenshot 2025-09-10 002421.jpg",
-            "Screenshot 2025-09-29 004646.jpg",
-            "Screenshot 2025-10-02 052248.jpg",
-            "Screenshot 2025-10-02 052721.jpg",
-            "Screenshot 2025-10-22 070312.jpg",
-            "Screenshot 2025-10-29 210242.jpg",
-            "Screenshot 2025-10-29 210303.jpg",
-            "Screenshot 2025-10-29 210356.jpg",
-            "Screenshot 2025-10-29 210412.jpg",
-            "Screenshot 2025-10-29 210430.jpg",
-            "Screenshot 2025-11-08 011301.jpg",
-            "Screenshot 2025-11-08 024255.jpg",
-            "Screenshot 2025-11-08 042720.jpg",
-            "10games.jpg",
-            "20230916_100112.jpg",
-            "4 lo.jpg",
-            "albenian.jpg",
-            "bruh man.jpg",
-            "chadacrack.jpg",
-            "cs.jpg",
-            "deltapoopduhh.jpg",
-            "dp 2.jpg",
-            "en.jpg",
-            "fox gay t.jpg",
-            "fur lo y pfp.jpg",
-            "kup full.jpg",
-            "KUP.jpg",
-            "nmghgkg.jpg",
-            "poop.jpg",
-            "vitnam guy x.jpg"
+            "yanri predator.png", "yanri predator 2.png", "Illustration2.png", "Illustration3.jpg",
+            "Illustration6.png", "Illustration288.png", "Illustration28888.png", "Illustration42222.png",
+            "Illustration747555.jpg", "Illustrationghfghf.jpg", "Illustrationnnnnnnnnnn133765.png",
+            "Illustrationnnnnnnnnnn1337655.png", "my-image.png", "IMG_20250227_234352.jpg",
+            "predahhh.jpg", "pred.png", "gozzila halo.png", "halo reach.png", "worms map by me.png",
+            "wordart.png", "skin.png", "zobahhhhi.png", "zooba2.png", "Png.png", "Untitled.png",
+            "Untitled.png2.png", "imaghfhfe.png", "gjjhgjgj.png", "cup hair hate.png", "can flay 1.png",
+            "can flay 2.png", "broke ass nigga.png", "broke ass p.png", "poop.png", "poops 2.png",
+            "Vanity_638930613959391544.png", "x.comshit f.png", "Screenshot 2023-10-06 234330.png",
+            "Screenshot 2023-10-13 080416.png", "Screenshot 2023-10-14 002714.png", "Screenshot 2023-10-16 062109.png",
+            "Screenshot 2025-03-07 004522.jpg", "Screenshot 2025-03-07 004654.jpg", "Screenshot 2025-03-07 004740.jpg",
+            "Screenshot 2025-03-07 005150.jpg", "Screenshot 2025-03-08 150559.jpg", "Screenshot 2025-04-01 185530.jpg",
+            "Screenshot 2025-08-22 001337.jpg", "Screenshot 2025-09-10 002421.jpg", "Screenshot 2025-09-29 004646.jpg",
+            "Screenshot 2025-10-02 052248.jpg", "Screenshot 2025-10-02 052721.jpg", "Screenshot 2025-10-22 070312.jpg",
+            "Screenshot 2025-10-29 210242.jpg", "Screenshot 2025-10-29 210303.jpg", "Screenshot 2025-10-29 210356.jpg",
+            "Screenshot 2025-10-29 210412.jpg", "Screenshot 2025-10-29 210430.jpg", "Screenshot 2025-11-08 011301.jpg",
+            "Screenshot 2025-11-08 024255.jpg", "Screenshot 2025-11-08 042720.jpg", "10games.jpg",
+            "20230916_100112.jpg", "4 lo.jpg", "albenian.jpg", "bruh man.jpg", "chadacrack.jpg",
+            "cs.jpg", "deltapoopduhh.jpg", "dp 2.jpg", "en.jpg", "fox gay t.jpg", "fur lo y pfp.jpg",
+            "kup full.jpg", "KUP.jpg", "nmghgkg.jpg", "poop.jpg", "vitnam guy x.jpg"
         ];
 
         let currentIndex = 0;
@@ -255,7 +219,7 @@
         // Load images into the slideshow
         function loadImages() {
             const container = document.getElementById('slideshow');
-            container.innerHTML = ''; // Clear any existing content
+            container.innerHTML = '';
 
             imageFiles.forEach((filename, index) => {
                 const img = document.createElement('img');
@@ -302,15 +266,10 @@
                 btn.textContent = '▶ Play';
                 isAutoplayRunning = false;
             } else {
-                startAutoplay();
+                autoplayInterval = setInterval(nextImage, 4000);
                 btn.textContent = '⏸ Pause';
                 isAutoplayRunning = true;
             }
-        }
-
-        // Start autoplay
-        function startAutoplay() {
-            autoplayInterval = setInterval(nextImage, 4000);
         }
 
         // Update info display
@@ -322,7 +281,7 @@
         // Initialize on page load
         window.onload = function () {
             loadImages();
-            startAutoplay();
+            autoplayInterval = setInterval(nextImage, 4000);
         };
 
         // SoundCloud Widget API - Set volume low

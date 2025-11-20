@@ -1,0 +1,153 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Yanri's Website - Interests</title>
+    <link rel="icon" type="image/jpeg" href="images/icon.jpg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap" rel="stylesheet">
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <script src="https://w.soundcloud.com/player/api.js"></script>
+</head>
+
+<body>
+    <!-- Corner Symbols -->
+    <img src="images/mysimbol.gif" alt="Symbol" class="corner-symbol top-left" />
+    <img src="images/mysimbol.gif" alt="Symbol" class="corner-symbol top-right" />
+
+    <!-- SoundCloud Player Widget -->
+    <div class="video-player-widget">
+        <div class="video-player-frame">
+            <iframe id="soundcloud-player" width="260" height="160" scrolling="no" frameborder="no" allow="autoplay"
+                src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/yanri-risk/sets/stop-making-fun-of-me&color=%23556b2f&auto_play=true&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false">
+            </iframe>
+        </div>
+    </div>
+
+    <!-- Mozzart Window - Bottom Left -->
+    <div class="mozzart-window">
+        <h3>THIS IS MOZZART</h3>
+        <img src="images/mozzart.jpg" alt="Mozzart" onclick="playMozzartAudio()" />
+        <audio id="mozzart-audio" src="images/Jasmin China Girl [xe4APfSQRYQ].ogg"></audio>
+    </div>
+
+    <!-- Forpooper Image - Right Side -->
+    <img src="images/forpooper.png" alt="For Pooper" class="forpooper-img" />
+
+    <div id="container">
+        <!-- Header Banner -->
+        <div id="header">
+            <img src="images/yanribanner.png" alt="Yanri's Website" />
+        </div>
+
+        <!-- Horizontal Menu -->
+        <div id="menu">
+            <ul>
+                <li><a href="index.html">About Me...</a></li>
+                <li><a href="art.html">Art</a></li>
+                <li><a href="music.html">Music</a></li>
+                <li class="active"><a href="interests.html">Interests</a></li>
+            </ul>
+        </div>
+
+        <!-- Content Wrapper (Sidebar + Main) -->
+        <div id="content-wrapper">
+            <!-- Sidebar (Left) -->
+            <div id="sidebar">
+                <h3>Links</h3>
+                <ul>
+                    <li><a href="https://x.com/ASwindlr" target="_blank">Twitter</a></li>
+                    <li><a href="#">YouTube</a></li>
+                </ul>
+
+                <h3>Contact</h3>
+                <ul>
+                    <li><a href="#">Email Me</a></li>
+                    <li><a href="#">Discord</a></li>
+                </ul>
+            </div>
+
+            <!-- Main Content (Right) -->
+            <div id="main-content">
+                <h2>Interests</h2>
+                <p>Here are some things I'm interested in...</p>
+
+                <div class="interest-list">
+                    <ul>
+                        <li>Video Games (Halo, Worms, Retro FPS)</li>
+                        <li>Digital Art & Design</li>
+                        <li>2000s Web Aesthetics</li>
+                        <li>Music (Eurobeat, Italo Disco, Synthpop)</li>
+                        <li>Coding & Web Development</li>
+                        <li>Collecting Retro Tech</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div id="footer">
+            <p>Copyright &copy; 2024 Yanri. All rights reserved.</p>
+        </div>
+    </div>
+
+    <script>
+        // Mozzart Audio Player
+        function playMozzartAudio() {
+            var audio = document.getElementById('mozzart-audio');
+            if (audio.paused) {
+                audio.play();
+            } else {
+                audio.pause();
+                audio.currentTime = 0;
+            }
+        }
+
+        // SoundCloud Widget API - Set volume low and persist playback state
+        var iframe = document.querySelector('#soundcloud-player');
+        var widget = SC.Widget(iframe);
+
+        widget.bind(SC.Widget.Events.READY, function () {
+            widget.setVolume(20);
+
+            // Check if there's a saved position and track
+            var savedPosition = sessionStorage.getItem('sc_position');
+            var savedTrack = sessionStorage.getItem('sc_track');
+            var wasPlaying = sessionStorage.getItem('sc_playing') === 'true';
+
+            if (savedPosition && savedTrack) {
+                // Try to seek to saved position
+                widget.getSounds(function (sounds) {
+                    var trackIndex = parseInt(savedTrack);
+                    if (trackIndex >= 0 && trackIndex < sounds.length) {
+                        widget.skip(trackIndex);
+                        widget.seekTo(parseInt(savedPosition));
+                        if (wasPlaying) {
+                            widget.play();
+                        }
+                    } else if (wasPlaying) {
+                        widget.play();
+                    }
+                });
+            }
+        });
+
+        // Save position and playing state before page unload
+        window.addEventListener('beforeunload', function () {
+            widget.getPosition(function (position) {
+                sessionStorage.setItem('sc_position', position);
+            });
+            widget.getCurrentSoundIndex(function (trackIndex) {
+                sessionStorage.setItem('sc_track', trackIndex);
+            });
+            widget.isPaused(function (paused) {
+                sessionStorage.setItem('sc_playing', !paused);
+            });
+        });
+    </script>
+
+</body>
+
+</html>
