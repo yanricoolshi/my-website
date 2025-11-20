@@ -503,10 +503,310 @@ p {
     }
 }
 
+.mozzart-window img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border: 2px solid DarkOliveGreen;
+    box-shadow: 0 0 15px rgba(154, 205, 50, 0.8), 0 0 25px rgba(154, 205, 50, 0.5);
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.mozzart-window img:hover {
+    transform: scale(1.05);
+}
+
+.forpooper-img {
+    position: fixed;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    height: 400px;
+    opacity: 0.6;
+    z-index: 997;
+    filter: drop-shadow(0 0 15px rgba(154, 205, 50, 0.8)) drop-shadow(0 0 30px rgba(154, 205, 50, 0.6));
+}
+
+.g9en3ts7nw781-img {
+    position: fixed;
+    top: 50%;
+    left: 50px;
+    transform: translateY(-50%);
+    height: 150px;
+    opacity: 0.6;
+    z-index: 997;
+    filter: drop-shadow(0 0 15px rgba(154, 205, 50, 0.8)) drop-shadow(0 0 30px rgba(154, 205, 50, 0.6));
+}
+
+.slideshow-section {
+    width: 100%;
+    padding: 20px 0;
+    background: linear-gradient(to bottom, rgba(143, 188, 143, 0.6), rgba(143, 188, 143, 0.3));
+    border: 3px solid DarkOliveGreen;
+    margin-bottom: 20px;
+}
+
+.slideshow-section h2 {
+    text-align: center;
+    color: DarkOliveGreen;
+    margin: 0 0 20px 0;
+}
+
+.slideshow-container {
+    position: relative;
+    max-width: 800px;
+    height: 600px;
+    margin: 0 auto;
+    background-color: rgba(0, 0, 0, 0.8);
+    border: 3px solid DarkOliveGreen;
+    overflow: hidden;
+}
+
+.slideshow-container img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    opacity: 0;
+    transition: opacity 1.5s ease-in-out;
+}
+
+.slideshow-container img.active {
+    opacity: 1;
+}
+
+.slideshow-controls {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.slideshow-controls button {
+    padding: 12px 25px;
+    background-color: rgba(107, 142, 35, 0.9);
+    color: white;
+    border: 2px outset #8aa848;
+    font-weight: bold;
+    cursor: pointer;
+    font-family: Verdana, Arial, sans-serif;
+    font-size: 14px;
+}
+
+.slideshow-controls button:hover {
+    background-color: rgba(154, 205, 50, 0.9);
+    color: #2e3b19;
+    box-shadow: 0 0 10px rgba(154, 205, 50, 0.6);
+}
+
+.slideshow-info {
+    text-align: center;
+    margin-top: 15px;
+    color: DarkOliveGreen;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+/* Shake animations for poop button */
+@keyframes shake {
+
+    0%,
+    100% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+
+    10% {
+        transform: translate(-2px, -2px) rotate(-2deg);
+    }
+
+    20% {
+        transform: translate(2px, 2px) rotate(2deg);
+    }
+
+    30% {
+        transform: translate(-2px, 2px) rotate(-2deg);
+    }
+
+    40% {
+        transform: translate(2px, -2px) rotate(2deg);
+    }
+
+    50% {
+        transform: translate(-2px, -2px) rotate(-2deg);
+    }
+
+    60% {
+        transform: translate(2px, 2px) rotate(2deg);
+    }
+
+    70% {
+        transform: translate(-2px, 2px) rotate(-2deg);
+    }
+
+    80% {
+        transform: translate(2px, -2px) rotate(2deg);
+    }
+
+    90% {
+        transform: translate(-2px, -2px) rotate(-2deg);
+    }
+}
+
+@keyframes shake-violent {
+
+    0%,
+    100% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+
+    10% {
+        transform: translate(-5px, -5px) rotate(-5deg);
+    }
+
+    20% {
+        transform: translate(5px, 5px) rotate(5deg);
+    }
+
+    30% {
+        transform: translate(-5px, 5px) rotate(-5deg);
+    }
+
+    40% {
+        transform: translate(5px, -5px) rotate(5deg);
+    }
+
+    50% {
+        transform: translate(-5px, -5px) rotate(-5deg);
+    }
+
+    60% {
+        transform: translate(5px, 5px) rotate(5deg);
+    }
+
+    70% {
+        transform: translate(-5px, 5px) rotate(-5deg);
+    }
+
+    80% {
+        transform: translate(5px, -5px) rotate(5deg);
+    }
+
+    90% {
+        transform: translate(-5px, -5px) rotate(-5deg);
+    }
+}
+
 .shake {
     animation: shake 0.3s infinite;
 }
 
 .shake-violent {
     animation: shake-violent 0.15s infinite;
+}
+
+/* Guestbook Styles */
+.guestbook-form {
+    background: rgba(240, 248, 240, 0.6);
+    border: 2px solid DarkOliveGreen;
+    padding: 20px;
+    margin-bottom: 30px;
+}
+
+.guestbook-form h3 {
+    margin-top: 0;
+    color: DarkOliveGreen;
+    font-size: 18px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: DarkOliveGreen;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 8px;
+    border: 2px solid DarkOliveGreen;
+    background-color: rgba(255, 255, 255, 0.9);
+    font-family: Verdana, Arial, sans-serif;
+    font-size: 12px;
+    box-sizing: border-box;
+}
+
+.form-group textarea {
+    resize: vertical;
+}
+
+.submit-btn {
+    padding: 10px 25px;
+    background-color: rgba(107, 142, 35, 0.9);
+    color: white;
+    border: 2px outset #8aa848;
+    font-weight: bold;
+    cursor: pointer;
+    font-family: Verdana, Arial, sans-serif;
+    font-size: 14px;
+}
+
+.submit-btn:hover {
+    background-color: rgba(154, 205, 50, 0.9);
+    color: #2e3b19;
+    box-shadow: 0 0 10px rgba(154, 205, 50, 0.6);
+}
+
+.guestbook-entries {
+    margin-top: 30px;
+}
+
+.guestbook-entries h3 {
+    color: DarkOliveGreen;
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+.guestbook-entry {
+    background: rgba(240, 248, 240, 0.7);
+    border: 2px solid DarkOliveGreen;
+    padding: 15px;
+    margin-bottom: 15px;
+}
+
+.entry-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    color: DarkOliveGreen;
+}
+
+.entry-header strong {
+    font-size: 14px;
+}
+
+.entry-date {
+    font-size: 11px;
+    color: OliveDrab;
+}
+
+.entry-message {
+    color: #000000;
+    line-height: 1.5;
+    word-wrap: break-word;
+}
+
+.no-entries {
+    text-align: center;
+    color: OliveDrab;
+    font-style: italic;
+    padding: 20px;
 }
