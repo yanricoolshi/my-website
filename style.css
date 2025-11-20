@@ -5,7 +5,6 @@ Yanri's Website - Retro Layout (Zeffdakilla Style)
 body {
     margin: 0;
     padding: 0;
-    /* User's Water GIF Background - Stretched */
     background-image: url('images/watergif.gif');
     background-attachment: fixed;
     background-repeat: no-repeat;
@@ -16,17 +15,14 @@ body {
     color: #000000;
 }
 
-/* Main Container - Centered on page */
 #container {
     width: 800px;
     margin: 20px auto;
-    /* Transparent container to let water background show through */
     background-color: transparent;
     border: none;
     box-shadow: none;
 }
 
-/* Header Banner */
 #header {
     width: 100%;
     height: auto;
@@ -47,14 +43,11 @@ body {
 
 #header h1 {
     display: none;
-    /* Hide text title in favor of banner */
 }
 
-/* Horizontal Menu */
 #menu {
     width: 100%;
     background-color: rgba(152, 251, 152, 0.8);
-    /* PaleGreen */
     background-image: url('images/windows_longhorn_taskbar_texture_by_scott_o_matic_df5ucbm-375w-2x.png');
     background-size: cover;
     border: 2px solid DarkOliveGreen;
@@ -81,9 +74,7 @@ body {
     display: block;
     padding: 10px 20px;
     background-color: rgba(143, 188, 143, 0.9);
-    /* DarkSeaGreen */
     color: #2e3b19;
-    /* Very dark green */
     font-weight: bold;
     text-decoration: none;
     border: 2px outset #8aa848;
@@ -92,9 +83,7 @@ body {
 
 #menu a:hover {
     background-color: rgba(154, 205, 50, 0.9);
-    /* YellowGreen */
     color: #2e3b19;
-    box-shadow: 0 0 10px rgba(154, 205, 50, 0.6);
     cursor: pointer;
     box-shadow: 0 0 15px rgba(154, 205, 50, 0.8), 0 0 25px rgba(154, 205, 50, 0.5);
 }
@@ -102,26 +91,21 @@ body {
 #menu a:active,
 #menu .active a {
     background-color: rgba(85, 107, 47, 0.9);
-    /* DarkOliveGreen */
     border: 2px inset #3e4d22;
 }
 
-/* Content Wrapper (Sidebar + Main) */
 #content-wrapper {
     display: flex;
     width: 100%;
     min-height: 500px;
-    /* Green gradient background for content area */
     background: linear-gradient(to bottom, rgba(143, 188, 143, 0.8), rgba(143, 188, 143, 0.4));
     border: 2px solid DarkOliveGreen;
 }
 
-/* Sidebar (Left) */
 #sidebar {
     width: 200px;
     background-color: transparent;
     background-image: none;
-    /* Remove texture from sidebar to blend with gradient */
     border-right: 2px solid rgba(85, 107, 47, 0.5);
     padding: 15px;
     box-sizing: border-box;
@@ -136,7 +120,6 @@ body {
     margin-bottom: 10px;
     text-transform: uppercase;
     background-color: rgba(255, 255, 255, 0.5);
-    /* Readability */
     padding: 5px;
 }
 
@@ -157,7 +140,6 @@ body {
     display: block;
     padding: 3px 5px;
     background-color: rgba(255, 255, 255, 0.4);
-    /* Readability */
 }
 
 #sidebar a:hover {
@@ -167,13 +149,10 @@ body {
     box-shadow: 0 0 10px rgba(154, 205, 50, 0.6);
 }
 
-/* Main Content (Right) */
 #main-content {
     flex: 1;
-    /* Takes remaining width */
     padding: 25px;
     background-color: transparent;
-    /* Transparent to show gradient */
     box-sizing: border-box;
 }
 
@@ -190,7 +169,6 @@ p {
     margin-bottom: 15px;
 }
 
-/* Music List Styles */
 .music-list ul {
     list-style: none;
     padding: 0;
@@ -219,7 +197,6 @@ p {
     transition: padding-left 0.2s;
 }
 
-/* Interest List Styles */
 .interest-list ul {
     list-style-type: square;
     padding-left: 20px;
@@ -231,7 +208,6 @@ p {
     font-weight: bold;
 }
 
-/* Placeholders */
 .placeholder-box {
     width: 100%;
     height: 200px;
@@ -245,19 +221,16 @@ p {
     margin-bottom: 20px;
 }
 
-/* Footer */
 #footer {
     width: 100%;
     padding: 10px 0;
     background-color: rgba(85, 107, 47, 0.9);
-    /* DarkOliveGreen */
     color: #fff;
     text-align: center;
     font-size: 11px;
     border-top: 3px solid OliveDrab;
 }
 
-/* Corner Symbols */
 .corner-symbol {
     position: fixed;
     width: 200px;
@@ -276,7 +249,6 @@ p {
     right: 10px;
 }
 
-/* SoundCloud Player Widget */
 .video-player-widget {
     position: fixed;
     bottom: 20px;
@@ -303,21 +275,17 @@ p {
     border: none;
 }
 
-/* About Me Section - MedievalSharp Font */
 #main-content h2:first-of-type,
 #main-content p:first-of-type {
     font-family: 'MedievalSharp', cursive;
     font-size: 18px;
 }
 
-/* Latest Updates Glowing Text */
 .latest-updates {
     color: #ffffff;
     text-shadow: 0 0 5px #ffffff, 0 0 10px #ffffff, 0 0 20px #9acd32;
-    /* White with YellowGreen glow */
 }
 
-/* Mozzart Window - Bottom Left */
 .mozzart-window {
     position: fixed;
     bottom: 20px;
@@ -353,13 +321,95 @@ p {
     transform: scale(1.05);
 }
 
-/* Forpooper Image - Right Side */
 .forpooper-img {
     position: fixed;
     top: 50%;
     right: 10px;
     transform: translateY(-50%);
-    height: 250px;
+    height: 400px;
     opacity: 0.6;
     z-index: 997;
+    filter: drop-shadow(0 0 15px rgba(154, 205, 50, 0.8)) drop-shadow(0 0 30px rgba(154, 205, 50, 0.6));
+}
+
+.g9en3ts7nw781-img {
+    position: fixed;
+    top: 50%;
+    left: 50px;
+    transform: translateY(-50%);
+    height: 150px;
+    opacity: 0.6;
+    z-index: 997;
+    filter: drop-shadow(0 0 15px rgba(154, 205, 50, 0.8)) drop-shadow(0 0 30px rgba(154, 205, 50, 0.6));
+}
+
+.slideshow-section {
+    width: 100%;
+    padding: 20px 0;
+    background: linear-gradient(to bottom, rgba(143, 188, 143, 0.6), rgba(143, 188, 143, 0.3));
+    border: 3px solid DarkOliveGreen;
+    margin-bottom: 20px;
+}
+
+.slideshow-section h2 {
+    text-align: center;
+    color: DarkOliveGreen;
+    margin: 0 0 20px 0;
+}
+
+.slideshow-container {
+    position: relative;
+    max-width: 800px;
+    height: 600px;
+    margin: 0 auto;
+    background-color: rgba(0, 0, 0, 0.8);
+    border: 3px solid DarkOliveGreen;
+    overflow: hidden;
+}
+
+.slideshow-container img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    opacity: 0;
+    transition: opacity 1.5s ease-in-out;
+}
+
+.slideshow-container img.active {
+    opacity: 1;
+}
+
+.slideshow-controls {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.slideshow-controls button {
+    padding: 12px 25px;
+    background-color: rgba(107, 142, 35, 0.9);
+    color: white;
+    border: 2px outset #8aa848;
+    font-weight: bold;
+    cursor: pointer;
+    font-family: Verdana, Arial, sans-serif;
+    font-size: 14px;
+}
+
+.slideshow-controls button:hover {
+    background-color: rgba(154, 205, 50, 0.9);
+    color: #2e3b19;
+    box-shadow: 0 0 10px rgba(154, 205, 50, 0.6);
+}
+
+.slideshow-info {
+    text-align: center;
+    margin-top: 15px;
+    color: DarkOliveGreen;
+    font-weight: bold;
+    font-size: 14px;
 }

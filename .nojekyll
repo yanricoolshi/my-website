@@ -1,0 +1,2 @@
+# .nojekyll file prevents GitHub Pages from using Jekyll processing
+# This ensures all files load correctly without Jekyll interfering
