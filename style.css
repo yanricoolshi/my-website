@@ -112,41 +112,53 @@ body {
 }
 
 #sidebar h3 {
-    font-size: 16px;
-    color: DarkOliveGreen;
-    border-bottom: 2px solid OliveDrab;
-    padding-bottom: 5px;
+    font-size: 14px;
+    color: #FFFFFF;
+    border: none;
     margin-top: 20px;
     margin-bottom: 10px;
     text-transform: uppercase;
-    background-color: rgba(255, 255, 255, 0.5);
-    padding: 5px;
+    padding: 8px;
+    background-image: url('images/botton1.png');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    text-align: center;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
 }
 
 #sidebar ul {
     list-style: none;
     padding: 0;
-    margin: 0;
+    margin: 0 0 20px 0;
 }
 
 #sidebar li {
-    margin-bottom: 8px;
+    margin-bottom: 6px;
+    text-align: center;
 }
 
 #sidebar a {
-    color: OliveDrab;
+    display: inline-block;
+    padding: 15px 40px;
+    background-image: url('images/botton1.png');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    color: #FFFFFF;
     text-decoration: none;
+    border: none;
     font-weight: bold;
-    display: block;
-    padding: 3px 5px;
-    background-color: rgba(255, 255, 255, 0.4);
+    text-align: center;
+    font-size: 12px;
+    transition: all 0.3s;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
 }
 
 #sidebar a:hover {
-    color: YellowGreen;
-    text-decoration: underline;
-    background-color: rgba(255, 255, 255, 0.7);
-    box-shadow: 0 0 10px rgba(154, 205, 50, 0.6);
+    box-shadow: 0 0 15px rgba(154, 205, 50, 0.8), 0 0 25px rgba(154, 205, 50, 0.5);
+    transform: scale(1.05);
 }
 
 #main-content {
@@ -293,410 +305,17 @@ p {
     z-index: 998;
     background: linear-gradient(to bottom, rgba(143, 188, 143, 0.9), rgba(143, 188, 143, 0.7));
     border: 3px solid DarkOliveGreen;
-    padding: 15px;
-    box-shadow: 0 0 20px rgba(154, 205, 50, 0.6);
-    width: 200px;
+    padding: 10px;
+    width: 180px;
+    box-shadow: 0 0 20px rgba(85, 107, 47, 0.8);
 }
 
 .mozzart-window h3 {
     margin: 0 0 10px 0;
     text-align: center;
-    color: #ffffff;
-    font-size: 16px;
-    font-weight: bold;
-    text-shadow: 0 0 10px #ffffff, 0 0 20px #9acd32, 0 0 30px #9acd32;
-}
-
-.mozzart-window img {
-    width: 100%;
-    height: auto;
-    display: block;
-    border: 2px solid DarkOliveGreen;
-    box-shadow: 0 0 15px rgba(154, 205, 50, 0.8), 0 0 25px rgba(154, 205, 50, 0.5);
-    cursor: pointer;
-    transition: transform 0.2s;
-}
-
-.mozzart-window img:hover {
-    transform: scale(1.05);
-}
-
-.forpooper-img {
-    position: fixed;
-    top: 50%;
-    right: 10px;
-    transform: translateY(-50%);
-    height: 400px;
-    opacity: 0.6;
-    z-index: 997;
-    filter: drop-shadow(0 0 15px rgba(154, 205, 50, 0.8)) drop-shadow(0 0 30px rgba(154, 205, 50, 0.6));
-}
-
-.g9en3ts7nw781-img {
-    position: fixed;
-    top: 50%;
-    left: 50px;
-    transform: translateY(-50%);
-    height: 150px;
-    opacity: 0.6;
-    z-index: 997;
-    filter: drop-shadow(0 0 15px rgba(154, 205, 50, 0.8)) drop-shadow(0 0 30px rgba(154, 205, 50, 0.6));
-}
-
-.slideshow-section {
-    width: 100%;
-    padding: 20px 0;
-    background: linear-gradient(to bottom, rgba(143, 188, 143, 0.6), rgba(143, 188, 143, 0.3));
-    border: 3px solid DarkOliveGreen;
-    margin-bottom: 20px;
-}
-
-.slideshow-section h2 {
-    text-align: center;
     color: DarkOliveGreen;
-    margin: 0 0 20px 0;
-}
-
-.slideshow-container {
-    position: relative;
-    max-width: 800px;
-    height: 600px;
-    margin: 0 auto;
-    background-color: rgba(0, 0, 0, 0.8);
-    border: 3px solid DarkOliveGreen;
-    overflow: hidden;
-}
-
-.slideshow-container img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    opacity: 0;
-    transition: opacity 1.5s ease-in-out;
-}
-
-.slideshow-container img.active {
-    opacity: 1;
-}
-
-.slideshow-controls {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin-top: 20px;
-}
-
-.slideshow-controls button {
-    padding: 12px 25px;
-    background-color: rgba(107, 142, 35, 0.9);
-    color: white;
-    border: 2px outset #8aa848;
-    font-weight: bold;
-    cursor: pointer;
-    font-family: Verdana, Arial, sans-serif;
     font-size: 14px;
-}
-
-.slideshow-controls button:hover {
-    background-color: rgba(154, 205, 50, 0.9);
-    color: #2e3b19;
-    box-shadow: 0 0 10px rgba(154, 205, 50, 0.6);
-}
-
-.slideshow-info {
-    text-align: center;
-    margin-top: 15px;
-    color: DarkOliveGreen;
     font-weight: bold;
-    font-size: 14px;
-}
-
-/* Shake animations for poop button */
-@keyframes shake {
-
-    0%,
-    100% {
-        transform: translate(0, 0) rotate(0deg);
-    }
-
-    10% {
-        transform: translate(-2px, -2px) rotate(-2deg);
-    }
-
-    20% {
-        transform: translate(2px, 2px) rotate(2deg);
-    }
-
-    30% {
-        transform: translate(-2px, 2px) rotate(-2deg);
-    }
-
-    40% {
-        transform: translate(2px, -2px) rotate(2deg);
-    }
-
-    50% {
-        transform: translate(-2px, -2px) rotate(-2deg);
-    }
-
-    60% {
-        transform: translate(2px, 2px) rotate(2deg);
-    }
-
-    70% {
-        transform: translate(-2px, 2px) rotate(-2deg);
-    }
-
-    80% {
-        transform: translate(2px, -2px) rotate(2deg);
-    }
-
-    90% {
-        transform: translate(-2px, -2px) rotate(-2deg);
-    }
-}
-
-@keyframes shake-violent {
-
-    0%,
-    100% {
-        transform: translate(0, 0) rotate(0deg);
-    }
-
-    10% {
-        transform: translate(-5px, -5px) rotate(-5deg);
-    }
-
-    20% {
-        transform: translate(5px, 5px) rotate(5deg);
-    }
-
-    30% {
-        transform: translate(-5px, 5px) rotate(-5deg);
-    }
-
-    40% {
-        transform: translate(5px, -5px) rotate(5deg);
-    }
-
-    50% {
-        transform: translate(-5px, -5px) rotate(-5deg);
-    }
-
-    60% {
-        transform: translate(5px, 5px) rotate(5deg);
-    }
-
-    70% {
-        transform: translate(-5px, 5px) rotate(-5deg);
-    }
-
-    80% {
-        transform: translate(5px, -5px) rotate(5deg);
-    }
-
-    90% {
-        transform: translate(-5px, -5px) rotate(-5deg);
-    }
-}
-
-.mozzart-window img {
-    width: 100%;
-    height: auto;
-    display: block;
-    border: 2px solid DarkOliveGreen;
-    box-shadow: 0 0 15px rgba(154, 205, 50, 0.8), 0 0 25px rgba(154, 205, 50, 0.5);
-    cursor: pointer;
-    transition: transform 0.2s;
-}
-
-.mozzart-window img:hover {
-    transform: scale(1.05);
-}
-
-.forpooper-img {
-    position: fixed;
-    top: 50%;
-    right: 10px;
-    transform: translateY(-50%);
-    height: 400px;
-    opacity: 0.6;
-    z-index: 997;
-    filter: drop-shadow(0 0 15px rgba(154, 205, 50, 0.8)) drop-shadow(0 0 30px rgba(154, 205, 50, 0.6));
-}
-
-.g9en3ts7nw781-img {
-    position: fixed;
-    top: 50%;
-    left: 50px;
-    transform: translateY(-50%);
-    height: 150px;
-    opacity: 0.6;
-    z-index: 997;
-    filter: drop-shadow(0 0 15px rgba(154, 205, 50, 0.8)) drop-shadow(0 0 30px rgba(154, 205, 50, 0.6));
-}
-
-.slideshow-section {
-    width: 100%;
-    padding: 20px 0;
-    background: linear-gradient(to bottom, rgba(143, 188, 143, 0.6), rgba(143, 188, 143, 0.3));
-    border: 3px solid DarkOliveGreen;
-    margin-bottom: 20px;
-}
-
-.slideshow-section h2 {
-    text-align: center;
-    color: DarkOliveGreen;
-    margin: 0 0 20px 0;
-}
-
-.slideshow-container {
-    position: relative;
-    max-width: 800px;
-    height: 600px;
-    margin: 0 auto;
-    background-color: rgba(0, 0, 0, 0.8);
-    border: 3px solid DarkOliveGreen;
-    overflow: hidden;
-}
-
-.slideshow-container img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    opacity: 0;
-    transition: opacity 1.5s ease-in-out;
-}
-
-.slideshow-container img.active {
-    opacity: 1;
-}
-
-.slideshow-controls {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin-top: 20px;
-}
-
-.slideshow-controls button {
-    padding: 12px 25px;
-    background-color: rgba(107, 142, 35, 0.9);
-    color: white;
-    border: 2px outset #8aa848;
-    font-weight: bold;
-    cursor: pointer;
-    font-family: Verdana, Arial, sans-serif;
-    font-size: 14px;
-}
-
-.slideshow-controls button:hover {
-    background-color: rgba(154, 205, 50, 0.9);
-    color: #2e3b19;
-    box-shadow: 0 0 10px rgba(154, 205, 50, 0.6);
-}
-
-.slideshow-info {
-    text-align: center;
-    margin-top: 15px;
-    color: DarkOliveGreen;
-    font-weight: bold;
-    font-size: 14px;
-}
-
-/* Shake animations for poop button */
-@keyframes shake {
-
-    0%,
-    100% {
-        transform: translate(0, 0) rotate(0deg);
-    }
-
-    10% {
-        transform: translate(-2px, -2px) rotate(-2deg);
-    }
-
-    20% {
-        transform: translate(2px, 2px) rotate(2deg);
-    }
-
-    30% {
-        transform: translate(-2px, 2px) rotate(-2deg);
-    }
-
-    40% {
-        transform: translate(2px, -2px) rotate(2deg);
-    }
-
-    50% {
-        transform: translate(-2px, -2px) rotate(-2deg);
-    }
-
-    60% {
-        transform: translate(2px, 2px) rotate(2deg);
-    }
-
-    70% {
-        transform: translate(-2px, 2px) rotate(-2deg);
-    }
-
-    80% {
-        transform: translate(2px, -2px) rotate(2deg);
-    }
-
-    90% {
-        transform: translate(-2px, -2px) rotate(-2deg);
-    }
-}
-
-@keyframes shake-violent {
-
-    0%,
-    100% {
-        transform: translate(0, 0) rotate(0deg);
-    }
-
-    10% {
-        transform: translate(-5px, -5px) rotate(-5deg);
-    }
-
-    20% {
-        transform: translate(5px, 5px) rotate(5deg);
-    }
-
-    30% {
-        transform: translate(-5px, 5px) rotate(-5deg);
-    }
-
-    40% {
-        transform: translate(5px, -5px) rotate(5deg);
-    }
-
-    50% {
-        transform: translate(-5px, -5px) rotate(-5deg);
-    }
-
-    60% {
-        transform: translate(5px, 5px) rotate(5deg);
-    }
-
-    70% {
-        transform: translate(-5px, 5px) rotate(-5deg);
-    }
-
-    80% {
-        transform: translate(5px, -5px) rotate(5deg);
-    }
-
-    90% {
-        transform: translate(-5px, -5px) rotate(-5deg);
-    }
 }
 
 .mozzart-window img {
