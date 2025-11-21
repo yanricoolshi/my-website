@@ -104,8 +104,9 @@ body {
 
 #sidebar {
     width: 200px;
-    background-color: transparent;
-    background-image: none;
+    background-image: url('images/side bar.png');
+    background-repeat: repeat;
+    background-position: top left;
     border-right: 2px solid rgba(85, 107, 47, 0.5);
     padding: 15px;
     box-sizing: border-box;
@@ -136,12 +137,15 @@ body {
 
 #sidebar li {
     margin-bottom: 6px;
-    text-align: center;
+    text-align: left;
 }
 
 #sidebar a {
     display: inline-block;
-    padding: 15px 40px;
+    width: 140px;
+    height: 33px;
+    line-height: 33px;
+    padding: 0;
     background-image: url('images/botton1.png');
     background-size: 100% 100%;
     background-repeat: no-repeat;
