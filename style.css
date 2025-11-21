@@ -356,8 +356,8 @@ p {
 
 .pugo-badge-window {
     position: fixed;
-    bottom: 240px;
-    right: 20px;
+    bottom: 220px;
+    right: 55px;
     z-index: 999;
     background: linear-gradient(to bottom, rgba(143, 188, 143, 0.9), rgba(143, 188, 143, 0.7));
     border: 3px solid DarkOliveGreen;
@@ -376,6 +376,41 @@ p {
 }
 
 .pugo-badge-window img:hover {
+    transform: scale(1.05);
+}
+
+.stamps-window {
+    position: fixed;
+    bottom: 220px;
+    right: 175px;
+    z-index: 999;
+    background: linear-gradient(to bottom, rgba(143, 188, 143, 0.9), rgba(143, 188, 143, 0.7));
+    border: 3px solid DarkOliveGreen;
+    padding: 8px;
+    width: auto;
+    box-shadow: 0 0 20px rgba(85, 107, 47, 0.8);
+}
+
+.stamps-window h3 {
+    margin: 0 0 10px 0;
+    text-align: center;
+    color: DarkOliveGreen;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.stamps-window a {
+    display: block;
+    line-height: 0;
+    margin-bottom: 5px;
+}
+
+.stamps-window img {
+    transition: transform 0.2s;
+}
+
+.stamps-window img:hover {
     transform: scale(1.05);
 }
 
@@ -580,4 +615,28 @@ p {
 
 .shake-violent {
     animation: shake-violent 0.15s infinite;
+}
+
+.badges-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 20px 0;
+}
+
+.badges-container a {
+    display: inline-block;
+    line-height: 0;
+}
+
+.badges-container img {
+    width: 88px;
+    height: 31px;
+    border: none;
+    transition: transform 0.2s;
+}
+
+.badges-container img:hover {
+    transform: scale(1.1);
+    filter: brightness(1.2);
 }

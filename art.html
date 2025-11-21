@@ -33,6 +33,42 @@
         <audio id="mozzart-audio" src="images/Jasmin China Girl [xe4APfSQRYQ].ogg"></audio>
     </div>
 
+    <!-- Pugo Badge Window - Bottom Right with Multiple Badges -->
+    <div class="pugo-badge-window">
+        <a href="https://pugo.neocities.org/" target="_blank">
+            <img src="images/pugobadge.gif" title="" alt="pugo" style="width:88px;height:31px;">
+        </a>
+        <a href="#" style="display: block; margin-top: 5px;">
+            <img src="images/hatemac.jpg" alt="I Hate Mac" style="width:88px;height:31px;">
+        </a>
+        <a href="#" style="display: block; margin-top: 5px;">
+            <img src="images/twopaws.png" alt="Two Paws" style="width:88px;height:31px;">
+        </a>
+        <a href="#" style="display: block; margin-top: 5px;">
+            <img src="images/made_with_windows.gif" alt="Made with Windows" style="width:88px;height:31px;">
+        </a>
+        <a href="#" style="display: block; margin-top: 5px;">
+            <img src="images/iwf15.gif" alt="IWF15" style="width:88px;height:31px;">
+        </a>
+    </div>
+
+    <!-- Stamps Window - Next to Pugo Badge Window -->
+    <div class="stamps-window">
+        <h3>Stamps</h3>
+        <a href="#">
+            <img src="images/d1yyuqc-76810c8d-1492-45ac-aa6c-96d5dfc794e5.png" alt="Stamp 1">
+        </a>
+        <a href="#">
+            <img src="images/d2hk9oe-16178d93-0c91-4ab3-ab08-ee08b81e206e.gif" alt="Stamp 2">
+        </a>
+        <a href="#">
+            <img src="images/d3a51o8-c73e37b7-01c5-4f54-9657-c0e6ce504cde.png" alt="Stamp 3">
+        </a>
+        <a href="#">
+            <img src="images/dc1e82t-703072ab-bf4e-4669-80b4-873e7024a415.png" alt="Stamp 4">
+        </a>
+    </div>
+
     <!-- Forpooper Image - Right Side -->
     <img src="images/forpooper.png" alt="For Pooper" class="forpooper-img" />
     <img src="images/g9en3ts7nw781.png" alt="" class="g9en3ts7nw781-img" />
@@ -219,6 +255,19 @@
         widget.bind(SC.Widget.Events.READY, function () {
             widget.setVolume(20);
         });
+    </script>
+
+    <script>
+        // Register Service Worker for caching
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function () {
+                navigator.serviceWorker.register('/sw.js').then(function (registration) {
+                    console.log('ServiceWorker registration successful');
+                }, function (err) {
+                    console.log('ServiceWorker registration failed: ', err);
+                });
+            });
+        }
     </script>
 
 </body>

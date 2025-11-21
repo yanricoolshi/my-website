@@ -20,7 +20,7 @@
     <!-- SoundCloud Player Widget -->
     <div class="video-player-widget">
         <div class="video-player-frame">
-            <iframe id="soundcloud-player" width="280" height="180" scrolling="no" frameborder="no" allow="autoplay"
+            <iframe id="soundcloud-player" width="260" height="160" scrolling="no" frameborder="no" allow="autoplay"
                 src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/yanri-risk/sets/stop-making-fun-of-me&color=%23556b2f&auto_play=true&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false">
             </iframe>
         </div>
@@ -31,6 +31,42 @@
         <h3>THIS IS MOZZART</h3>
         <img src="images/mozzart.jpg" alt="Mozzart" onclick="playMozzartAudio()" />
         <audio id="mozzart-audio" src="images/Jasmin China Girl [xe4APfSQRYQ].ogg"></audio>
+    </div>
+
+    <!-- Pugo Badge Window - Bottom Right with Multiple Badges -->
+    <div class="pugo-badge-window">
+        <a href="https://pugo.neocities.org/" target="_blank">
+            <img src="images/pugobadge.gif" title="" alt="pugo" style="width:88px;height:31px;">
+        </a>
+        <a href="#" style="display: block; margin-top: 5px;">
+            <img src="images/hatemac.jpg" alt="I Hate Mac" style="width:88px;height:31px;">
+        </a>
+        <a href="#" style="display: block; margin-top: 5px;">
+            <img src="images/twopaws.png" alt="Two Paws" style="width:88px;height:31px;">
+        </a>
+        <a href="#" style="display: block; margin-top: 5px;">
+            <img src="images/made_with_windows.gif" alt="Made with Windows" style="width:88px;height:31px;">
+        </a>
+        <a href="#" style="display: block; margin-top: 5px;">
+            <img src="images/iwf15.gif" alt="IWF15" style="width:88px;height:31px;">
+        </a>
+    </div>
+
+    <!-- Stamps Window - Next to Pugo Badge Window -->
+    <div class="stamps-window">
+        <h3>Stamps</h3>
+        <a href="#">
+            <img src="images/d1yyuqc-76810c8d-1492-45ac-aa6c-96d5dfc794e5.png" alt="Stamp 1">
+        </a>
+        <a href="#">
+            <img src="images/d2hk9oe-16178d93-0c91-4ab3-ab08-ee08b81e206e.gif" alt="Stamp 2">
+        </a>
+        <a href="#">
+            <img src="images/d3a51o8-c73e37b7-01c5-4f54-9657-c0e6ce504cde.png" alt="Stamp 3">
+        </a>
+        <a href="#">
+            <img src="images/dc1e82t-703072ab-bf4e-4669-80b4-873e7024a415.png" alt="Stamp 4">
+        </a>
     </div>
 
     <!-- Forpooper Image - Right Side -->
@@ -141,12 +177,46 @@
             }
         }
 
-        // SoundCloud Widget API - Set volume low
+        // SoundCloud Widget API - Set volume low and persist playback state
         var iframe = document.querySelector('#soundcloud-player');
         var widget = SC.Widget(iframe);
 
         widget.bind(SC.Widget.Events.READY, function () {
             widget.setVolume(20);
+
+            // Check if there's a saved position and track
+            var savedPosition = sessionStorage.getItem('sc_position');
+            var savedTrack = sessionStorage.getItem('sc_track');
+            var wasPlaying = sessionStorage.getItem('sc_playing') === 'true';
+
+            if (savedPosition && savedTrack) {
+                // Try to seek to saved position
+                widget.getSounds(function (sounds) {
+                    var trackIndex = parseInt(savedTrack);
+                    if (trackIndex >= 0 && trackIndex < sounds.length) {
+                        widget.skip(trackIndex);
+                        widget.seekTo(parseInt(savedPosition));
+                        if (wasPlaying) {
+                            widget.play();
+                        }
+                    } else if (wasPlaying) {
+                        widget.play();
+                    }
+                });
+            }
+        });
+
+        // Save position and playing state before page unload
+        window.addEventListener('beforeunload', function () {
+            widget.getPosition(function (position) {
+                sessionStorage.setItem('sc_position', position);
+            });
+            widget.getCurrentSoundIndex(function (trackIndex) {
+                sessionStorage.setItem('sc_track', trackIndex);
+            });
+            widget.isPaused(function (paused) {
+                sessionStorage.setItem('sc_playing', !paused);
+            });
         });
     </script>
 
