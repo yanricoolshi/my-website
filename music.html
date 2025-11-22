@@ -104,7 +104,7 @@
                 <h3>Contact</h3>
                 <ul>
                     <li><a href="#">Email Me</a></li>
-                    <li><a href="#">Discord</a></li>
+                    <li><a href="#" id="discord-link">Discord</a></li>
                 </ul>
             </div>
 
@@ -167,7 +167,39 @@
         </div>
     </div>
 
+    <!-- Discord Modal -->
+    <div id="discord-modal" class="discord-modal">
+        <div class="discord-modal-content">
+            <div class="discord-modal-close" onclick="closeDiscordModal()">X</div>
+            <img src="images/Screenshot 2025-11-22 014357.jpg" alt="Discord Info" />
+        </div>
+    </div>
+
     <script>
+        // Discord Modal Functionality
+        const discordLink = document.getElementById('discord-link');
+        const discordModal = document.getElementById('discord-modal');
+
+        if (discordLink && discordModal) {
+            discordLink.addEventListener('click', function (e) {
+                e.preventDefault();
+                discordModal.style.display = 'flex';
+            });
+        }
+
+        function closeDiscordModal() {
+            if (discordModal) {
+                discordModal.style.display = 'none';
+            }
+        }
+
+        // Close modal when clicking outside
+        window.addEventListener('click', function (e) {
+            if (e.target == discordModal) {
+                discordModal.style.display = 'none';
+            }
+        });
+
         // Mozzart Audio Player
         function playMozzartAudio() {
             var audio = document.getElementById('mozzart-audio');

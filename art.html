@@ -9,7 +9,6 @@
     <title>Yanri's Website - Art</title>
     <link rel="icon" type="image/jpeg" href="images/icon.jpg" />
     <link href="style.css" rel="stylesheet" type="text/css" />
-    <script src="https://w.soundcloud.com/player/api.js"></script>
 </head>
 
 <body>
@@ -17,13 +16,20 @@
     <img src="images/mysimbol.gif" alt="Symbol" class="corner-symbol top-left" />
     <img src="images/mysimbol.gif" alt="Symbol" class="corner-symbol top-right" />
 
-    <!-- SoundCloud Player Widget -->
-    <div class="video-player-widget">
-        <div class="video-player-frame">
-            <iframe id="soundcloud-player" width="280" height="180" scrolling="no" frameborder="no" allow="autoplay"
-                src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/yanri-risk/sets/stop-making-fun-of-me&color=%23556b2f&auto_play=true&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false">
-            </iframe>
+    <!-- Custom Audio Player -->
+    <div class="custom-audio-player">
+        <div class="player-header">
+            <span>Winamp</span>
+            <span>_ □ X</span>
         </div>
+        <div class="track-info" id="track-info">Jasmin China Girl</div>
+        <div class="player-controls">
+            <div class="play-pause-btn" id="play-pause-btn" onclick="togglePlay()">▶</div>
+            <div class="progress-container" id="progress-container">
+                <div class="progress-bar" id="progress-bar"></div>
+            </div>
+        </div>
+        <audio id="custom-audio-track" src="images/Jasmin China Girl [xe4APfSQRYQ].ogg"></audio>
     </div>
 
     <!-- Mozzart Window - Bottom Left -->
@@ -123,7 +129,7 @@
                 <h3>Contact</h3>
                 <ul>
                     <li><a href="#">Email Me</a></li>
-                    <li><a href="#">Discord</a></li>
+                    <li><a href="#" id="discord-link">Discord</a></li>
                 </ul>
             </div>
 
@@ -142,7 +148,39 @@
         </div>
     </div>
 
+    <!-- Discord Modal -->
+    <div id="discord-modal" class="discord-modal">
+        <div class="discord-modal-content">
+            <div class="discord-modal-close" onclick="closeDiscordModal()">X</div>
+            <img src="images/Screenshot 2025-11-22 014357.jpg" alt="Discord Info" />
+        </div>
+    </div>
+
     <script>
+        // Discord Modal Functionality
+        const discordLink = document.getElementById('discord-link');
+        const discordModal = document.getElementById('discord-modal');
+
+        if (discordLink && discordModal) {
+            discordLink.addEventListener('click', function (e) {
+                e.preventDefault();
+                discordModal.style.display = 'flex';
+            });
+        }
+
+        function closeDiscordModal() {
+            if (discordModal) {
+                discordModal.style.display = 'none';
+            }
+        }
+
+        // Close modal when clicking outside
+        window.addEventListener('click', function (e) {
+            if (e.target == discordModal) {
+                discordModal.style.display = 'none';
+            }
+        });
+
         // Mozzart Audio Player
         function playMozzartAudio() {
             var audio = document.getElementById('mozzart-audio');
@@ -154,28 +192,34 @@
             }
         }
 
-        // Image list from Camera Roll
+        // Image list from artgallury folder
         const imageFiles = [
-            "yanri predator.png", "yanri predator 2.png", "Illustration2.png", "Illustration3.jpg",
-            "Illustration6.png", "Illustration288.png", "Illustration28888.png", "Illustration42222.png",
-            "Illustration747555.jpg", "Illustrationghfghf.jpg", "Illustrationnnnnnnnnnn133765.png",
-            "Illustrationnnnnnnnnnn1337655.png", "my-image.png", "IMG_20250227_234352.jpg",
-            "predahhh.jpg", "pred.png", "gozzila halo.png", "halo reach.png", "worms map by me.png",
-            "wordart.png", "skin.png", "zobahhhhi.png", "zooba2.png", "Png.png", "Untitled.png",
-            "Untitled.png2.png", "imaghfhfe.png", "gjjhgjgj.png", "cup hair hate.png", "can flay 1.png",
-            "can flay 2.png", "broke ass nigga.png", "broke ass p.png", "poop.png", "poops 2.png",
-            "Vanity_638930613959391544.png", "x.comshit f.png", "Screenshot 2023-10-06 234330.png",
-            "Screenshot 2023-10-13 080416.png", "Screenshot 2023-10-14 002714.png", "Screenshot 2023-10-16 062109.png",
-            "Screenshot 2025-03-07 004522.jpg", "Screenshot 2025-03-07 004654.jpg", "Screenshot 2025-03-07 004740.jpg",
+            "10games.jpg", "20230916_100112.jpg", "4 lo.jpg", "455454دذدد.jpg", "Can someone redraw this with Boofys oc.jpg",
+            "G0yerrUW0AA9Zbd.jpg", "G26R4FdWkAAzo6b.jpg", "G26TN2oXIAANq5l.png", "G26f2F2XgAIJrx2.png", "G26fcbyXAAAEuo4.png",
+            "G26gdhZXYAEUcFZ.jpg", "G3Vk4BOWQAAfDMN.jpg", "G3bHwLIXwAAycat.png", "G3ft51BX0AEBKzT.png", "GdBD9nbWoAASmFV.jpg",
+            "Gn8Tj4gX0AAbUza.png", "GuInDnFWEAAO7z3.jpg", "GzXsI_KW0AI0Tni.jpg", "Illustration3.jpg", "Illustration42222.png",
+            "Illustration747555.jpg", "Illustrationhyhyjujjmmmnigga.jpg", "KARUS POOP CAT SMOKEY AHHH I POOP.jpg", "KUP.jpg",
+            "RGGG 2.jpg", "Screenshot 2025-03-07 004522.jpg", "Screenshot 2025-03-07 004654.jpg", "Screenshot 2025-03-07 004740.jpg",
             "Screenshot 2025-03-07 005150.jpg", "Screenshot 2025-03-08 150559.jpg", "Screenshot 2025-04-01 185530.jpg",
-            "Screenshot 2025-08-22 001337.jpg", "Screenshot 2025-09-10 002421.jpg", "Screenshot 2025-09-29 004646.jpg",
-            "Screenshot 2025-10-02 052248.jpg", "Screenshot 2025-10-02 052721.jpg", "Screenshot 2025-10-22 070312.jpg",
-            "Screenshot 2025-10-29 210242.jpg", "Screenshot 2025-10-29 210303.jpg", "Screenshot 2025-10-29 210356.jpg",
-            "Screenshot 2025-10-29 210412.jpg", "Screenshot 2025-10-29 210430.jpg", "Screenshot 2025-11-08 011301.jpg",
-            "Screenshot 2025-11-08 024255.jpg", "Screenshot 2025-11-08 042720.jpg", "10games.jpg",
-            "20230916_100112.jpg", "4 lo.jpg", "albenian.jpg", "bruh man.jpg", "chadacrack.jpg",
-            "cs.jpg", "deltapoopduhh.jpg", "dp 2.jpg", "en.jpg", "fox gay t.jpg", "fur lo y pfp.jpg",
-            "kup full.jpg", "KUP.jpg", "nmghgkg.jpg", "poop.jpg", "vitnam guy x.jpg"
+            "Screenshot 2025-09-29 004646.jpg", "Screenshot 2025-11-08 024255.jpg", "Screenshot 2025-11-08 042720.jpg",
+            "Screenshot 2025-11-22 005159.jpg", "Untitled.png2.png", "Vanity_638930613959391544.png", "albenian.jpg",
+            "balti n word ahh sigma troll god is real fuck you iran will win ahh oh mama i wanna kms so bad i wan't to be a woman so bad god please help me i'm sufring.jpg",
+            "big braping futa.jpg", "big butt futa fan art I FUCKING LOVE HALO! boohoo i poop myself.jpg", "booooooooo.jpg",
+            "broke ass nigga.png", "broke ass p.png", "bruh man.jpg", "bum fag ccp png.png", "bum fag ccp.jpg", "can flay 1.png",
+            "can flay 2.png", "chadacrack.jpg", "cs.jpg", "cup hair hate.png", "deltapoopolduhh.jpg", "dgdhhdf.png", "dp 2.jpg",
+            "en.jpg", "fuVHBGFHGH 2.jpg", "fuck your ass 2.jpg", "fuck your ass.jpg", "fur lo y pfp.jpg",
+            "get killed xeno lover fuck you.jpg", "gjjhgjgj.png", "gore poop.jpg", "gozzila halo.png",
+            "half life 2 beta sit pugzy.jpg", "halo ahhhhhh pooooooooooo.jpg", "halo reach.png", "hasan dog fuck.jpg",
+            "i can't.jpg", "i love jpeg's.jpg", "i suck at drawing part 1.jpg", "kup full.jpg", "mgs1 poopdec call uhh.jpg",
+            "my room uh i poooop my pooop ahhh.jpg", "nigel poop vs zilla.jpg", "nmghgkg.jpg", "please buy me halo wars.jpg",
+            "poop mmm.jpg", "poop.jpg", "pooper ass 2.jpg", "poopman.jpg", "poopn.jpg", "poops 2.png",
+            "postal fur fag liso oc ahh.jpg", "predahhh.jpg", "revoluion saaaaaasghh.jpg", "sassss sick pooooo rrrrr roarrrrr.jpg",
+            "scrim big mouth fuck ass ahh i hate all the hon troon boymoders.jpg", "shitting all over the place 2.jpg",
+            "stalingart fag ahh free free boohoo love trans hart.jpg", "stalingrad art uhhh i hate woman and trans people.jpg",
+            "tanky poopy head.jpg", "trans b ahhh pooooo oh mama.jpg", "uuuuuuuuuuuu free art ahhhh 3.png",
+            "uuuuuuuuuuuu free art ahhhh 566.png", "uuuuuuuuuuuu free art ahhhh.png", "vucic is so good man z.jpg",
+            "x.comshit f.png", "y2k tron skot ahh.jpg", "yanri predator 2.png", "yanri predator.png", "zobahhhhi.png",
+            "zooba2.png", "حخخخ.jpg", "دين مان.jpg", "زووط.jpg", "واحد بدوي.jpg", "يا زول دا انتا خليجي.png"
         ];
 
         let currentIndex = 0;
@@ -189,7 +233,7 @@
 
             imageFiles.forEach((filename, index) => {
                 const img = document.createElement('img');
-                img.src = 'images/' + filename;
+                img.src = 'images/artgallury/' + filename;
                 img.alt = 'Art piece ' + (index + 1);
                 img.onerror = function () {
                     console.log('Failed to load: ' + filename);
@@ -250,13 +294,69 @@
             autoplayInterval = setInterval(nextImage, 4000);
         };
 
-        // SoundCloud Widget API - Set volume low
-        var iframe = document.querySelector('#soundcloud-player');
-        var widget = SC.Widget(iframe);
+        // Custom Audio Player Logic
+        const audioTrack = document.getElementById('custom-audio-track');
+        const playPauseBtn = document.getElementById('play-pause-btn');
+        const progressBar = document.getElementById('progress-bar');
+        const progressContainer = document.getElementById('progress-container');
 
-        widget.bind(SC.Widget.Events.READY, function () {
-            widget.setVolume(20);
-        });
+        function togglePlay() {
+            if (audioTrack.paused) {
+                audioTrack.play();
+                playPauseBtn.textContent = '⏸';
+                sessionStorage.setItem('is_playing', 'true');
+            } else {
+                audioTrack.pause();
+                playPauseBtn.textContent = '▶';
+                sessionStorage.setItem('is_playing', 'false');
+            }
+        }
+
+        if (audioTrack) {
+            // Update progress bar
+            audioTrack.addEventListener('timeupdate', () => {
+                const progress = (audioTrack.currentTime / audioTrack.duration) * 100;
+                progressBar.style.width = progress + '%';
+                sessionStorage.setItem('audio_time', audioTrack.currentTime);
+            });
+
+            // Click on progress bar to seek
+            progressContainer.addEventListener('click', (e) => {
+                const width = progressContainer.clientWidth;
+                const clickX = e.offsetX;
+                const duration = audioTrack.duration;
+                audioTrack.currentTime = (clickX / width) * duration;
+            });
+
+            // Restore state on load
+            window.addEventListener('load', () => {
+                const savedTime = sessionStorage.getItem('audio_time');
+                const isPlaying = sessionStorage.getItem('is_playing');
+
+                if (savedTime) {
+                    audioTrack.currentTime = parseFloat(savedTime);
+                }
+
+                if (isPlaying === 'true') {
+                    // Auto-play might be blocked by browser, but we try
+                    const playPromise = audioTrack.play();
+                    if (playPromise !== undefined) {
+                        playPromise.then(_ => {
+                            playPauseBtn.textContent = '⏸';
+                        }).catch(error => {
+                            console.log("Autoplay prevented");
+                            playPauseBtn.textContent = '▶';
+                        });
+                    }
+                }
+            });
+
+            // Save state on unload
+            window.addEventListener('beforeunload', () => {
+                sessionStorage.setItem('audio_time', audioTrack.currentTime);
+                sessionStorage.setItem('is_playing', !audioTrack.paused);
+            });
+        }
     </script>
 
     <script>

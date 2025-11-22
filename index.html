@@ -12,7 +12,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap" rel="stylesheet">
     <link href="style.css" rel="stylesheet" type="text/css" />
-    <script src="https://w.soundcloud.com/player/api.js"></script>
 </head>
 
 <body>
@@ -20,13 +19,20 @@
     <img src="images/mysimbol.gif" alt="Symbol" class="corner-symbol top-left" />
     <img src="images/mysimbol.gif" alt="Symbol" class="corner-symbol top-right" />
 
-    <!-- SoundCloud Player Widget -->
-    <div class="video-player-widget">
-        <div class="video-player-frame">
-            <iframe id="soundcloud-player" width="260" height="160" scrolling="no" frameborder="no" allow="autoplay"
-                src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/yanri-risk/sets/stop-making-fun-of-me&color=%23556b2f&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false">
-            </iframe>
+    <!-- Custom Audio Player (Draggable) -->
+    <div class="custom-audio-player">
+        <div class="player-header">
+            <span>Winamp</span>
+            <span>_ □ X</span>
         </div>
+        <div class="track-info" id="track-info">Windows XP Installation Music</div>
+        <div class="player-controls">
+            <div class="play-pause-btn" id="play-pause-btn" onclick="togglePlay()">▶</div>
+            <div class="progress-container" id="progress-container">
+                <div class="progress-bar" id="progress-bar"></div>
+            </div>
+        </div>
+        <audio id="custom-audio-track" src="images/Windows XP Installation Music.ogg" autoplay loop></audio>
     </div>
 
     <!-- Mozzart Window - Bottom Left -->
@@ -87,10 +93,11 @@
         <!-- Horizontal Menu -->
         <div id="menu">
             <ul>
-                <li class="active"><a href="index.html">About Me...</a></li>
-                <li><a href="art.html">Art</a></li>
-                <li><a href="music.html">Music</a></li>
-                <li><a href="interests.html">Interests</a></li>
+                <li class="active" id="nav-home"><a href="#" onclick="showSection('home'); return false;">About
+                        Me...</a></li>
+                <li id="nav-art"><a href="#" onclick="showSection('art'); return false;">Art</a></li>
+                <li id="nav-music"><a href="#" onclick="showSection('music'); return false;">Music</a></li>
+                <li id="nav-interests"><a href="#" onclick="showSection('interests'); return false;">Interests</a></li>
             </ul>
         </div>
 
@@ -107,40 +114,142 @@
                 <h3>Contact</h3>
                 <ul>
                     <li><a href="#">Email Me</a></li>
-                    <li><a href="#">Discord</a></li>
+                    <li><a href="#" id="discord-link">Discord</a></li>
                 </ul>
             </div>
 
-            <!-- Main Content (Right) -->
+            <!-- Main Content Area (Right) -->
             <div id="main-content" style="position: relative;">
-                <h2>About Me</h2>
 
-                <!-- LOGOPOOP Image with glow - left aligned -->
-                <div style="margin: 10px 0;">
-                    <img src="images/LOGOPOOP.png" alt="Logo" class="logo-poop-img" />
+                <!-- HOME SECTION -->
+                <div id="home-section" class="content-section active">
+                    <h2>About Me</h2>
+
+                    <!-- LOGOPOOP Image with glow - left aligned -->
+                    <div style="margin: 10px 0;">
+                        <img src="images/LOGOPOOP.png" alt="Logo" class="logo-poop-img" />
+                    </div>
+
+                    <p>HIIII i'm 21 years old<br />
+                        a starving artist from africa<br />
+                        I love 2000's/early 2010's<br />
+                        I LIVE 4 VIDEO GAMES!!!</p>
+
+                    <!-- Button with poop images - interactive -->
+                    <button id="poop-button"
+                        style="position: absolute; top: 10px; right: 10px; border: none; background: none; cursor: pointer; padding: 0;">
+                        <img id="poop-img" src="images/poop1.png" alt="Button" style="width: 140px; height: auto;" />
+                    </button>
+
+                    <!-- Audio for button -->
+                    <audio id="poop-audio" src="images/waarrrr.ogg"></audio>
+
+                    <h2 class="latest-updates">Latest Updates</h2>
+                    <p><!-- TEXT PLACEHOLDER: Updates go here --></p>
+
+                    <div class="placeholder-box" style="height: auto; border: none; background: none;">
+                        <img src="images/update-screenshot.jpg" alt="Latest Update"
+                            style="width: 100%; height: auto; border: 2px solid DarkOliveGreen;" />
+                    </div>
                 </div>
 
-                <p>HIIII i'm 21 years old<br />
-                    a starving artist from africa<br />
-                    I love 2000's/early 2010's<br />
-                    I LIVE 4 VIDEO GAMES!!!</p>
+                <!-- ART SECTION -->
+                <div id="art-section" class="content-section">
+                    <!-- Full-width Slideshow Section -->
+                    <div class="slideshow-section">
+                        <h2>My Art Gallery</h2>
 
-                <!-- Button with poop images - interactive -->
-                <button id="poop-button"
-                    style="position: absolute; top: 10px; right: 10px; border: none; background: none; cursor: pointer; padding: 0;">
-                    <img id="poop-img" src="images/poop1.png" alt="Button" style="width: 140px; height: auto;" />
-                </button>
+                        <div class="slideshow-container" id="slideshow">
+                            <!-- Images will be loaded dynamically by JavaScript -->
+                        </div>
 
-                <!-- Audio for button -->
-                <audio id="poop-audio" src="images/waarrrr.ogg"></audio>
+                        <div class="slideshow-info" id="slideshow-info">
+                            Loading images...
+                        </div>
 
-                <h2 class="latest-updates">Latest Updates</h2>
-                <p><!-- TEXT PLACEHOLDER: Updates go here --></p>
+                        <div class="slideshow-controls">
+                            <button onclick="previousImage()">← Previous</button>
+                            <button onclick="toggleAutoplay()" id="autoplayBtn">⏸ Pause</button>
+                            <button onclick="nextImage()">Next →</button>
+                        </div>
+                    </div>
 
-                <div class="placeholder-box" style="height: auto; border: none; background: none;">
-                    <img src="images/update-screenshot.jpg" alt="Latest Update"
-                        style="width: 100%; height: auto; border: 2px solid DarkOliveGreen;" />
+                    <h2>About This Gallery</h2>
+                    <p>Welcome to my art gallery! Use the controls above to browse through my collection.</p>
+                    <p>The slideshow automatically advances every 4 seconds, or you can use the Previous/Next buttons to
+                        navigate manually.</p>
                 </div>
+
+                <!-- MUSIC SECTION -->
+                <div id="music-section" class="content-section">
+                    <h2>My Music</h2>
+                    <p>Check out my favorite tracks.</p>
+
+                    <div class="music-list">
+                        <ul>
+                            <li><a href="https://www.youtube.com/watch?v=JvwtIwUB6VM&list=PLTXibJayE9VpiOH-ADAL0f97Z5J42Kfna&index=1"
+                                    target="_blank">Paul Paul - "Good Times" (1983)</a></li>
+                            <li><a href="https://www.youtube.com/watch?v=KUGE8_O4-6I&list=PLTXibJayE9VpiOH-ADAL0f97Z5J42Kfna&index=2"
+                                    target="_blank">Green Mountaineer - (Vermont Republic Patriot Song) Better
+                                    Version</a></li>
+                            <li><a href="https://www.youtube.com/watch?v=rVTzv9qLyko&list=PLTXibJayE9VpiOH-ADAL0f97Z5J42Kfna&index=3"
+                                    target="_blank">Field of Memories</a></li>
+                            <li><a href="https://www.youtube.com/watch?v=LpCoMpP-dyc&list=PLTXibJayE9VpiOH-ADAL0f97Z5J42Kfna&index=4"
+                                    target="_blank">Ecuador (Original 12" Mix)</a></li>
+                            <li><a href="https://www.youtube.com/watch?v=023hH8uGPR0&list=PLTXibJayE9VpiOH-ADAL0f97Z5J42Kfna&index=5"
+                                    target="_blank">Nathalie - To Beat Or Not To Beat</a></li>
+                            <li><a href="https://www.youtube.com/watch?v=AX9mhouBfCM&list=PLTXibJayE9VpiOH-ADAL0f97Z5J42Kfna&index=6"
+                                    target="_blank">【MONGOLIAN ARMY SONG】Mongolian Soldier (蒙古士兵) w/ ENG lyrics</a></li>
+                            <li><a href="https://www.youtube.com/watch?v=TLhU4EgMiEw&list=PLTXibJayE9VpiOH-ADAL0f97Z5J42Kfna&index=7"
+                                    target="_blank">u nedogled</a></li>
+                            <li><a href="https://www.youtube.com/watch?v=ktlAr5RQmFM&list=PLTXibJayE9VpiOH-ADAL0f97Z5J42Kfna&index=8"
+                                    target="_blank">Darkwood Dub - Sudar</a></li>
+                            <li><a href="https://www.youtube.com/watch?v=NN2XXYQeLZo&list=PLTXibJayE9VpiOH-ADAL0f97Z5J42Kfna&index=9"
+                                    target="_blank">Darkwood Dub - U novoj epizodi</a></li>
+                            <li><a href="https://www.youtube.com/watch?v=CYNf5Uva1Os&list=PLTXibJayE9VpiOH-ADAL0f97Z5J42Kfna&index=10"
+                                    target="_blank">Твой день</a></li>
+                            <li><a href="https://www.youtube.com/watch?v=rILO7bQEheY&list=PLTXibJayE9VpiOH-ADAL0f97Z5J42Kfna&index=11"
+                                    target="_blank">SHOTGUN KILLER</a></li>
+                            <li><a href="https://www.youtube.com/watch?v=kyaXX7ad_CE&list=PLTXibJayE9VpiOH-ADAL0f97Z5J42Kfna&index=12"
+                                    target="_blank">Bruce & Bongo - Geil (Extended Version, 1986)</a></li>
+                            <li><a href="https://www.youtube.com/watch?v=w3oVCnL2sfw&list=PLTXibJayE9VpiOH-ADAL0f97Z5J42Kfna&index=13"
+                                    target="_blank">Den Harrow - Future Brain</a></li>
+                            <li><a href="https://www.youtube.com/watch?v=UmiGXOXLa6Q&list=PLTXibJayE9VpiOH-ADAL0f97Z5J42Kfna&index=14"
+                                    target="_blank">M.P. (München Paris) - Flash Gordon</a></li>
+                            <li><a href="https://www.youtube.com/watch?v=c96OHfUR51A&list=PLTXibJayE9VpiOH-ADAL0f97Z5J42Kfna&index=15"
+                                    target="_blank">Tom Hooker - Looking for love</a></li>
+                            <li><a href="https://www.youtube.com/watch?v=pQA9BZRMitc&list=PLTXibJayE9VpiOH-ADAL0f97Z5J42Kfna&index=16"
+                                    target="_blank">Forever Lovers</a></li>
+                            <li><a href="https://www.youtube.com/watch?v=gwSk0Afu0fc&list=PLTXibJayE9VpiOH-ADAL0f97Z5J42Kfna&index=17"
+                                    target="_blank">Depeche mode - Hole To Feed (original instrumental)</a></li>
+                            <li><a href="https://www.youtube.com/watch?v=H5j4wYnpISY&list=PLTXibJayE9VpiOH-ADAL0f97Z5J42Kfna&index=18"
+                                    target="_blank">FASTWAY - Make or Brake</a></li>
+                            <li><a href="https://www.youtube.com/watch?v=THGhHlVm_Gk&list=PLTXibJayE9VpiOH-ADAL0f97Z5J42Kfna&index=19"
+                                    target="_blank">Miko Mission - The world is you (extended version)</a></li>
+                            <li><a href="https://www.youtube.com/watch?v=EK1z11V7WCk&list=PLTXibJayE9VpiOH-ADAL0f97Z5J42Kfna&index=20"
+                                    target="_blank">Seventh - I am Gonna Fly (Operation Flashpoint OST)</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- INTERESTS SECTION -->
+                <div id="interests-section" class="content-section">
+                    <h2>Recent Interests</h2>
+
+                    <img src="images/capsule_616x353.jpg" alt="Game capsule"
+                        style="max-width: 300px; display: block; margin: 15px 0;" />
+
+                    <p>I was addicted to this game for the last few weeks</p>
+
+                    <div class="interest-list">
+                        <ul>
+                            <li>Halo games</li>
+                            <li>Crysis</li>
+                            <li>Motorcross</li>
+                        </ul>
+                    </div>
+                </div>
+
             </div>
         </div>
 
@@ -150,7 +259,237 @@
         </div>
     </div>
 
+    <!-- Discord Modal -->
+    <div id="discord-modal" class="discord-modal">
+        <div class="discord-modal-content">
+            <div class="discord-modal-close" onclick="closeDiscordModal()">X</div>
+            <img src="images/Screenshot 2025-11-22 014357.jpg" alt="Discord Info" />
+        </div>
+    </div>
+
     <script>
+        // --- ART GALLERY LOGIC (must be defined first) ---
+        const imageFiles = [
+            "10games.jpg", "20230916_100112.jpg", "4 lo.jpg", "455454دذدد.jpg", "Can someone redraw this with Boofys oc.jpg",
+            "G0yerrUW0AA9Zbd.jpg", "G26R4FdWkAAzo6b.jpg", "G26TN2oXIAANq5l.png", "G26f2F2XgAIJrx2.png", "G26fcbyXAAAEuo4.png",
+            "G26gdhZXYAEUcFZ.jpg", "G3Vk4BOWQAAfDMN.jpg", "G3bHwLIXwAAycat.png", "G3ft51BX0AEBKzT.png", "GdBD9nbWoAASmFV.jpg",
+            "Gn8Tj4gX0AAbUza.png", "GuInDnFWEAAO7z3.jpg", "GzXsI_KW0AI0Tni.jpg", "Illustration3.jpg", "Illustration42222.png",
+            "Illustration747555.jpg", "Illustrationhyhyjujjmmmnigga.jpg", "KARUS POOP CAT SMOKEY AHHH I POOP.jpg", "KUP.jpg",
+            "RGGG 2.jpg", "Screenshot 2025-03-07 004522.jpg", "Screenshot 2025-03-07 004654.jpg", "Screenshot 2025-03-07 004740.jpg",
+            "Screenshot 2025-03-07 005150.jpg", "Screenshot 2025-03-08 150559.jpg", "Screenshot 2025-04-01 185530.jpg",
+            "Screenshot 2025-09-29 004646.jpg", "Screenshot 2025-11-08 024255.jpg", "Screenshot 2025-11-08 042720.jpg",
+            "Screenshot 2025-11-22 005159.jpg", "Untitled.png2.png", "Vanity_638930613959391544.png", "albenian.jpg",
+            "balti n word ahh sigma troll god is real fuck you iran will win ahh oh mama i wanna kms so bad i wan't to be a woman so bad god please help me i'm sufring.jpg",
+            "big braping futa.jpg", "big butt futa fan art I FUCKING LOVE HALO! boohoo i poop myself.jpg", "booooooooo.jpg",
+            "broke ass nigga.png", "broke ass p.png", "bruh man.jpg", "bum fag ccp png.png", "bum fag ccp.jpg", "can flay 1.png",
+            "can flay 2.png", "chadacrack.jpg", "cs.jpg", "cup hair hate.png", "deltapoopolduhh.jpg", "dgdhhdf.png", "dp 2.jpg",
+            "en.jpg", "fuVHBGFHGH 2.jpg", "fuck your ass 2.jpg", "fuck your ass.jpg", "fur lo y pfp.jpg",
+            "get killed xeno lover fuck you.jpg", "gjjhgjgj.png", "gore poop.jpg", "gozzila halo.png",
+            "half life 2 beta sit pugzy.jpg", "halo ahhhhhh pooooooooooo.jpg", "halo reach.png", "hasan dog fuck.jpg",
+            "i can't.jpg", "i love jpeg's.jpg", "i suck at drawing part 1.jpg", "kup full.jpg", "mgs1 poopdec call uhh.jpg",
+            "my room uh i poooop my pooop ahhh.jpg", "nigel poop vs zilla.jpg", "nmghgkg.jpg", "please buy me halo wars.jpg",
+            "poop mmm.jpg", "poop.jpg", "pooper ass 2.jpg", "poopman.jpg", "poopn.jpg", "poops 2.png",
+            "postal fur fag liso oc ahh.jpg", "predahhh.jpg", "revoluion saaaaaasghh.jpg", "sassss sick pooooo rrrrr roarrrrr.jpg",
+            "scrim big mouth fuck ass ahh i hate all the hon troon boymoders.jpg", "shitting all over the place 2.jpg",
+            "stalingart fag ahh free free boohoo love trans hart.jpg", "stalingrad art uhhh i hate woman and trans people.jpg",
+            "tanky poopy head.jpg", "trans b ahhh pooooo oh mama.jpg", "uuuuuuuuuuuu free art ahhhh 3.png",
+            "uuuuuuuuuuuu free art ahhhh 566.png", "uuuuuuuuuuuu free art ahhhh.png", "vucic is so good man z.jpg",
+            "x.comshit f.png", "y2k tron skot ahh.jpg", "yanri predator 2.png", "yanri predator.png", "zobahhhhi.png",
+            "zooba2.png", "حخخخ.jpg", "دين مان.jpg", "زووط.jpg", "واحد بدوي.jpg", "يا زول دا انتا خليجي.png"
+        ];
+
+        let currentIndex = 0;
+        let autoplayInterval = null;
+        let isAutoplayRunning = true;
+
+        function loadImages() {
+            console.log('=== LOADING ART GALLERY ===');
+            const container = document.getElementById('slideshow');
+
+            if (!container) {
+                console.error('ERROR: Slideshow container not found!');
+                return;
+            }
+
+            console.log('Container found:', container);
+            console.log('Number of images to load:', imageFiles.length);
+
+            container.innerHTML = '';
+
+            let loadedCount = 0;
+
+            imageFiles.forEach((filename, index) => {
+                const img = document.createElement('img');
+                img.src = 'images/artgallury/' + filename;
+                img.alt = 'Art piece ' + (index + 1);
+
+                img.onload = function () {
+                    loadedCount++;
+                    if (loadedCount <= 5 || loadedCount === imageFiles.length) {
+                        console.log('✓ Loaded [' + loadedCount + '/' + imageFiles.length + ']: ' + filename);
+                    }
+                };
+
+                img.onerror = function () {
+                    console.error('✗ Failed to load: ' + filename);
+                };
+
+                if (index === 0) {
+                    img.className = 'active';
+                    console.log('First image set to active:', filename);
+                }
+
+                container.appendChild(img);
+            });
+
+            console.log('All images added to container');
+            console.log('Container children count:', container.children.length);
+
+            updateInfo();
+
+            if (isAutoplayRunning && !autoplayInterval) {
+                autoplayInterval = setInterval(nextImage, 4000);
+                console.log('Autoplay started');
+            }
+        }
+
+        function showImage(index) {
+            const images = document.querySelectorAll('.slideshow-container img');
+            if (images.length === 0) return;
+
+            images.forEach((img, i) => {
+                img.className = i === index ? 'active' : '';
+            });
+            currentIndex = index;
+            updateInfo();
+        }
+
+        function nextImage() {
+            currentIndex = (currentIndex + 1) % imageFiles.length;
+            showImage(currentIndex);
+        }
+
+        function previousImage() {
+            currentIndex = (currentIndex - 1 + imageFiles.length) % imageFiles.length;
+            showImage(currentIndex);
+        }
+
+        function toggleAutoplay() {
+            const btn = document.getElementById('autoplayBtn');
+            if (isAutoplayRunning) {
+                clearInterval(autoplayInterval);
+                autoplayInterval = null;
+                btn.textContent = '▶ Play';
+                isAutoplayRunning = false;
+            } else {
+                autoplayInterval = setInterval(nextImage, 4000);
+                btn.textContent = '⏸ Pause';
+                isAutoplayRunning = true;
+            }
+        }
+
+        function updateInfo() {
+            const info = document.getElementById('slideshow-info');
+            if (info) {
+                info.textContent = 'Image ' + (currentIndex + 1) + ' of ' + imageFiles.length;
+            }
+        }
+
+        // SPA Navigation Logic
+        function showSection(sectionId) {
+            console.log('Switching to section:', sectionId);
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById(sectionId + '-section').classList.add('active');
+            document.querySelectorAll('#menu li').forEach(li => {
+                li.classList.remove('active');
+            });
+            document.getElementById('nav-' + sectionId).classList.add('active');
+
+            // Initialize art gallery when switching to art section
+            if (sectionId === 'art') {
+                const slideshow = document.getElementById('slideshow');
+                if (slideshow && slideshow.innerHTML.trim() === '') {
+                    loadImages();
+                }
+            }
+        }
+
+        // Discord Modal Functionality
+        const discordLink = document.getElementById('discord-link');
+        const discordModal = document.getElementById('discord-modal');
+
+        if (discordLink && discordModal) {
+            discordLink.addEventListener('click', function (e) {
+                e.preventDefault();
+                discordModal.style.display = 'flex';
+            });
+        }
+
+        function closeDiscordModal() {
+            if (discordModal) {
+                discordModal.style.display = 'none';
+            }
+        }
+
+        window.addEventListener('click', function (e) {
+            if (e.target == discordModal) {
+                discordModal.style.display = 'none';
+            }
+        });
+
+        // Make Audio Player Draggable
+        const audioPlayer = document.querySelector('.custom-audio-player');
+        const playerHeader = document.querySelector('.player-header');
+
+        if (audioPlayer && playerHeader) {
+            let isDragging = false;
+            let currentX;
+            let currentY;
+            let initialX;
+            let initialY;
+            let xOffset = 0;
+            let yOffset = 0;
+
+            playerHeader.addEventListener('mousedown', dragStart);
+            document.addEventListener('mousemove', drag);
+            document.addEventListener('mouseup', dragEnd);
+
+            function dragStart(e) {
+                initialX = e.clientX - xOffset;
+                initialY = e.clientY - yOffset;
+
+                if (e.target === playerHeader || playerHeader.contains(e.target)) {
+                    isDragging = true;
+                    playerHeader.style.cursor = 'grabbing';
+                }
+            }
+
+            function drag(e) {
+                if (isDragging) {
+                    e.preventDefault();
+
+                    currentX = e.clientX - initialX;
+                    currentY = e.clientY - initialY;
+
+                    xOffset = currentX;
+                    yOffset = currentY;
+
+                    audioPlayer.style.transform = 'translate(' + currentX + 'px, ' + currentY + 'px)';
+                }
+            }
+
+            function dragEnd(e) {
+                initialX = currentX;
+                initialY = currentY;
+                isDragging = false;
+                playerHeader.style.cursor = 'grab';
+            }
+
+            playerHeader.style.cursor = 'grab';
+        }
+
         // Poop Button Interactive Functionality
         let isAnimating = false;
 
@@ -161,31 +500,26 @@
 
             if (poopButton && poopImg && poopAudio) {
                 poopButton.addEventListener('click', function () {
-                    if (isAnimating) return; // Prevent multiple clicks
+                    if (isAnimating) return;
                     isAnimating = true;
 
-                    // Step 1: Change to poop2.png and shake for 3 seconds
                     poopImg.src = 'images/poop2.png';
                     poopImg.classList.add('shake');
 
                     setTimeout(function () {
-                        // Step 2: Change to poop3.png and shake violently with audio
                         poopImg.src = 'images/poop3.png';
                         poopImg.classList.remove('shake');
                         poopImg.classList.add('shake-violent');
 
-                        // Play audio
                         poopAudio.currentTime = 0;
                         poopAudio.play();
 
-                        // Wait for audio to finish
                         poopAudio.onended = function () {
-                            // Step 3: Return to poop1.png and remove animations
                             poopImg.classList.remove('shake-violent');
                             poopImg.src = 'images/poop1.png';
                             isAnimating = false;
                         };
-                    }, 3000); // 3 seconds
+                    }, 3000);
                 });
             }
         });
@@ -201,51 +535,76 @@
             }
         }
 
-        // SoundCloud Widget API - Set volume low and persist playback state
-        var iframe = document.querySelector('#soundcloud-player');
-        var widget = SC.Widget(iframe);
+        // Custom Audio Player Logic
+        const audioTrack = document.getElementById('custom-audio-track');
+        const playPauseBtn = document.getElementById('play-pause-btn');
+        const progressBar = document.getElementById('progress-bar');
+        const progressContainer = document.getElementById('progress-container');
 
-        widget.bind(SC.Widget.Events.READY, function () {
-            widget.setVolume(20);
-
-            // Check if there's a saved position and track
-            var savedPosition = sessionStorage.getItem('sc_position');
-            var savedTrack = sessionStorage.getItem('sc_track');
-            var wasPlaying = sessionStorage.getItem('sc_playing') === 'true';
-
-            if (savedPosition && savedTrack) {
-                // Try to seek to saved position
-                widget.getSounds(function (sounds) {
-                    var trackIndex = parseInt(savedTrack);
-                    if (trackIndex >= 0 && trackIndex < sounds.length) {
-                        widget.skip(trackIndex);
-                        widget.seekTo(parseInt(savedPosition));
-                        if (wasPlaying) {
-                            widget.play();
-                        }
-                    } else if (wasPlaying) {
-                        widget.play();
-                    }
-                });
+        function togglePlay() {
+            if (audioTrack.paused) {
+                audioTrack.play();
+                playPauseBtn.textContent = '⏸';
+                sessionStorage.setItem('is_playing', 'true');
+            } else {
+                audioTrack.pause();
+                playPauseBtn.textContent = '▶';
+                sessionStorage.setItem('is_playing', 'false');
             }
-        });
+        }
 
-        // Save position and playing state before page unload
-        window.addEventListener('beforeunload', function () {
-            widget.getPosition(function (position) {
-                sessionStorage.setItem('sc_position', position);
+        if (audioTrack) {
+            audioTrack.addEventListener('timeupdate', function () {
+                const progress = (audioTrack.currentTime / audioTrack.duration) * 100;
+                progressBar.style.width = progress + '%';
+                sessionStorage.setItem('audio_time', audioTrack.currentTime);
             });
-            widget.getCurrentSoundIndex(function (trackIndex) {
-                sessionStorage.setItem('sc_track', trackIndex);
+
+            progressContainer.addEventListener('click', function (e) {
+                const width = progressContainer.clientWidth;
+                const clickX = e.offsetX;
+                const duration = audioTrack.duration;
+                audioTrack.currentTime = (clickX / width) * duration;
             });
-            widget.isPaused(function (paused) {
-                sessionStorage.setItem('sc_playing', !paused);
+
+            audioTrack.addEventListener('play', function () {
+                playPauseBtn.textContent = '⏸';
             });
-        });
+
+            audioTrack.addEventListener('pause', function () {
+                playPauseBtn.textContent = '▶';
+            });
+
+            window.addEventListener('load', function () {
+                const savedTime = sessionStorage.getItem('audio_time');
+                const isPlaying = sessionStorage.getItem('is_playing');
+
+                if (savedTime) {
+                    audioTrack.currentTime = parseFloat(savedTime);
+                }
+
+                if (isPlaying === 'true' || audioTrack.autoplay) {
+                    const playPromise = audioTrack.play();
+                    if (playPromise !== undefined) {
+                        playPromise.then(function () {
+                            playPauseBtn.textContent = '⏸';
+                            sessionStorage.setItem('is_playing', 'true');
+                        }).catch(function (error) {
+                            console.log("Autoplay prevented");
+                            playPauseBtn.textContent = '▶';
+                        });
+                    }
+                }
+            });
+
+            window.addEventListener('beforeunload', function () {
+                sessionStorage.setItem('audio_time', audioTrack.currentTime);
+                sessionStorage.setItem('is_playing', !audioTrack.paused);
+            });
+        }
     </script>
 
     <script>
-        // Register Service Worker for caching
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', function () {
                 navigator.serviceWorker.register('/sw.js').then(function (registration) {
