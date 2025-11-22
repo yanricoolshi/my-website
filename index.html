@@ -410,7 +410,7 @@
             // Initialize art gallery when switching to art section
             if (sectionId === 'art') {
                 const slideshow = document.getElementById('slideshow');
-                if (slideshow && slideshow.innerHTML.trim() === '') {
+                if (slideshow && slideshow.children.length === 0) {
                     loadImages();
                 }
             }

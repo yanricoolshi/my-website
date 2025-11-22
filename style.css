@@ -639,7 +639,9 @@ p {
 .badges-container img:hover {
     transform: scale(1.1);
     filter: brightness(1.2);
-}/* ========================================
+}
+
+/* ========================================
    ART GALLERY SLIDESHOW STYLES
    ======================================== */
 
@@ -809,6 +811,7 @@ p {
     color: white;
     transform: scale(1.1);
 }
+
 /* ========================================
    CUSTOM AUDIO PLAYER (Draggable Winamp)
    ======================================== */
