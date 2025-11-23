@@ -1,0 +1,201 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description"
+        content="Yanri's Website - 21 year old digital artist from Africa. I love 2000s/early 2010s aesthetics, video games, and retro web design" />
+    <title>Yanri's Website</title>
+    <link rel="icon" type="image/jpeg" href="images/icon.jpg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap" rel="stylesheet">
+    <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+    <!-- Corner Symbols -->
+    <img src="images/mysimbol.gif" alt="Symbol" class="corner-symbol top-left" />
+    <img src="images/mysimbol.gif" alt="Symbol" class="corner-symbol top-right" />
+
+    <!-- Custom Audio Player (Draggable) -->
+    <div class="custom-audio-player">
+        <div class="player-header">
+            <span>Winamp</span>
+            <span>_ □ X</span>
+        </div>
+        <div class="track-info" id="track-info">Windows XP Installation Music</div>
+        <div class="player-controls">
+            <div class="play-pause-btn" id="play-pause-btn" onclick="togglePlay()">▶</div>
+            <div class="progress-container" id="progress-container">
+                <div class="progress-bar" id="progress-bar"></div>
+            </div>
+        </div>
+        <audio id="custom-audio-track" src="images/Windows XP Installation Music.ogg" autoplay loop></audio>
+    </div>
+
+    <!-- Mozzart Window - Bottom Left -->
+    <div class="mozzart-window">
+        <h3>THIS IS MOZZART</h3>
+        <img src="images/mozzart.jpg" alt="Mozzart" onclick="playMozzartAudio()" />
+        <audio id="mozzart-audio" src="images/Jasmin China Girl [xe4APfSQRYQ].ogg"></audio>
+    </div>
+
+    <!-- Pugo Badge Window - Bottom Right with Multiple Badges -->
+    <div class="pugo-badge-window">
+        <a href="https://pugo.neocities.org/" target="_blank">
+            <img src="images/badges/pugobadge.gif" alt="Pugo" style="width:88px;height:31px;">
+        </a>
+        <a href="#" style="display: block; margin-top: 5px;">
+            <img src="images/badges/hatemac.jpg" alt="I Hate Mac" style="width:88px;height:31px;">
+        </a>
+        <a href="#" style="display: block; margin-top: 5px;">
+            <img src="images/badges/twopaws.png" alt="Two Paws" style="width:88px;height:31px;">
+        </a>
+        <a href="#" style="display: block; margin-top: 5px;">
+            <img src="images/badges/made_with_windows.gif" alt="Made with Windows" style="width:88px;height:31px;">
+        </a>
+        <a href="#" style="display: block; margin-top: 5px;">
+            <img src="images/badges/iwf15.gif" alt="IWF15" style="width:88px;height:31px;">
+        </a>
+        <a href="https://yanricoolshi.github.io/my-website/index.html" style="display: block; margin-top: 5px;">
+            <img src="images/badges/yanri.gif" alt="Yanri" style="width:88px;height:31px;">
+        </a>
+        <a href="#" style="display: block; margin-top: 5px;">
+            <img src="images/badges/button_tupachq1.gif" alt="Button" style="width:88px;height:31px;">
+        </a>
+        <a href="#" style="display: block; margin-top: 5px;">
+            <img src="images/badges/corp.gif" alt="Corp" style="width:88px;height:31px;">
+        </a>
+        <a href="#" style="display: block; margin-top: 5px;">
+            <img src="images/badges/frutigeraeroarchive_button.png" alt="Frutiger Aero Archive"
+                style="width:88px;height:31px;">
+        </a>
+        <a href="#" style="display: block; margin-top: 5px;">
+            <img src="images/badges/guestbook.gif" alt="Guestbook" style="width:88px;height:31px;">
+        </a>
+        <a href="#" style="display: block; margin-top: 5px;">
+            <img src="images/badges/mp3-button.gif" alt="MP3" style="width:88px;height:31px;">
+        </a>
+        <a href="#" style="display: block; margin-top: 5px;">
+            <img src="images/badges/mswinmediaplayer8.gif" alt="Windows Media Player 8" style="width:88px;height:31px;">
+        </a>
+        <a href="#" style="display: block; margin-top: 5px;">
+            <img src="images/badges/newgrounds.gif" alt="Newgrounds" style="width:88px;height:31px;">
+        </a>
+        <a href="#" style="display: block; margin-top: 5px;">
+            <img src="images/badges/q4psb.gif" alt="Q4PSB" style="width:88px;height:31px;">
+        </a>
+        <a href="#" style="display: block; margin-top: 5px;">
+            <img src="images/badges/winxp.gif" alt="Windows XP" style="width:88px;height:31px;">
+        </a>
+    </div>
+
+    <!-- Stamps Window - Next to Pugo Badge Window -->
+    <div class="stamps-window">
+        <a href="#">
+            <img src="images/stamps/d1yyuqc-76810c8d-1492-45ac-aa6c-96d5dfc794e5.png" alt="Stamp 1">
+        </a>
+        <a href="#">
+            <img src="images/stamps/d2hk9oe-16178d93-0c91-4ab3-ab08-ee08b81e206e.gif" alt="Stamp 2">
+        </a>
+        <a href="#">
+            <img src="images/stamps/d3a51o8-c73e37b7-01c5-4f54-9657-c0e6ce504cde.png" alt="Stamp 3">
+        </a>
+        <a href="#">
+            <img src="images/stamps/dc1e82t-703072ab-bf4e-4669-80b4-873e7024a415.png" alt="Stamp 4">
+        </a>
+        <a href="#">
+            <img src="images/stamps/d1741c9-df45e809-4888-4920-8976-c1bbaa47118b.gif" alt="Stamp 5">
+        </a>
+        <a href="#">
+            <img src="images/stamps/stamp___paint_tool_sai_user_by_firstfear_d489l7l.gif" alt="Paint Tool SAI">
+        </a>
+        <a href="#">
+            <img src="images/stamps/warrenfan.gif" alt="Warren Fan">
+        </a>
+    </div>
+
+    <!-- Forpooper Image - Right Side -->
+    <img src="images/forpooper.png" alt="For Pooper" class="forpooper-img" />
+    <img src="images/g9en3ts7nw781.png" alt="" class="g9en3ts7nw781-img" />
+
+    <div id="container">
+        <!-- Header Banner -->
+        <div id="header">
+            <img src="images/yanribanner.png" alt="Yanri's Website" />
+        </div>
+
+        <!-- Horizontal Menu -->
+        <div id="menu">
+            <ul>
+                <li class="active" id="nav-home"><a href="#" onclick="showSection('home'); return false;">About
+                        Me...</a></li>
+                <li id="nav-art"><a href="#" onclick="showSection('art'); return false;">Art</a></li>
+                <li id="nav-music"><a href="#" onclick="showSection('music'); return false;">Music</a></li>
+                <li id="nav-interests"><a href="#" onclick="showSection('interests'); return false;">Interests</a></li>
+                <li id="nav-guestbook"><a href="#" onclick="showSection('guestbook'); return false;">Guestbook</a></li>
+            </ul>
+        </div>
+
+        <!-- Content Wrapper (Sidebar + Main) -->
+        <div id="content-wrapper">
+            <!-- Sidebar (Left) -->
+            <div id="sidebar">
+                <h3>Links</h3>
+                <ul>
+                    <li><a href="https://x.com/ASwindlr" target="_blank">Twitter</a></li>
+                    <li><a href="#">YouTube</a></li>
+                </ul>
+
+                <h3>Contact</h3>
+                <ul>
+                    <li><a href="#">Email Me</a></li>
+                    <li><a href="#" id="discord-link">Discord</a></li>
+                </ul>
+            </div>
+
+            <!-- Main Content Area (Right) -->
+            <div id="main-content" style="position: relative;">
+
+                <!-- HOME SECTION -->
+                <div id="home-section" class="content-section active">
+                    <h2>About Me</h2>
+
+                    <!-- LOGOPOOP Image with glow - left aligned -->
+                    <div style="margin: 10px 0;">
+                        <img src="images/LOGOPOOP.png" alt="Logo" class="logo-poop-img" />
+                    </div>
+
+                    <p>HIIII i'm 21 years old<br />
+                        a starving artist from africa<br />
+                        I love 2000's/early 2010's<br />
+                        I LIVE 4 VIDEO GAMES!!!</p>
+
+                    <!-- Button with poop images - interactive -->
+                    <button id="poop-button"
+                        style="position: absolute; top: 10px; right: 10px; border: none; background: none; cursor: pointer; padding: 0;">
+                        <img id="poop-img" src="images/poop1.png" alt="Button" style="width: 140px; height: auto;" />
+                    </button>
+
+                    <!-- Audio for button -->
+                    <audio id="poop-audio" src="images/waarrrr.ogg"></audio>
+
+                    <h2 class="latest-updates">Latest Updates</h2>
+                    <p><!-- TEXT PLACEHOLDER: Updates go here --></p>
+
+                    <div class="placeholder-box" style="height: auto; border: none; background: none;">
+                        <img src="images/update-screenshot.jpg" alt="Latest Update"
+                            style="width: 100%; height: auto; border: 2px solid DarkOliveGreen;" />
+                    </div>
+                </div>
+
+                <!-- ART SECTION -->
+            </div>
+        </div>
+    </div>
+    </div>
+</body>
+
+</html>
