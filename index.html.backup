@@ -1,0 +1,899 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description"
+        content="Yanri's Website - 21 year old digital artist from Africa. I love 2000s/early 2010s aesthetics, video games, and retro web design" />
+    <title>Yanri's Website</title>
+    <link rel="icon" type="image/jpeg" href="images/icon.jpg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap" rel="stylesheet">
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <style>
+        .video-player-window {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10001;
+            width: 750px;
+            background-color: #c0c0c0;
+            border: 2px solid #fff;
+            border-right-color: #808080;
+            border-bottom-color: #808080;
+            padding: 2px;
+            box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
+            font-family: Tahoma, sans-serif;
+            display: flex;
+            flex-direction: column
+        }
+
+        .video-player-header {
+            background: linear-gradient(to right, #000080, #1084d0);
+            color: white;
+            padding: 4px 8px;
+            font-weight: bold;
+            font-size: 13px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2px;
+            cursor: grab
+        }
+
+        .video-player-close {
+            width: 16px;
+            height: 16px;
+            background-color: #c0c0c0;
+            border: 1px solid #fff;
+            border-right-color: #808080;
+            border-bottom-color: #808080;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            font-weight: bold;
+            color: black
+        }
+
+        .video-player-close:active {
+            border: 1px solid #808080;
+            border-right-color: #fff;
+            border-bottom-color: #fff
+        }
+
+        .video-player-body {
+            display: flex;
+            gap: 4px;
+            padding: 4px
+        }
+
+        .video-main-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column
+        }
+
+        #video-element {
+            width: 100%;
+            height: 300px;
+            background-color: #000;
+            border: 2px solid #808080;
+            border-right-color: #fff;
+            border-bottom-color: #fff;
+            margin-bottom: 4px
+        }
+
+        .video-playlist {
+            width: 220px;
+            background-color: #fff;
+            border: 2px solid #808080;
+            border-right-color: #fff;
+            border-bottom-color: #fff;
+            overflow-y: auto;
+            height: 380px;
+            font-size: 11px
+        }
+
+        .playlist-item {
+            padding: 4px;
+            cursor: pointer;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            border-bottom: 1px dotted #ccc
+        }
+
+        .playlist-item:hover {
+            background-color: #e0e0e0
+        }
+
+        .playlist-item.active {
+            background-color: #000080;
+            color: white
+        }
+
+        .video-controls-area {
+            margin-top: 4px;
+            border: 1px solid #fff;
+            border-right-color: #808080;
+            border-bottom-color: #808080;
+            padding: 4px;
+            background-color: #c0c0c0
+        }
+
+        .seek-bar-container {
+            height: 15px;
+            background-color: #000;
+            margin-bottom: 4px;
+            position: relative;
+            cursor: pointer;
+            border: 1px solid #808080;
+            border-right-color: #fff;
+            border-bottom-color: #fff
+        }
+
+        .seek-bar-fill {
+            height: 100%;
+            background-color: #00ff00;
+            width: 0%
+        }
+
+        .control-buttons {
+            display: flex;
+            align-items: center;
+            gap: 4px
+        }
+
+        .retro-btn {
+            width: 24px;
+            height: 24px;
+            background-color: #c0c0c0;
+            border: 1px solid #fff;
+            border-right-color: #808080;
+            border-bottom-color: #808080;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px
+        }
+
+        .retro-btn:active {
+            border: 1px solid #808080;
+            border-right-color: #fff;
+            border-bottom-color: #fff;
+            transform: translate(1px, 1px)
+        }
+
+        .time-display {
+            font-family: Courier New, monospace;
+            font-size: 11px;
+            margin-left: auto;
+            background: #000;
+            color: #00ff00;
+            padding: 2px 4px;
+            border: 1px solid #808080;
+            border-right-color: #fff;
+            border-bottom-color: #fff
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Corner Symbols -->
+    <img src="images/mysimbol.gif" alt="Symbol" class="corner-symbol top-left" />
+    <img src="images/mysimbol.gif" alt="Symbol" class="corner-symbol top-right" />
+
+    <!-- Custom Audio Player (Draggable) -->
+    <div class="custom-audio-player">
+        <div class="player-header">
+            <span>Winamp</span>
+            <span>_ ? X</span>
+        </div>
+        <div class="track-info" id="track-info">Windows XP Installation Music</div>
+        <div class="player-controls">
+            <div class="play-pause-btn" id="play-pause-btn" onclick="togglePlay()">â–¶</div>
+            <div class="progress-container" id="progress-container">
+                <div class="progress-bar" id="progress-bar"></div>
+            </div>
+        </div>
+        <audio id="custom-audio-track" src="images/Windows XP Installation Music.ogg" autoplay loop></audio>
+    </div>
+
+    <!-- Mozzart Window - Bottom Left -->
+    <div class="mozzart-window">
+        <h3>THIS IS MOZZART</h3>
+        <img src="images/mozzart.jpg" alt="Mozzart" onclick="playMozzartAudio()" />
+        <audio id="mozzart-audio" src="images/Jasmin China Girl [xe4APfSQRYQ].ogg"></audio>
+    </div>
+
+    <!-- Pugo Badge Window - Bottom Right with Multiple Badges -->
+    <div class="pugo-badge-window">
+        <a href="https://pugo.neocities.org/" target="_blank">
+            <img src="images/badges/pugobadge.gif" title="" alt="pugo" style="width:88px;height:31px;">
+        </a>
+        <a href="#" style="display: block; margin-top: 5px;">
+            <img src="images/badges/hatemac.jpg" alt="I Hate Mac" style="width:88px;height:31px;">
+        </a>
+        <a href="#" style="display: block; margin-top: 5px;">
+            <img src="images/badges/twopaws.png" alt="Two Paws" style="width:88px;height:31px;">
+        </a>
+        <a href="#" style="display: block; margin-top: 5px;">
+            <img src="images/badges/made_with_windows.gif" alt="Made with Windows" style="width:88px;height:31px;">
+        </a>
+        <a href="#" style="display: block; margin-top: 5px;">
+            <img src="images/badges/iwf15.gif" alt="IWF15" style="width:88px;height:31px;">
+        </a>
+        <a href="https://yanricoolshi.github.io/my-website/index.html" style="display: block; margin-top: 5px;">
+            <img src="images/badges/yanri.gif" alt="Yanri" style="width:88px;height:31px;">
+        </a>
+        <a href="#" style="display: block; margin-top: 5px;">
+            <img src="images/badges/button_tupachq1.gif" alt="Button" style="width:88px;height:31px;">
+        </a>
+        <a href="#" style="display: block; margin-top: 5px;">
+            <img src="images/badges/corp.gif" alt="Corp" style="width:88px;height:31px;">
+        </a>
+        <a href="#" style="display: block; margin-top: 5px;">
+            <img src="images/badges/frutigeraeroarchive_button.png" alt="Frutiger Aero Archive"
+                style="width:88px;height:31px;">
+        </a>
+        <a href="#" style="display: block; margin-top: 5px;">
+            <img src="images/badges/guestbook.gif" alt="Guestbook" style="width:88px;height:31px;">
+        </a>
+        <a href="#" style="display: block; margin-top: 5px;">
+            <img src="images/badges/mp3-button.gif" alt="MP3" style="width:88px;height:31px;">
+        </a>
+        <a href="#" style="display: block; margin-top: 5px;">
+            <img src="images/badges/mswinmediaplayer8.gif" alt="Windows Media Player 8" style="width:88px;height:31px;">
+        </a>
+        <a href="#" style="display: block; margin-top: 5px;">
+            <img src="images/badges/newgrounds.gif" alt="Newgrounds" style="width:88px;height:31px;">
+        </a>
+        <a href="#" style="display: block; margin-top: 5px;">
+            <img src="images/badges/q4psb.gif" alt="Q4PSB" style="width:88px;height:31px;">
+        </a>
+        <a href="#" style="display: block; margin-top: 5px;">
+            <img src="images/badges/winxp.gif" alt="Windows XP" style="width:88px;height:31px;">
+        </a>
+    </div>
+
+    <!-- Stamps Window - Next to Pugo Badge Window -->
+    <div class="stamps-window">
+        <a href="#">
+            <img src="images/stamps/d1yyuqc-76810c8d-1492-45ac-aa6c-96d5dfc794e5.png" alt="Stamp 1">
+        </a>
+        <a href="#">
+            <img src="images/stamps/d2hk9oe-16178d93-0c91-4ab3-ab08-ee08b81e206e.gif" alt="Stamp 2">
+        </a>
+        <a href="#">
+            <img src="images/stamps/d3a51o8-c73e37b7-01c5-4f54-9657-c0e6ce504cde.png" alt="Stamp 3">
+        </a>
+        <a href="#">
+            <img src="images/stamps/dc1e82t-703072ab-bf4e-4669-80b4-873e7024a415.png" alt="Stamp 4">
+        </a>
+        <a href="#">
+            <img src="images/stamps/d1741c9-df45e809-4888-4920-8976-c1bbaa47118b.gif" alt="Stamp 5">
+        </a>
+        <a href="#">
+            <img src="images/stamps/stamp___paint_tool_sai_user_by_firstfear_d489l7l.gif" alt="Paint Tool SAI">
+        </a>
+        <a href="#">
+            <img src="images/stamps/warrenfan.gif" alt="Warren Fan">
+        </a>
+    </div>
+
+    <!-- Forpooper Image - Right Side -->
+    <img src="images/forpooper.png" alt="For Pooper" class="forpooper-img" />
+    <img src="images/g9en3ts7nw781.png" alt="" class="g9en3ts7nw781-img" />
+
+    <div id="container">
+        <!-- Header Banner -->
+        <div id="header">
+            <img src="images/yanribanner.png" alt="Yanri's Website" />
+        </div>
+
+        <!-- Horizontal Menu -->
+        <div id="menu">
+            <ul>
+                <li class="active" id="nav-home"><a href="#" onclick="showSection('home'); return false;">About
+                        Me...</a></li>
+                <li id="nav-art"><a href="#" onclick="showSection('art'); return false;">Art</a></li>
+                <li id="nav-music"><a href="#" onclick="showSection('music'); return false;">Music</a></li>
+                <li id="nav-interests"><a href="#" onclick="showSection('interests'); return false;">Interests</a></li>
+                <li id="nav-guestbook"><a href="#" onclick="showSection('guestbook'); return false;">Guestbook</a></li>
+            </ul>
+        </div>
+
+        <!-- Content Wrapper (Sidebar + Main) -->
+        <div id="content-wrapper">
+            <!-- Sidebar (Left) -->
+            <div id="sidebar">
+                <h3>Links</h3>
+                <ul>
+                    <li><a href="https://x.com/ASwindlr" target="_blank">Twitter</a></li>
+                    <li><a href="#">YouTube</a></li>
+                </ul>
+
+                <h3>Contact</h3>
+                <ul>
+                    <li><a href="#">Email Me</a></li>
+                    <li><a href="#" id="discord-link">Discord</a></li>
+                    <li><a href="https://steamcommunity.com/profiles/76561199213647371/" target="_blank">Steam</a></li>
+                </ul>
+
+                <h3>RANDOM STUFF</h3>
+                <ul>
+                    <li><a href="#" id="cool-videos-btn" onclick="toggleVideoPlayer(); return false;">cool videos</a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Main Content Area (Right) -->
+            <div id="main-content" style="position: relative;">
+
+                <!-- HOME SECTION -->
+                <div id="home-section" class="content-section active">
+                    <h2>About Me</h2>
+
+                    <!-- LOGOPOOP Image with glow - left aligned -->
+                    <div style="margin: 10px 0;">
+                        <img src="images/LOGOPOOP.png" alt="Logo" class="logo-poop-img" />
+                    </div>
+
+                    <p>HIIII i'm 21 years old<br />
+                        a starving artist from africa<br />
+                        I love 2000's/early 2010's<br />
+                        I LIVE 4 VIDEO GAMES!!!</p>
+
+                    <!-- Button with poop images - interactive -->
+                    <button id="poop-button"
+                        style="position: absolute; top: 10px; right: 10px; border: none; background: none; cursor: pointer; padding: 0;">
+                        <img id="poop-img" src="images/poop1.png" alt="Button" style="width: 140px; height: auto;" />
+                    </button>
+
+                    <!-- Audio for button -->
+                    <audio id="poop-audio" src="images/waarrrr.ogg"></audio>
+
+                    <h2 class="latest-updates">Latest Updates</h2>
+                    <p><!-- TEXT PLACEHOLDER: Updates go here --></p>
+
+                    <div class="placeholder-box" style="height: auto; border: none; background: none;">
+                        <img src="images/update-screenshot.jpg" alt="Latest Update"
+                            style="width: 100%; height: auto; border: 2px solid DarkOliveGreen;" />
+                    </div>
+                </div>
+
+                <!-- ART SECTION -->
+                <div id="art-section" class="content-section">
+                    <!-- Full-width Slideshow Section -->
+                    <div class="slideshow-section">
+                        <h2>My Art Gallery</h2>
+
+                        <div class="slideshow-container" id="slideshow">
+                            <!-- Images will be loaded dynamically by JavaScript -->
+                        </div>
+
+                        <div class="slideshow-info" id="slideshow-info">
+                            Loading images...
+                        </div>
+
+                        <div class="slideshow-controls">
+                            <button onclick="previousImage()">â—€ Previous</button>
+                            <button onclick="toggleAutoplay()" id="autoplayBtn">âšâš Pause</button>
+                            <button onclick="nextImage()">Next â–¶</button>
+                        </div>
+                    </div>
+
+                    <h2>About This Gallery</h2>
+                    <p>Welcome to my art gallery! Use the controls above to browse through my collection.</p>
+                    <p>The slideshow automatically advances every 4 seconds, or you can use the Previous/Next buttons to
+                        navigate manually.</p>
+                </div>
+
+                <!-- MUSIC SECTION -->
+                <div id="music-section" class="content-section">
+                    <h2>My Music</h2>
+                    <p>Check out my favorite tracks.</p>
+
+                    <div class="music-list">
+                        <ul>
+                            <li><a href="https://www.youtube.com/watch?v=JvwtIwUB6VM&list=PLTXibJayE9VpiOH-ADAL0f97Z5J42Kfna&index=1"
+                                    target="_blank">Paul Paul - "Good Times" (1983)</a></li>
+                            <li><a href="https://www.youtube.com/watch?v=KUGE8_O4-6I&list=PLTXibJayE9VpiOH-ADAL0f97Z5J42Kfna&index=2"
+                                    target="_blank">Green Mountaineer - (Vermont Republic Patriot Song) Better
+                                    Version</a></li>
+                            <li><a href="https://www.youtube.com/watch?v=rVTzv9qLyko&list=PLTXibJayE9VpiOH-ADAL0f97Z5J42Kfna&index=3"
+                                    target="_blank">Field of Memories</a></li>
+                            <li><a href="https://www.youtube.com/watch?v=LpCoMpP-dyc&list=PLTXibJayE9VpiOH-ADAL0f97Z5J42Kfna&index=4"
+                                    target="_blank">Ecuador (Original 12" Mix)</a></li>
+                            <li><a href="https://www.youtube.com/watch?v=023hH8uGPR0&list=PLTXibJayE9VpiOH-ADAL0f97Z5J42Kfna&index=5"
+                                    target="_blank">Nathalie - To Beat Or Not To Beat</a></li>
+                            <li><a href="https://www.youtube.com/watch?v=AX9mhouBfCM&list=PLTXibJayE9VpiOH-ADAL0f97Z5J42Kfna&index=6"
+                                    target="_blank">?MONGOLIAN ARMY SONG?Mongolian Soldier (????) w/ ENG lyrics</a></li>
+                            <li><a href="https://www.youtube.com/watch?v=TLhU4EgMiEw&list=PLTXibJayE9VpiOH-ADAL0f97Z5J42Kfna&index=7"
+                                    target="_blank">u nedogled</a></li>
+                            <li><a href="https://www.youtube.com/watch?v=ktlAr5RQmFM&list=PLTXibJayE9VpiOH-ADAL0f97Z5J42Kfna&index=8"
+                                    target="_blank">Darkwood Dub - Sudar</a></li>
+                            <li><a href="https://www.youtube.com/watch?v=NN2XXYQeLZo&list=PLTXibJayE9VpiOH-ADAL0f97Z5J42Kfna&index=9"
+                                    target="_blank">Darkwood Dub - U novoj epizodi</a></li>
+                            <li><a href="https://www.youtube.com/watch?v=CYNf5Uva1Os&list=PLTXibJayE9VpiOH-ADAL0f97Z5J42Kfna&index=10"
+                                    target="_blank">???? ????</a></li>
+                            <li><a href="https://www.youtube.com/watch?v=rILO7bQEheY&list=PLTXibJayE9VpiOH-ADAL0f97Z5J42Kfna&index=11"
+                                    target="_blank">SHOTGUN KILLER</a></li>
+                            <li><a href="https://www.youtube.com/watch?v=kyaXX7ad_CE&list=PLTXibJayE9VpiOH-ADAL0f97Z5J42Kfna&index=12"
+                                    target="_blank">Bruce & Bongo - Geil (Extended Version, 1986)</a></li>
+                            <li><a href="https://www.youtube.com/watch?v=w3oVCnL2sfw&list=PLTXibJayE9VpiOH-ADAL0f97Z5J42Kfna&index=13"
+                                    target="_blank">Den Harrow - Future Brain</a></li>
+                            <li><a href="https://www.youtube.com/watch?v=UmiGXOXLa6Q&list=PLTXibJayE9VpiOH-ADAL0f97Z5J42Kfna&index=14"
+                                    target="_blank">M.P. (M�nchen Paris) - Flash Gordon</a></li>
+                            <li><a href="https://www.youtube.com/watch?v=c96OHfUR51A&list=PLTXibJayE9VpiOH-ADAL0f97Z5J42Kfna&index=15"
+                                    target="_blank">Tom Hooker - Looking for love</a></li>
+                            <li><a href="https://www.youtube.com/watch?v=pQA9BZRMitc&list=PLTXibJayE9VpiOH-ADAL0f97Z5J42Kfna&index=16"
+                                    target="_blank">Forever Lovers</a></li>
+                            <li><a href="https://www.youtube.com/watch?v=gwSk0Afu0fc&list=PLTXibJayE9VpiOH-ADAL0f97Z5J42Kfna&index=17"
+                                    target="_blank">Depeche mode - Hole To Feed (original instrumental)</a></li>
+                            <li><a href="https://www.youtube.com/watch?v=H5j4wYnpISY&list=PLTXibJayE9VpiOH-ADAL0f97Z5J42Kfna&index=18"
+                                    target="_blank">FASTWAY - Make or Brake</a></li>
+                            <li><a href="https://www.youtube.com/watch?v=THGhHlVm_Gk&list=PLTXibJayE9VpiOH-ADAL0f97Z5J42Kfna&index=19"
+                                    target="_blank">Miko Mission - The world is you (extended version)</a></li>
+                            <li><a href="https://www.youtube.com/watch?v=EK1z11V7WCk&list=PLTXibJayE9VpiOH-ADAL0f97Z5J42Kfna&index=20"
+                                    target="_blank">Seventh - I am Gonna Fly (Operation Flashpoint OST)</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- INTERESTS SECTION -->
+                <div id="interests-section" class="content-section">
+                    <h2>Recent Interests</h2>
+
+                    <img src="images/capsule_616x353.jpg" alt="Game capsule"
+                        style="max-width: 300px; display: block; margin: 15px 0;" />
+
+                    <p>I was addicted to this game for the last few weeks</p>
+
+                    <div class="interest-list">
+                        <ul>
+                            <li>Halo games</li>
+                            <li>Crysis</li>
+                            <li>Motorcross</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- GUESTBOOK SECTION -->
+                <div id="guestbook-section" class="content-section">
+                    <h2>Guestbook</h2>
+                    <p>Sign my guestbook and leave a message!</p>
+
+                    <div class="guestbook-container"
+                        style="margin: 20px 0; padding: 10px; background: #f5f5dc; border: 2px solid #8B9862;">
+                        <iframe id="guestbook-iframe" src="https://yanri.atabook.org/" width="100%" height="2000"
+                            frameborder="0" scrolling="yes" style="border: none; background: #fff; overflow: hidden;">
+                        </iframe>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div id="footer">
+            <p>Copyright &copy; 2015 Yanri. All rights reserved.</p>
+        </div>
+    </div>
+
+    <!-- Video Player Window (Enhanced) -->
+    <div id="video-player-window" class="video-player-window" style="display: none;">
+        <div class="video-player-header">
+            <span>Cool Videos Player 98</span>
+            <span class="video-player-close" onclick="closeVideoPlayer()">X</span>
+        </div>
+        <div class="video-player-body">
+            <div class="video-main-area">
+                <video id="video-element" controls>
+                    <source id="video-source" src="" type="video/mp4; codecs=&quot;avc1.42E01E, mp4a.40.2&quot;">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="video-controls-area">
+                    <div class="seek-bar-container" id="seek-bar-container">
+                        <div class="seek-bar-fill" id="seek-bar-fill"></div>
+                    </div>
+                    <div class="control-buttons">
+                        <button class="retro-btn" onclick="previousVideo()" title="Previous">|&lt;</button>
+                        <button class="retro-btn" onclick="togglePlayPause()" id="play-pause-btn-video"
+                            title="Play/Pause">â–¶</button>
+                        <button class="retro-btn" onclick="stopVideo()" title="Stop">â– </button>
+                        <button class="retro-btn" onclick="nextVideo()" title="Next">&gt;|</button>
+                        <div class="time-display" id="video-time-display">00:00 / 00:00</div>
+                    </div>
+                </div>
+            </div>
+            <div class="video-playlist" id="video-playlist"></div>
+        </div>
+    </div>
+
+
+
+    <!-- Discord Modal -->
+    <div id="discord-modal" class="discord-modal">
+        <div class="discord-modal-content">
+            <div class="discord-modal-close" onclick="closeDiscordModal()">X</div>
+            <img src="images/Screenshot 2025-11-22 014357.jpg" alt="Discord Info" />
+        </div>
+    </div>
+
+    <script>
+        // --- ART GALLERY LOGIC (must be defined first) ---
+        const imageFiles = [
+            "10games.jpg", "20230916_100112.jpg", "4 lo.jpg", "455454????.jpg", "Can someone redraw this with Boofys oc.jpg",
+            "G0yerrUW0AA9Zbd.jpg", "G26R4FdWkAAzo6b.jpg", "G26TN2oXIAANq5l.png", "G26f2F2XgAIJrx2.png", "G26fcbyXAAAEuo4.png",
+            "G26gdhZXYAEUcFZ.jpg", "G3Vk4BOWQAAfDMN.jpg", "G3bHwLIXwAAycat.png", "G3ft51BX0AEBKzT.png", "GdBD9nbWoAASmFV.jpg",
+            "Gn8Tj4gX0AAbUza.png", "GuInDnFWEAAO7z3.jpg", "GzXsI_KW0AI0Tni.jpg", "Illustration3.jpg", "Illustration42222.png",
+            "Illustration747555.jpg", "Illustrationhyhyjujjmmmnigga.jpg", "KARUS POOP CAT SMOKEY AHHH I POOP.jpg", "KUP.jpg",
+            "RGGG 2.jpg", "Screenshot 2025-03-07 004522.jpg", "Screenshot 2025-03-07 004654.jpg", "Screenshot 2025-03-07 004740.jpg",
+            "Screenshot 2025-03-07 005150.jpg", "Screenshot 2025-03-08 150559.jpg", "Screenshot 2025-04-01 185530.jpg",
+            "Screenshot 2025-09-29 004646.jpg", "Screenshot 2025-11-08 024255.jpg", "Screenshot 2025-11-08 042720.jpg",
+            "Screenshot 2025-11-22 005159.jpg", "Untitled.png2.png", "Vanity_638930613959391544.png", "albenian.jpg",
+            "balti n word ahh sigma troll god is real fuck you iran will win ahh oh mama i wanna kms so bad i wan't to be a woman so bad god please help me i'm sufring.jpg",
+            "big braping futa.jpg", "big butt futa fan art I FUCKING LOVE HALO! boohoo i poop myself.jpg", "booooooooo.jpg",
+            "broke ass nigga.png", "broke ass p.png", "bruh man.jpg", "bum fag ccp png.png", "bum fag ccp.jpg", "can flay 1.png",
+            "can flay 2.png", "chadacrack.jpg", "cs.jpg", "cup hair hate.png", "deltapoopolduhh.jpg", "dgdhhdf.png", "dp 2.jpg",
+            "en.jpg", "fuVHBGFHGH 2.jpg", "fuck your ass 2.jpg", "fuck your ass.jpg", "fur lo y pfp.jpg",
+            "get killed xeno lover fuck you.jpg", "gjjhgjgj.png", "gore poop.jpg", "gozzila halo.png",
+            "half life 2 beta sit pugzy.jpg", "halo ahhhhhh pooooooooooo.jpg", "halo reach.png", "hasan dog fuck.jpg",
+            "i can't.jpg", "i love jpeg's.jpg", "i suck at drawing part 1.jpg", "kup full.jpg", "mgs1 poopdec call uhh.jpg",
+            "my room uh i poooop my pooop ahhh.jpg", "nigel poop vs zilla.jpg", "nmghgkg.jpg", "please buy me halo wars.jpg",
+            "poop mmm.jpg", "poop.jpg", "pooper ass 2.jpg", "poopman.jpg", "poopn.jpg", "poops 2.png",
+            "postal fur fag liso oc ahh.jpg", "predahhh.jpg", "revoluion saaaaaasghh.jpg", "sassss sick pooooo rrrrr roarrrrr.jpg",
+            "scrim big mouth fuck ass ahh i hate all the hon troon boymoders.jpg", "shitting all over the place 2.jpg",
+            "stalingart fag ahh free free boohoo love trans hart.jpg", "stalingrad art uhhh i hate woman and trans people.jpg",
+            "tanky poopy head.jpg", "trans b ahhh pooooo oh mama.jpg", "uuuuuuuuuuuu free art ahhhh 3.png",
+            "uuuuuuuuuuuu free art ahhhh 566.png", "uuuuuuuuuuuu free art ahhhh.png", "vucic is so good man z.jpg",
+            "x.comshit f.png", "y2k tron skot ahh.jpg", "yanri predator 2.png", "yanri predator.png", "zobahhhhi.png",
+            "zooba2.png", "????.jpg", "??? ???.jpg", "????.jpg", "???? ????.jpg", "?? ??? ?? ???? ?????.png"
+        ];
+
+        let currentIndex = 0;
+        let autoplayInterval = null;
+        let isAutoplayRunning = true;
+
+        function loadImages() {
+            console.log('=== LOADING ART GALLERY ===');
+            const container = document.getElementById('slideshow');
+
+            if (!container) {
+                console.error('ERROR: Slideshow container not found!');
+                return;
+            }
+
+            console.log('Container found:', container);
+            console.log('Number of images to load:', imageFiles.length);
+
+            container.innerHTML = '';
+
+            let loadedCount = 0;
+
+            imageFiles.forEach((filename, index) => {
+                const img = document.createElement('img');
+                img.src = 'images/artgallury/' + filename;
+                img.alt = 'Art piece ' + (index + 1);
+
+                img.onload = function () {
+                    loadedCount++;
+                    if (loadedCount <= 5 || loadedCount === imageFiles.length) {
+                        console.log('? Loaded [' + loadedCount + '/' + imageFiles.length + ']: ' + filename);
+                    }
+                };
+
+                img.onerror = function () {
+                    console.error('? Failed to load: ' + filename);
+                };
+
+                if (index === 0) {
+                    img.className = 'active';
+                    console.log('First image set to active:', filename);
+                }
+
+                container.appendChild(img);
+            });
+
+            console.log('All images added to container');
+            console.log('Container children count:', container.children.length);
+
+            updateInfo();
+
+            if (isAutoplayRunning && !autoplayInterval) {
+                autoplayInterval = setInterval(nextImage, 4000);
+                console.log('Autoplay started');
+            }
+        }
+
+        function showImage(index) {
+            const images = document.querySelectorAll('.slideshow-container img');
+            if (images.length === 0) return;
+
+            images.forEach((img, i) => {
+                img.className = i === index ? 'active' : '';
+            });
+            currentIndex = index;
+            updateInfo();
+        }
+
+        function nextImage() {
+            currentIndex = (currentIndex + 1) % imageFiles.length;
+            showImage(currentIndex);
+        }
+
+        function previousImage() {
+            currentIndex = (currentIndex - 1 + imageFiles.length) % imageFiles.length;
+            showImage(currentIndex);
+        }
+
+        function toggleAutoplay() {
+            const btn = document.getElementById('autoplayBtn');
+            if (isAutoplayRunning) {
+                clearInterval(autoplayInterval);
+                autoplayInterval = null;
+                btn.textContent = 'â–¶ Play';
+                isAutoplayRunning = false;
+            } else {
+                autoplayInterval = setInterval(nextImage, 4000);
+                btn.textContent = 'âšâš Pause';
+                isAutoplayRunning = true;
+            }
+        }
+
+        function updateInfo() {
+            const info = document.getElementById('slideshow-info');
+            if (info) {
+                info.textContent = 'Image ' + (currentIndex + 1) + ' of ' + imageFiles.length;
+            }
+        }
+
+        // SPA Navigation Logic
+        function showSection(sectionId) {
+            console.log('Switching to section:', sectionId);
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById(sectionId + '-section').classList.add('active');
+            document.querySelectorAll('#menu li').forEach(li => {
+                li.classList.remove('active');
+            });
+            document.getElementById('nav-' + sectionId).classList.add('active');
+
+            // Initialize art gallery when switching to art section
+            if (sectionId === 'art') {
+                const slideshow = document.getElementById('slideshow');
+                if (slideshow && slideshow.children.length === 0) {
+                    loadImages();
+                }
+            }
+        }
+
+        // Discord Modal Functionality
+        const discordLink = document.getElementById('discord-link');
+        const discordModal = document.getElementById('discord-modal');
+
+        if (discordLink && discordModal) {
+            discordLink.addEventListener('click', function (e) {
+                e.preventDefault();
+                discordModal.style.display = 'flex';
+            });
+        }
+
+        function closeDiscordModal() {
+            if (discordModal) {
+                discordModal.style.display = 'none';
+            }
+        }
+
+        window.addEventListener('click', function (e) {
+            if (e.target == discordModal) {
+                discordModal.style.display = 'none';
+            }
+        });
+
+        // Make Audio Player Draggable
+        const audioPlayer = document.querySelector('.custom-audio-player');
+        const playerHeader = document.querySelector('.player-header');
+
+        if (audioPlayer && playerHeader) {
+            let isDragging = false;
+            let currentX;
+            let currentY;
+            let initialX;
+            let initialY;
+            let xOffset = 0;
+            let yOffset = 0;
+
+            playerHeader.addEventListener('mousedown', dragStart);
+            document.addEventListener('mousemove', drag);
+            document.addEventListener('mouseup', dragEnd);
+
+            function dragStart(e) {
+                initialX = e.clientX - xOffset;
+                initialY = e.clientY - yOffset;
+
+                if (e.target === playerHeader || playerHeader.contains(e.target)) {
+                    isDragging = true;
+                    playerHeader.style.cursor = 'grabbing';
+                }
+            }
+
+            function drag(e) {
+                if (isDragging) {
+                    e.preventDefault();
+
+                    currentX = e.clientX - initialX;
+                    currentY = e.clientY - initialY;
+
+                    xOffset = currentX;
+                    yOffset = currentY;
+
+                    audioPlayer.style.transform = 'translate(' + currentX + 'px, ' + currentY + 'px)';
+                }
+            }
+
+            function dragEnd(e) {
+                initialX = currentX;
+                initialY = currentY;
+                isDragging = false;
+                playerHeader.style.cursor = 'grab';
+            }
+
+            playerHeader.style.cursor = 'grab';
+        }
+
+        // Poop Button Interactive Functionality
+        let isAnimating = false;
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const poopButton = document.getElementById('poop-button');
+            const poopImg = document.getElementById('poop-img');
+            const poopAudio = document.getElementById('poop-audio');
+
+            if (poopButton && poopImg && poopAudio) {
+                poopButton.addEventListener('click', function () {
+                    if (isAnimating) return;
+                    isAnimating = true;
+
+                    poopImg.src = 'images/poop2.png';
+                    poopImg.classList.add('shake');
+
+                    setTimeout(function () {
+                        poopImg.src = 'images/poop3.png';
+                        poopImg.classList.remove('shake');
+                        poopImg.classList.add('shake-violent');
+
+                        poopAudio.currentTime = 0;
+                        poopAudio.play();
+
+                        poopAudio.onended = function () {
+                            poopImg.classList.remove('shake-violent');
+                            poopImg.src = 'images/poop1.png';
+                            isAnimating = false;
+                        };
+                    }, 3000);
+                });
+            }
+        });
+
+        // Mozzart Audio Player
+        function playMozzartAudio() {
+            var audio = document.getElementById('mozzart-audio');
+            if (audio.paused) {
+                audio.play();
+            } else {
+                audio.pause();
+                audio.currentTime = 0;
+            }
+        }
+
+        // Custom Audio Player Logic
+        const audioTrack = document.getElementById('custom-audio-track');
+        const playPauseBtn = document.getElementById('play-pause-btn');
+        const progressBar = document.getElementById('progress-bar');
+        const progressContainer = document.getElementById('progress-container');
+
+        function togglePlay() {
+            if (audioTrack.paused) {
+                audioTrack.play();
+                playPauseBtn.textContent = 'â–¶';
+                sessionStorage.setItem('is_playing', 'true');
+            } else {
+                audioTrack.pause();
+                playPauseBtn.textContent = 'â–¶';
+                sessionStorage.setItem('is_playing', 'false');
+            }
+        }
+
+        if (audioTrack) {
+            audioTrack.addEventListener('timeupdate', function () {
+                const progress = (audioTrack.currentTime / audioTrack.duration) * 100;
+                progressBar.style.width = progress + '%';
+                sessionStorage.setItem('audio_time', audioTrack.currentTime);
+            });
+
+            progressContainer.addEventListener('click', function (e) {
+                const width = progressContainer.clientWidth;
+                const clickX = e.offsetX;
+                const duration = audioTrack.duration;
+                audioTrack.currentTime = (clickX / width) * duration;
+            });
+
+            audioTrack.addEventListener('play', function () {
+                playPauseBtn.textContent = 'â–¶';
+            });
+
+            audioTrack.addEventListener('pause', function () {
+                playPauseBtn.textContent = 'â–¶';
+            });
+
+            window.addEventListener('load', function () {
+                const savedTime = sessionStorage.getItem('audio_time');
+                const isPlaying = sessionStorage.getItem('is_playing');
+
+                if (savedTime) {
+                    audioTrack.currentTime = parseFloat(savedTime);
+                }
+
+                if (isPlaying === 'true' || audioTrack.autoplay) {
+                    const playPromise = audioTrack.play();
+                    if (playPromise !== undefined) {
+                        playPromise.then(function () {
+                            playPauseBtn.textContent = 'â–¶';
+                            sessionStorage.setItem('is_playing', 'true');
+                        }).catch(function (error) {
+                            console.log("Autoplay prevented");
+                            playPauseBtn.textContent = 'â–¶';
+                        });
+                    }
+                }
+            });
+
+            window.addEventListener('beforeunload', function () {
+                sessionStorage.setItem('audio_time', audioTrack.currentTime);
+                sessionStorage.setItem('is_playing', !audioTrack.paused);
+            });
+        }
+
+        const videoFiles = ['Authority Zero - Revolution (Official Video).mp4', 'Crysis 3 - Skillet Hero - Music Video - HD - Ray Christian Bustamante (360p, h264).mp4', 'Koto - Jabdah Live Perfromance.mp4', 'Ondrej Matejka - Secret (video-converter.com).mp4', 'Ondrej Matejka - Secret.mp4', 'Quake 4 Music Video - SeptemberSun (144p, h264).mp4', 'RvB Season 8 Warthog Scene Re-Edit.mp4', 'The Hurt Locker ?????????? ???? (???? - ???? ????).mp4', 'the russian.mp4', 'ytp/the birth they of justise.mp4', '? GODZILLA THE MUSICAL - Cartoon Parody Song - LHUGUENY (360p, h264).mp4', '? HALO THE MUSICAL - Parody Song Animation - LHUGUENY (360p, h264).mp4', '? PREDATOR THE MUSICAL - Animated Parody - LHUGUENY (360p, h264).mp4', '? PROMETHEUS THE MUSICAL - Animated Parody - LHUGUENY (360p, h264).mp4'];
+        let currentVideoIndex = 0;
+        function initPlaylist() { const p = document.getElementById('video-playlist'); if (!p) return; p.innerHTML = ''; videoFiles.forEach((f, i) => { const d = document.createElement('div'); d.className = 'playlist-item'; if (i === currentVideoIndex) d.classList.add('active'); let n = f.split('/').pop().replace('.mp4', ''); if (n.length > 28) n = n.substring(0, 25) + '...'; d.textContent = (i + 1) + '. ' + n; d.onclick = () => loadVideo(i); p.appendChild(d); }); }
+        function toggleVideoPlayer() { const w = document.getElementById('video-player-window'); if (w.style.display === 'none' || !w.style.display) { w.style.display = 'flex'; initPlaylist(); if (!document.getElementById('video-element').src) loadVideo(0); } else { w.style.display = 'none'; document.getElementById('video-element').pause(); } }
+        function closeVideoPlayer() { document.getElementById('video-element').pause(); document.getElementById('video-player-window').style.display = 'none'; }
+        function loadVideo(i) { if (i >= 0 && i < videoFiles.length) { currentVideoIndex = i; const s = document.getElementById('video-source'); s.src = 'images/' + encodeURI(videoFiles[i]); const v = document.getElementById('video-element'); v.load(); v.play().catch(e => console.log('play prevented')); document.querySelectorAll('.playlist-item').forEach((item, idx) => { if (idx === i) item.classList.add('active'); else item.classList.remove('active'); }); updatePlayPauseIcon(); } }
+        function togglePlayPause() { const v = document.getElementById('video-element'); if (!v) return; if (v.paused) { v.play(); } else { v.pause(); } updatePlayPauseIcon(); }
+        function stopVideo() { const v = document.getElementById('video-element'); if (!v) return; v.pause(); v.currentTime = 0; updatePlayPauseIcon(); }
+        function updatePlayPauseIcon() { const v = document.getElementById('video-element'); const b = document.getElementById('play-pause-btn-video'); if (!b || !v) return; b.textContent = v.paused ? 'â–¶' : 'âšâš'; }
+        function nextVideo() { currentVideoIndex = (currentVideoIndex + 1) % videoFiles.length; loadVideo(currentVideoIndex); }
+        function previousVideo() { currentVideoIndex = (currentVideoIndex - 1 + videoFiles.length) % videoFiles.length; loadVideo(currentVideoIndex); }
+        function formatTime(s) { if (isNaN(s)) return '00:00'; const m = Math.floor(s / 60); const sec = Math.floor(s % 60); return (m < 10 ? '0' + m : m) + ':' + (sec < 10 ? '0' + sec : sec); }
+        const ve = document.getElementById('video-element'); if (ve) { ve.addEventListener('timeupdate', () => { if (!ve.duration) return; const p = (ve.currentTime / ve.duration) * 100; const f = document.getElementById('seek-bar-fill'); if (f) f.style.width = p + '%'; const t = document.getElementById('video-time-display'); if (t) t.textContent = formatTime(ve.currentTime) + ' / ' + formatTime(ve.duration); }); ve.addEventListener('ended', nextVideo); ve.addEventListener('play', updatePlayPauseIcon); ve.addEventListener('pause', updatePlayPauseIcon); }
+        const sc = document.getElementById('seek-bar-container'); if (sc) { sc.addEventListener('click', (e) => { if (!ve || !ve.duration) return; const r = sc.getBoundingClientRect(); const x = e.clientX - r.left; const p = x / r.width; ve.currentTime = p * ve.duration; }); }
+        const vw = document.getElementById('video-player-window'); const vh = document.querySelector('.video-player-header'); if (vw && vh) { let isDrag = false, cx, cy, ix, iy, xo = 0, yo = 0; vh.addEventListener('mousedown', (e) => { if (e.target.classList.contains('video-player-close')) return; ix = e.clientX - xo; iy = e.clientY - yo; if (e.target === vh || vh.contains(e.target)) { isDrag = true; vh.style.cursor = 'grabbing'; } }); document.addEventListener('mousemove', (e) => { if (isDrag) { e.preventDefault(); cx = e.clientX - ix; cy = e.clientY - iy; xo = cx; yo = cy; vw.style.transform = 'translate(' + cx + 'px, ' + cy + 'px)'; } }); document.addEventListener('mouseup', () => { ix = cx; iy = cy; isDrag = false; vh.style.cursor = 'grab'; }); vh.style.cursor = 'grab'; }
+
+
+    </script>
+
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function () {
+                navigator.serviceWorker.register('/sw.js').then(function (registration) {
+                    console.log('ServiceWorker registration successful');
+                }, function (err) {
+                    console.log('ServiceWorker registration failed: ', err);
+                });
+            });
+        }
+    </script>
+
+</body>
+
+</html>
