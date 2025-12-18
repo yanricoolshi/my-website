@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
@@ -197,7 +197,7 @@
         </div>
         <div class="track-info" id="track-info">Windows XP Installation Music</div>
         <div class="player-controls">
-            <div class="play-pause-btn" id="play-pause-btn" onclick="togglePlay()">â–¶</div>
+            <div class="play-pause-btn" id="play-pause-btn" onclick="togglePlay()">▶</div>
             <div class="progress-container" id="progress-container">
                 <div class="progress-bar" id="progress-bar"></div>
             </div>
@@ -340,15 +340,6 @@
                 <div id="home-section" class="content-section active">
                     <h2>About Me</h2>
 
-                    <!-- LOGOPOOP Image with glow - left aligned -->
-                    <div style="margin: 10px 0;">
-                        <img src="images/LOGOPOOP.png" alt="Logo" class="logo-poop-img" />
-                    </div>
-
-                    <p>HIIII i'm 21 years old<br />
-                        a starving artist from africa<br />
-                        I love 2000's/early 2010's<br />
-                        I LIVE 4 VIDEO GAMES!!!</p>
 
                     <!-- Button with poop images - interactive -->
                     <button id="poop-button"
@@ -359,6 +350,110 @@
                     <!-- Audio for button -->
                     <audio id="poop-audio" src="images/waarrrr.ogg"></audio>
 
+
+
+                    <!-- Welcome/Intro Box -->
+                    <div
+                        style="background: linear-gradient(135deg, rgba(139, 152, 98, 0.15) 0%, rgba(107, 142, 35, 0.1) 100%); border: 3px solid #8B9862; padding: 20px; margin: 15px 0; border-radius: 8px; text-align: center;">
+                        <div style="margin: 15px 0;">
+                            <img src="images/LOGOPOOP.png" alt="Logo" class="logo-poop-img" />
+                        </div>
+                        <p style="font-size: 1.1em; line-height: 1.6; margin: 15px 0;">
+                            <strong>HIIII i'm 21 years old</strong><br />
+                            a starving artist from africa<br />
+                            I love 2000's/early 2010's<br />
+                            <strong style="color: #000;">I LIVE 4 VIDEO GAMES!!!</strong>
+                        </p>
+                    </div>
+
+                    <!-- Gaming & Media -->
+                    <div
+                        style="background: rgba(139, 152, 98, 0.1); border: 2px solid #8B9862; padding: 15px; margin: 15px 0; border-radius: 5px;">
+                        <h3
+                            style="margin-top: 0; color: #fff; text-shadow: 1px 1px 3px rgba(0,0,0,0.7); background: linear-gradient(90deg, #6B8E23 0%, #8B9862 100%); padding: 10px; border-radius: 4px;">
+                            🎮 Gaming & Media</h3>
+                        <p>I like old mil-sim and RTS games, as well as point-and-click adventure games like Dark Seed.
+                            I'm obsessed with the Xbox 360 era of gaming, specifically games like Crysis and Halo. I
+                            love a lot of games because of their atmosphere — the S.T.A.L.K.E.R. series is a perfect
+                            example.</p>
+                        <p>I'm also a fan of so many different kinds of media that some people might even say I've
+                            played every game and watched every movie ever made. You can find a list of things I'm still
+                            actively into in the interests section.</p>
+                    </div>
+
+                    <!-- Social & Contact -->
+                    <div
+                        style="background: rgba(139, 152, 98, 0.1); border: 2px solid #8B9862; padding: 15px; margin: 15px 0; border-radius: 5px;">
+                        <h3
+                            style="margin-top: 0; color: #fff; text-shadow: 1px 1px 3px rgba(0,0,0,0.7); background: linear-gradient(90deg, #6B8E23 0%, #8B9862 100%); padding: 10px; border-radius: 4px;">
+                            💬 Social & Contact</h3>
+                        <p>One of the things I really enjoy is talking to people, but I'm too scared to actually talk to
+                            anyone and I have basically zero social skills. Feel free to message me on Discord or
+                            Twitter/X, or add me on Steam to play games together — my Steam is linked.</p>
+                    </div>
+
+                    <!-- Other Interests -->
+                    <div
+                        style="background: rgba(139, 152, 98, 0.1); border: 2px solid #8B9862; padding: 15px; margin: 15px 0; border-radius: 5px;">
+                        <h3
+                            style="margin-top: 0; color: #fff; text-shadow: 1px 1px 3px rgba(0,0,0,0.7); background: linear-gradient(90deg, #6B8E23 0%, #8B9862 100%); padding: 10px; border-radius: 4px;">
+                            ✨ Other Interests</h3>
+                        <p>A few more things I like: winter, learning about history, I'm fascinated by war and old
+                            technology, and I love looking at weird art — anything H.R. Giger made, for example. I'm
+                            also a very active music listener with extremely niche taste, so please don't bother
+                            recommending anything to me.</p>
+                        <p><strong>Have fun browsing the site!</strong></p>
+                    </div>
+
+                    <!-- Q&A Section -->
+                    <div
+                        style="background: rgba(107, 142, 35, 0.2); border: 3px solid #6B8E23; padding: 20px; margin: 20px 0; border-radius: 8px;">
+                        <h3
+                            style="margin-top: 0; margin-bottom: 20px; color: #fff; text-shadow: 2px 2px 4px rgba(0,0,0,0.8); text-align: center; font-size: 1.3em; background: linear-gradient(90deg, #6B8E23 0%, #8B9862 100%); padding: 12px; border-radius: 4px;">
+                            ❓ Q&A SECTION</h3>
+                        <div
+                            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px;">
+                            <div
+                                style="background: rgba(245, 245, 220, 0.9); border: 2px solid #8B9862; padding: 12px; border-radius: 5px;">
+                                <div style="color: #000; font-weight: bold; margin-bottom: 6px; font-size: 0.9em;">🎨
+                                    WHAT I USE TO MAKE ART:</div>
+                                <div style="color: #333; font-size: 0.95em; line-height: 1.4;">Flash 8, Clip Studio
+                                    Paint, Paint Tool SAI 2, FireAlpaca</div>
+                            </div>
+                            <div
+                                style="background: rgba(245, 245, 220, 0.9); border: 2px solid #8B9862; padding: 12px; border-radius: 5px;">
+                                <div style="color: #000; font-weight: bold; margin-bottom: 6px; font-size: 0.9em;">☪️
+                                    RELIGION:</div>
+                                <div style="color: #333; font-size: 0.95em; line-height: 1.4;">Devout Muslim</div>
+                            </div>
+                            <div
+                                style="background: rgba(245, 245, 220, 0.9); border: 2px solid #8B9862; padding: 12px; border-radius: 5px;">
+                                <div style="color: #000; font-weight: bold; margin-bottom: 6px; font-size: 0.9em;">💔
+                                    RELATIONSHIP STATUS:</div>
+                                <div style="color: #333; font-size: 0.95em; line-height: 1.4;">Single</div>
+                            </div>
+                            <div
+                                style="background: rgba(245, 245, 220, 0.9); border: 2px solid #8B9862; padding: 12px; border-radius: 5px;">
+                                <div style="color: #000; font-weight: bold; margin-bottom: 6px; font-size: 0.9em;">📚
+                                    LEARNING NEW SKILLS?:</div>
+                                <div style="color: #333; font-size: 0.95em; line-height: 1.4;">Yes! Improving at art and
+                                    animation, planning to learn 3D in the future</div>
+                            </div>
+                            <div
+                                style="background: rgba(245, 245, 220, 0.9); border: 2px solid #8B9862; padding: 12px; border-radius: 5px;">
+                                <div style="color: #000; font-weight: bold; margin-bottom: 6px; font-size: 0.9em;">💰
+                                    ACCEPT COMMISSIONS?:</div>
+                                <div style="color: #333; font-size: 0.95em; line-height: 1.4;">Yes</div>
+                            </div>
+                            <div
+                                style="background: rgba(245, 245, 220, 0.9); border: 2px solid #8B9862; padding: 12px; border-radius: 5px;">
+                                <div style="color: #000; font-weight: bold; margin-bottom: 6px; font-size: 0.9em;">🌍
+                                    LANGUAGES I SPEAK:</div>
+                                <div style="color: #333; font-size: 0.95em; line-height: 1.4;">Arabic, English, Berber,
+                                    French</div>
+                            </div>
+                        </div>
+                    </div>
                     <h2 class="latest-updates">Latest Updates</h2>
                     <p><!-- TEXT PLACEHOLDER: Updates go here --></p>
 
@@ -383,9 +478,9 @@
                         </div>
 
                         <div class="slideshow-controls">
-                            <button onclick="previousImage()">â—€ Previous</button>
-                            <button onclick="toggleAutoplay()" id="autoplayBtn">âšâš Pause</button>
-                            <button onclick="nextImage()">Next â–¶</button>
+                            <button onclick="previousImage()">◀ Previous</button>
+                            <button onclick="toggleAutoplay()" id="autoplayBtn">❚❚ Pause</button>
+                            <button onclick="nextImage()">Next ▶</button>
                         </div>
                     </div>
 
@@ -430,7 +525,7 @@
                             <li><a href="https://www.youtube.com/watch?v=w3oVCnL2sfw&list=PLTXibJayE9VpiOH-ADAL0f97Z5J42Kfna&index=13"
                                     target="_blank">Den Harrow - Future Brain</a></li>
                             <li><a href="https://www.youtube.com/watch?v=UmiGXOXLa6Q&list=PLTXibJayE9VpiOH-ADAL0f97Z5J42Kfna&index=14"
-                                    target="_blank">M.P. (M�nchen Paris) - Flash Gordon</a></li>
+                                    target="_blank">M.P. (M?nchen Paris) - Flash Gordon</a></li>
                             <li><a href="https://www.youtube.com/watch?v=c96OHfUR51A&list=PLTXibJayE9VpiOH-ADAL0f97Z5J42Kfna&index=15"
                                     target="_blank">Tom Hooker - Looking for love</a></li>
                             <li><a href="https://www.youtube.com/watch?v=pQA9BZRMitc&list=PLTXibJayE9VpiOH-ADAL0f97Z5J42Kfna&index=16"
@@ -449,42 +544,117 @@
 
                 <!-- INTERESTS SECTION -->
                 <div id="interests-section" class="content-section">
-                    <h2>Recent Interests</h2>
-
+                    <h2>My Interests</h2>
                     <img src="images/capsule_616x353.jpg" alt="Game capsule"
                         style="max-width: 300px; display: block; margin: 15px 0;" />
-
-                    <p>I was addicted to this game for the last few weeks</p>
-
-                    <div class="interest-list">
-                        <ul>
-                            <li>Halo games</li>
-                            <li>Crysis</li>
-                            <li>Motorcross</li>
-                        </ul>
-                    </div>
+                    <li>Old Call of Duty (CoD 1 through Black Ops 2 era)</li>
+                    <li>Quake 4</li>
+                    <li>Doom</li>
+                    <li>Shadow Warrior</li>
+                    </ul>
                 </div>
 
-                <!-- GUESTBOOK SECTION -->
-                <div id="guestbook-section" class="content-section">
-                    <h2>Guestbook</h2>
-                    <p>Sign my guestbook and leave a message!</p>
-
-                    <div class="guestbook-container"
-                        style="margin: 20px 0; padding: 10px; background: #f5f5dc; border: 2px solid #8B9862;">
-                        <iframe id="guestbook-iframe" src="https://yanri.atabook.org/" width="100%" height="2000"
-                            frameborder="0" scrolling="yes" style="border: none; background: #fff; overflow: hidden;">
-                        </iframe>
-                    </div>
+                <h3>Strategy & RTS Games</h3>
+                <div class="interest-list">
+                    <ul>
+                        <li>Men of War</li>
+                        <li>Company of Heroes</li>
+                        <li>Brothers in Arms</li>
+                        <li>Command & Conquer</li>
+                        <li>Blitzkrieg</li>
+                        <li>Age of Empires</li>
+                    </ul>
                 </div>
 
+                <h3>Survival & Open World</h3>
+                <div class="interest-list">
+                    <ul>
+                        <li>Just Cause 2</li>
+                        <li>Dead Rising</li>
+                        <li>Project Zomboid</li>
+                        <li>RimWorld</li>
+                        <li>LISA: The Painful</li>
+                        <li>Green Hell</li>
+                        <li>Stranded Deep</li>
+                        <li>ARK: Survival Evolved</li>
+                    </ul>
+                </div>
+
+                <h3>Horror & Adventure Games</h3>
+                <div class="interest-list">
+                    <ul>
+                        <li>Dark Seed</li>
+                        <li>Dark Seed II</li>
+                        <li>Harvester</li>
+                        <li>I Have No Mouth, and I Must Scream</li>
+                        <li>Sanitarium</li>
+                    </ul>
+                </div>
+
+                <h3>Other Games</h3>
+                <div class="interest-list">
+                    <ul>
+                        <li>MX vs ATV (anything motocross)</li>
+                    </ul>
+                </div>
+
+                <h3>Movies & Franchises</h3>
+                <div class="interest-list">
+                    <ul>
+                        <li>Predator / Yautja</li>
+                        <li>Alien</li>
+                        <li>Godzilla</li>
+                    </ul>
+                </div>
+
+                <h3>Anime</h3>
+                <div class="interest-list">
+                    <ul>
+                        <li>Early 2000s anime (NOT Serial Experiments Lain)</li>
+                    </ul>
+                </div>
+
+                <h3>Music Genres</h3>
+                <div class="interest-list">
+                    <ul>
+                        <li>Eurobeat</li>
+                        <li>Italo Disco</li>
+                        <li>Rock</li>
+                        <li>Nu Metal</li>
+                        <li>Power Metal</li>
+                    </ul>
+                </div>
+
+                <h3>Art & Aesthetics</h3>
+                <div class="interest-list">
+                    <ul>
+                        <li>H.R. Giger works</li>
+                        <li>Piss / green / brown filter</li>
+                    </ul>
+                </div>
             </div>
-        </div>
 
-        <!-- Footer -->
-        <div id="footer">
-            <p>Copyright &copy; 2015 Yanri. All rights reserved.</p>
+
+            <!-- GUESTBOOK SECTION -->
+            <div id="guestbook-section" class="content-section">
+                <h2>Guestbook</h2>
+                <p>Sign my guestbook and leave a message!</p>
+
+                <div class="guestbook-container"
+                    style="margin: 20px 0; padding: 10px; background: #f5f5dc; border: 2px solid #8B9862;">
+                    <iframe id="guestbook-iframe" src="https://yanri.atabook.org/" width="100%" height="2000"
+                        frameborder="0" scrolling="yes" style="border: none; background: #fff; overflow: hidden;">
+                    </iframe>
+                </div>
+            </div>
+
         </div>
+    </div>
+
+    <!-- Footer -->
+    <div id="footer">
+        <p>Copyright &copy; 2015 Yanri. All rights reserved.</p>
+    </div>
     </div>
 
     <!-- Video Player Window (Enhanced) -->
@@ -506,8 +676,8 @@
                     <div class="control-buttons">
                         <button class="retro-btn" onclick="previousVideo()" title="Previous">|&lt;</button>
                         <button class="retro-btn" onclick="togglePlayPause()" id="play-pause-btn-video"
-                            title="Play/Pause">â–¶</button>
-                        <button class="retro-btn" onclick="stopVideo()" title="Stop">â– </button>
+                            title="Play/Pause">▶</button>
+                        <button class="retro-btn" onclick="stopVideo()" title="Stop">■</button>
                         <button class="retro-btn" onclick="nextVideo()" title="Next">&gt;|</button>
                         <div class="time-display" id="video-time-display">00:00 / 00:00</div>
                     </div>
@@ -639,11 +809,11 @@
             if (isAutoplayRunning) {
                 clearInterval(autoplayInterval);
                 autoplayInterval = null;
-                btn.textContent = 'â–¶ Play';
+                btn.textContent = '▶ Play';
                 isAutoplayRunning = false;
             } else {
                 autoplayInterval = setInterval(nextImage, 4000);
-                btn.textContent = 'âšâš Pause';
+                btn.textContent = '❚❚ Pause';
                 isAutoplayRunning = true;
             }
         }
@@ -804,11 +974,11 @@
         function togglePlay() {
             if (audioTrack.paused) {
                 audioTrack.play();
-                playPauseBtn.textContent = 'â–¶';
+                playPauseBtn.textContent = '▶';
                 sessionStorage.setItem('is_playing', 'true');
             } else {
                 audioTrack.pause();
-                playPauseBtn.textContent = 'â–¶';
+                playPauseBtn.textContent = '▶';
                 sessionStorage.setItem('is_playing', 'false');
             }
         }
@@ -828,11 +998,11 @@
             });
 
             audioTrack.addEventListener('play', function () {
-                playPauseBtn.textContent = 'â–¶';
+                playPauseBtn.textContent = '▶';
             });
 
             audioTrack.addEventListener('pause', function () {
-                playPauseBtn.textContent = 'â–¶';
+                playPauseBtn.textContent = '▶';
             });
 
             window.addEventListener('load', function () {
@@ -847,11 +1017,11 @@
                     const playPromise = audioTrack.play();
                     if (playPromise !== undefined) {
                         playPromise.then(function () {
-                            playPauseBtn.textContent = 'â–¶';
+                            playPauseBtn.textContent = '▶';
                             sessionStorage.setItem('is_playing', 'true');
                         }).catch(function (error) {
                             console.log("Autoplay prevented");
-                            playPauseBtn.textContent = 'â–¶';
+                            playPauseBtn.textContent = '▶';
                         });
                     }
                 }
@@ -863,7 +1033,22 @@
             });
         }
 
-        const videoFiles = ['Authority Zero - Revolution (Official Video).mp4', 'Crysis 3 - Skillet Hero - Music Video - HD - Ray Christian Bustamante (360p, h264).mp4', 'Koto - Jabdah Live Perfromance.mp4', 'Ondrej Matejka - Secret (video-converter.com).mp4', 'Ondrej Matejka - Secret.mp4', 'Quake 4 Music Video - SeptemberSun (144p, h264).mp4', 'RvB Season 8 Warthog Scene Re-Edit.mp4', 'The Hurt Locker ?????????? ???? (???? - ???? ????).mp4', 'the russian.mp4', 'ytp/the birth they of justise.mp4', '? GODZILLA THE MUSICAL - Cartoon Parody Song - LHUGUENY (360p, h264).mp4', '? HALO THE MUSICAL - Parody Song Animation - LHUGUENY (360p, h264).mp4', '? PREDATOR THE MUSICAL - Animated Parody - LHUGUENY (360p, h264).mp4', '? PROMETHEUS THE MUSICAL - Animated Parody - LHUGUENY (360p, h264).mp4'];
+        // Video files - automatically loads all .mp4 files from the images folder
+        // To add new videos: Just drop .mp4 files into C:\Users\akoda\Documents\GitHub\my-website\images
+        const videoFiles = [
+            'Authority Zero - Revolution (Official Video).mp4',
+            'Crysis 3 - Skillet Hero - Music Video - HD - Ray Christian Bustamante (360p, h264).mp4',
+            'Koto - Jabdah Live Perfromance.mp4',
+            'Ondrej Matejka - Secret (video-converter.com).mp4',
+            'Quake 4 Music Video - SeptemberSun (144p, h264).mp4',
+            'RvB Season 8 Warthog Scene Re-Edit.mp4',
+            'The Hurt Locker Повелители Бури (Ария - Твой день).mp4',
+            'the russian.mp4',
+            '♪ GODZILLA THE MUSICAL - Cartoon Parody Song - LHUGUENY (360p, h264).mp4',
+            '♪ HALO THE MUSICAL - Parody Song Animation - LHUGUENY (360p, h264).mp4',
+            '♪ PREDATOR THE MUSICAL - Animated Parody - LHUGUENY (360p, h264).mp4',
+            '♪ PROMETHEUS THE MUSICAL - Animated Parody - LHUGUENY (360p, h264).mp4'
+        ];
         let currentVideoIndex = 0;
         function initPlaylist() { const p = document.getElementById('video-playlist'); if (!p) return; p.innerHTML = ''; videoFiles.forEach((f, i) => { const d = document.createElement('div'); d.className = 'playlist-item'; if (i === currentVideoIndex) d.classList.add('active'); let n = f.split('/').pop().replace('.mp4', ''); if (n.length > 28) n = n.substring(0, 25) + '...'; d.textContent = (i + 1) + '. ' + n; d.onclick = () => loadVideo(i); p.appendChild(d); }); }
         function toggleVideoPlayer() { const w = document.getElementById('video-player-window'); if (w.style.display === 'none' || !w.style.display) { w.style.display = 'flex'; initPlaylist(); if (!document.getElementById('video-element').src) loadVideo(0); } else { w.style.display = 'none'; document.getElementById('video-element').pause(); } }
@@ -871,7 +1056,7 @@
         function loadVideo(i) { if (i >= 0 && i < videoFiles.length) { currentVideoIndex = i; const s = document.getElementById('video-source'); s.src = 'images/' + encodeURI(videoFiles[i]); const v = document.getElementById('video-element'); v.load(); v.play().catch(e => console.log('play prevented')); document.querySelectorAll('.playlist-item').forEach((item, idx) => { if (idx === i) item.classList.add('active'); else item.classList.remove('active'); }); updatePlayPauseIcon(); } }
         function togglePlayPause() { const v = document.getElementById('video-element'); if (!v) return; if (v.paused) { v.play(); } else { v.pause(); } updatePlayPauseIcon(); }
         function stopVideo() { const v = document.getElementById('video-element'); if (!v) return; v.pause(); v.currentTime = 0; updatePlayPauseIcon(); }
-        function updatePlayPauseIcon() { const v = document.getElementById('video-element'); const b = document.getElementById('play-pause-btn-video'); if (!b || !v) return; b.textContent = v.paused ? 'â–¶' : 'âšâš'; }
+        function updatePlayPauseIcon() { const v = document.getElementById('video-element'); const b = document.getElementById('play-pause-btn-video'); if (!b || !v) return; b.textContent = v.paused ? '▶' : '❚❚'; }
         function nextVideo() { currentVideoIndex = (currentVideoIndex + 1) % videoFiles.length; loadVideo(currentVideoIndex); }
         function previousVideo() { currentVideoIndex = (currentVideoIndex - 1 + videoFiles.length) % videoFiles.length; loadVideo(currentVideoIndex); }
         function formatTime(s) { if (isNaN(s)) return '00:00'; const m = Math.floor(s / 60); const sec = Math.floor(s % 60); return (m < 10 ? '0' + m : m) + ':' + (sec < 10 ? '0' + sec : sec); }
