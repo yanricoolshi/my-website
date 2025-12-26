@@ -1,208 +1,186 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<link href="style.css" rel="stylesheet" type="text/css" />
+<link href="audio-player.css" rel="stylesheet" type="text/css" />
+<style>
+    .video-player-window {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 10001;
+        width: 750px;
+        background-color: #c0c0c0;
+        border: 2px solid #fff;
+        border-right-color: #808080;
+        border-bottom-color: #808080;
+        padding: 2px;
+        box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
+        font-family: Tahoma, sans-serif;
+        display: flex;
+        flex-direction: column
+    }
 
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description"
-        content="Yanri's Website - 21 year old digital artist from Africa. I love 2000s/early 2010s aesthetics, video games, and retro web design" />
-    <title>Yanri's Website</title>
-    <link rel="icon" type="image/jpeg" href="images/icon.jpg" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap" rel="stylesheet">
-    <link href="style.css" rel="stylesheet" type="text/css" />
-    <style>
-        .video-player-window {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 10001;
-            width: 750px;
-            background-color: #c0c0c0;
-            border: 2px solid #fff;
-            border-right-color: #808080;
-            border-bottom-color: #808080;
-            padding: 2px;
-            box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
-            font-family: Tahoma, sans-serif;
-            display: flex;
-            flex-direction: column
-        }
+    .video-player-header {
+        background: linear-gradient(to right, #000080, #1084d0);
+        color: white;
+        padding: 4px 8px;
+        font-weight: bold;
+        font-size: 13px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2px;
+        cursor: grab
+    }
 
-        .video-player-header {
-            background: linear-gradient(to right, #000080, #1084d0);
-            color: white;
-            padding: 4px 8px;
-            font-weight: bold;
-            font-size: 13px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 2px;
-            cursor: grab
-        }
+    .video-player-close {
+        width: 16px;
+        height: 16px;
+        background-color: #c0c0c0;
+        border: 1px solid #fff;
+        border-right-color: #808080;
+        border-bottom-color: #808080;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 10px;
+        font-weight: bold;
+        color: black
+    }
 
-        .video-player-close {
-            width: 16px;
-            height: 16px;
-            background-color: #c0c0c0;
-            border: 1px solid #fff;
-            border-right-color: #808080;
-            border-bottom-color: #808080;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 10px;
-            font-weight: bold;
-            color: black
-        }
+    .video-player-close:active {
+        border: 1px solid #808080;
+        border-right-color: #fff;
+        border-bottom-color: #fff
+    }
 
-        .video-player-close:active {
-            border: 1px solid #808080;
-            border-right-color: #fff;
-            border-bottom-color: #fff
-        }
+    .video-player-body {
+        display: flex;
+        gap: 4px;
+        padding: 4px
+    }
 
-        .video-player-body {
-            display: flex;
-            gap: 4px;
-            padding: 4px
-        }
+    .video-main-area {
+        flex: 1;
+        display: flex;
+        flex-direction: column
+    }
 
-        .video-main-area {
-            flex: 1;
-            display: flex;
-            flex-direction: column
-        }
+    #video-element {
+        width: 100%;
+        height: 300px;
+        background-color: #000;
+        border: 2px solid #808080;
+        border-right-color: #fff;
+        border-bottom-color: #fff;
+        margin-bottom: 4px
+    }
 
-        #video-element {
-            width: 100%;
-            height: 300px;
-            background-color: #000;
-            border: 2px solid #808080;
-            border-right-color: #fff;
-            border-bottom-color: #fff;
-            margin-bottom: 4px
-        }
+    .video-playlist {
+        width: 220px;
+        background-color: #fff;
+        border: 2px solid #808080;
+        border-right-color: #fff;
+        border-bottom-color: #fff;
+        overflow-y: auto;
+        height: 380px;
+        font-size: 11px
+    }
 
-        .video-playlist {
-            width: 220px;
-            background-color: #fff;
-            border: 2px solid #808080;
-            border-right-color: #fff;
-            border-bottom-color: #fff;
-            overflow-y: auto;
-            height: 380px;
-            font-size: 11px
-        }
+    .playlist-item {
+        padding: 4px;
+        cursor: pointer;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        border-bottom: 1px dotted #ccc
+    }
 
-        .playlist-item {
-            padding: 4px;
-            cursor: pointer;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            border-bottom: 1px dotted #ccc
-        }
+    .playlist-item:hover {
+        background-color: #e0e0e0
+    }
 
-        .playlist-item:hover {
-            background-color: #e0e0e0
-        }
+    .playlist-item.active {
+        background-color: #000080;
+        color: white
+    }
 
-        .playlist-item.active {
-            background-color: #000080;
-            color: white
-        }
+    .video-controls-area {
+        margin-top: 4px;
+        border: 1px solid #fff;
+        border-right-color: #808080;
+        border-bottom-color: #808080;
+        padding: 4px;
+        background-color: #c0c0c0
+    }
 
-        .video-controls-area {
-            margin-top: 4px;
-            border: 1px solid #fff;
-            border-right-color: #808080;
-            border-bottom-color: #808080;
-            padding: 4px;
-            background-color: #c0c0c0
-        }
+    .seek-bar-container {
+        height: 15px;
+        background-color: #000;
+        margin-bottom: 4px;
+        position: relative;
+        cursor: pointer;
+        border: 1px solid #808080;
+        border-right-color: #fff;
+        border-bottom-color: #fff
+    }
 
-        .seek-bar-container {
-            height: 15px;
-            background-color: #000;
-            margin-bottom: 4px;
-            position: relative;
-            cursor: pointer;
-            border: 1px solid #808080;
-            border-right-color: #fff;
-            border-bottom-color: #fff
-        }
+    .seek-bar-fill {
+        height: 100%;
+        background-color: #00ff00;
+        width: 0%
+    }
 
-        .seek-bar-fill {
-            height: 100%;
-            background-color: #00ff00;
-            width: 0%
-        }
+    .control-buttons {
+        display: flex;
+        align-items: center;
+        gap: 4px
+    }
 
-        .control-buttons {
-            display: flex;
-            align-items: center;
-            gap: 4px
-        }
+    .retro-btn {
+        width: 24px;
+        height: 24px;
+        background-color: #c0c0c0;
+        border: 1px solid #fff;
+        border-right-color: #808080;
+        border-bottom-color: #808080;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 10px
+    }
 
-        .retro-btn {
-            width: 24px;
-            height: 24px;
-            background-color: #c0c0c0;
-            border: 1px solid #fff;
-            border-right-color: #808080;
-            border-bottom-color: #808080;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 10px
-        }
+    .retro-btn:active {
+        border: 1px solid #808080;
+        border-right-color: #fff;
+        border-bottom-color: #fff;
+        transform: translate(1px, 1px)
+    }
 
-        .retro-btn:active {
-            border: 1px solid #808080;
-            border-right-color: #fff;
-            border-bottom-color: #fff;
-            transform: translate(1px, 1px)
-        }
-
-        .time-display {
-            font-family: Courier New, monospace;
-            font-size: 11px;
-            margin-left: auto;
-            background: #000;
-            color: #00ff00;
-            padding: 2px 4px;
-            border: 1px solid #808080;
-            border-right-color: #fff;
-            border-bottom-color: #fff
-        }
-    </style>
+    .time-display {
+        font-family: Courier New, monospace;
+        font-size: 11px;
+        margin-left: auto;
+        background: #000;
+        color: #00ff00;
+        padding: 2px 4px;
+        border: 1px solid #808080;
+        border-right-color: #fff;
+        border-bottom-color: #fff
+    }
+</style>
 </head>
 
-<body>    <img src="images/mysimbol.gif" alt="Symbol" class="corner-symbol top-left" />
-    <img src="images/mysimbol.gif" alt="Symbol" class="corner-symbol top-right" />    <div class="custom-audio-player">
-        <div class="player-header">
-            <span>Winamp</span>
-            <span>_ ? X</span>
-        </div>
-        <div class="track-info" id="track-info">Windows XP Installation Music</div>
-        <div class="player-controls">
-            <div class="play-pause-btn" id="play-pause-btn" onclick="togglePlay()">▶</div>
-            <div class="progress-container" id="progress-container">
-                <div class="progress-bar" id="progress-bar"></div>
-            </div>
-        </div>
-        <audio id="custom-audio-track" src="images/Windows XP Installation Music.ogg" autoplay loop></audio>
-    </div>    <div class="mozzart-window">
+<body> <img src="images/mysimbol.gif" alt="Symbol" class="corner-symbol top-left" />
+    <img src="images/mysimbol.gif" alt="Symbol" class="corner-symbol top-right" />
+
+    <div class="mozzart-window">
         <h3>THIS IS MOZZART</h3>
         <img src="images/mozzart.jpg" alt="Mozzart" onclick="playMozzartAudio()" />
         <audio id="mozzart-audio" src="images/Jasmin China Girl [xe4APfSQRYQ].ogg"></audio>
-    </div>    <div class="pugo-badge-window">
+    </div>
+    <div class="pugo-badge-window">
         <a href="https://pugo.neocities.org/" target="_blank">
             <img src="images/badges/pugobadge.gif" title="" alt="pugo" style="width:88px;height:31px;">
         </a>
@@ -249,7 +227,8 @@
         <a href="#" style="display: block; margin-top: 5px;">
             <img src="images/badges/winxp.gif" alt="Windows XP" style="width:88px;height:31px;">
         </a>
-    </div>    <div class="stamps-window">
+    </div>
+    <div class="stamps-window">
         <a href="#">
             <img src="images/stamps/d1yyuqc-76810c8d-1492-45ac-aa6c-96d5dfc794e5.png" alt="Stamp 1">
         </a>
@@ -271,12 +250,14 @@
         <a href="#">
             <img src="images/stamps/warrenfan.gif" alt="Warren Fan">
         </a>
-    </div>    <img src="images/forpooper.png" alt="For Pooper" class="forpooper-img" />
+    </div> <img src="images/forpooper.png" alt="For Pooper" class="forpooper-img" />
     <img src="images/g9en3ts7nw781.png" alt="" class="g9en3ts7nw781-img" />
 
-    <div id="container">        <div id="header">
+    <div id="container">
+        <div id="header">
             <img src="images/yanribanner.png" alt="Yanri's Website" />
-        </div>        <div id="menu">
+        </div>
+        <div id="menu">
             <ul>
                 <li class="active" id="nav-home"><a href="#" onclick="showSection('home'); return false;">About
                         Me...</a></li>
@@ -285,7 +266,9 @@
                 <li id="nav-interests"><a href="#" onclick="showSection('interests'); return false;">Interests</a></li>
                 <li id="nav-guestbook"><a href="#" onclick="showSection('guestbook'); return false;">Guestbook</a></li>
             </ul>
-        </div>        <div id="content-wrapper">            <div id="sidebar">
+        </div>
+        <div id="content-wrapper">
+            <div id="sidebar">
                 <h3>Links</h3>
                 <ul>
                     <li><a href="https://x.com/ASwindlr" target="_blank">Twitter</a></li>
@@ -303,12 +286,17 @@
                 <ul>
                     <li><a href="#" id="cool-videos-btn" onclick="toggleVideoPlayer(); return false;">cool videos</a>
                     </li>
+                    <li><a href="#" id="cool-music-btn" onclick="toggleAudioPlayer(); return false;">cool music</a>
+                    </li>
                 </ul>
-            </div>            <div id="main-content" style="position: relative;">                <div id="home-section" class="content-section active">
-                    <h2>About Me</h2>                    <button id="poop-button"
+            </div>
+            <div id="main-content" style="position: relative;">
+                <div id="home-section" class="content-section active">
+                    <h2>About Me</h2> <button id="poop-button"
                         style="position: absolute; top: 10px; right: 10px; border: none; background: none; cursor: pointer; padding: 0;">
                         <img id="poop-img" src="images/poop1.png" alt="Button" style="width: 140px; height: auto;" />
-                    </button>                    <audio id="poop-audio" src="images/waarrrr.ogg"></audio>                    <div
+                    </button> <audio id="poop-audio" src="images/waarrrr.ogg"></audio>
+                    <div
                         style="background: linear-gradient(135deg, rgba(139, 152, 98, 0.15) 0%, rgba(107, 142, 35, 0.1) 100%); border: 3px solid #8B9862; padding: 20px; margin: 15px 0; border-radius: 8px; text-align: center;">
                         <div style="margin: 15px 0;">
                             <img src="images/LOGOPOOP.png" alt="Logo" class="logo-poop-img" />
@@ -319,7 +307,8 @@
                             I love 2000's/early 2010's<br />
                             <strong style="color: #000;">I LIVE 4 VIDEO GAMES!!!</strong>
                         </p>
-                    </div>                    <div
+                    </div>
+                    <div
                         style="background: rgba(139, 152, 98, 0.1); border: 2px solid #8B9862; padding: 15px; margin: 15px 0; border-radius: 5px;">
                         <h3
                             style="margin-top: 0; color: #fff; text-shadow: 1px 1px 3px rgba(0,0,0,0.7); background: linear-gradient(90deg, #6B8E23 0%, #8B9862 100%); padding: 10px; border-radius: 4px;">
@@ -331,7 +320,8 @@
                         <p>I'm also a fan of so many different kinds of media that some people might even say I've
                             played every game and watched every movie ever made. You can find a list of things I'm still
                             actively into in the interests section.</p>
-                    </div>                    <div
+                    </div>
+                    <div
                         style="background: rgba(139, 152, 98, 0.1); border: 2px solid #8B9862; padding: 15px; margin: 15px 0; border-radius: 5px;">
                         <h3
                             style="margin-top: 0; color: #fff; text-shadow: 1px 1px 3px rgba(0,0,0,0.7); background: linear-gradient(90deg, #6B8E23 0%, #8B9862 100%); padding: 10px; border-radius: 4px;">
@@ -339,7 +329,8 @@
                         <p>One of the things I really enjoy is talking to people, but I'm too scared to actually talk to
                             anyone and I have basically zero social skills. Feel free to message me on Discord or
                             Twitter/X, or add me on Steam to play games together — my Steam is linked.</p>
-                    </div>                    <div
+                    </div>
+                    <div
                         style="background: rgba(139, 152, 98, 0.1); border: 2px solid #8B9862; padding: 15px; margin: 15px 0; border-radius: 5px;">
                         <h3
                             style="margin-top: 0; color: #fff; text-shadow: 1px 1px 3px rgba(0,0,0,0.7); background: linear-gradient(90deg, #6B8E23 0%, #8B9862 100%); padding: 10px; border-radius: 4px;">
@@ -349,7 +340,8 @@
                             also a very active music listener with extremely niche taste, so please don't bother
                             recommending anything to me.</p>
                         <p><strong>Have fun browsing the site!</strong></p>
-                    </div>                    <div
+                    </div>
+                    <div
                         style="background: rgba(107, 142, 35, 0.2); border: 3px solid #6B8E23; padding: 20px; margin: 20px 0; border-radius: 8px;">
                         <h3
                             style="margin-top: 0; margin-bottom: 20px; color: #fff; text-shadow: 2px 2px 4px rgba(0,0,0,0.8); text-align: center; font-size: 1.3em; background: linear-gradient(90deg, #6B8E23 0%, #8B9862 100%); padding: 12px; border-radius: 4px;">
@@ -398,12 +390,14 @@
                         </div>
                     </div>
                     <h2 class="latest-updates">Latest Updates</h2>
-                    
+
                     <div class="placeholder-box" style="height: auto; border: none; background: none;">
                         <img src="images/update-screenshot.jpg" alt="Latest Update"
                             style="width: 100%; height: auto; border: 2px solid DarkOliveGreen;" />
                     </div>
-                </div>                <div id="art-section" class="content-section">                    <div class="slideshow-section">
+                </div>
+                <div id="art-section" class="content-section">
+                    <div class="slideshow-section">
                         <h2>My Art Gallery</h2>
 
                         <div class="slideshow-container" id="slideshow">
@@ -425,8 +419,9 @@
                     <p>Welcome to my art gallery! Use the controls above to browse through my collection.</p>
                     <p>The slideshow automatically advances every 4 seconds, or you can use the Previous/Next buttons to
                         navigate manually.</p>
-                </div>                <div id="music-section" class="content-section">
-                    <h2>My Music</h2>
+                </div>
+                <div id="music-section" class="content-section">
+                    <h2>Music I Like</h2>
                     <p>Check out my favorite tracks.</p>
 
                     <div class="music-list">
@@ -474,7 +469,8 @@
                                     target="_blank">Seventh - I am Gonna Fly (Operation Flashpoint OST)</a></li>
                         </ul>
                     </div>
-                </div>                <div id="interests-section" class="content-section">
+                </div>
+                <div id="interests-section" class="content-section">
                     <h2>My Interests</h2>
                     <img src="images/capsule_616x353.jpg" alt="Game capsule"
                         style="max-width: 300px; display: block; margin: 15px 0;" />
@@ -490,109 +486,111 @@
                             <li>Metal Gear (kojima is a hero in this site)</li>
                             <li>SWAT series (especially SWAT 4)</li>
                             <li>Old Call of Duty (CoD 1 through Black Ops 2 era)</li>
-                    <li>Quake 4</li>
-                    <li>Doom</li>
-                    <li>Shadow Warrior</li>
-                    </ul>
+                            <li>Quake 4</li>
+                            <li>Doom</li>
+                            <li>Shadow Warrior</li>
+                        </ul>
+                    </div>
+
+                    <h3>Strategy & RTS Games</h3>
+                    <div class="interest-list">
+                        <ul>
+                            <li>Men of War</li>
+                            <li>Company of Heroes</li>
+                            <li>Brothers in Arms</li>
+                            <li>Command & Conquer</li>
+                            <li>Blitzkrieg</li>
+                            <li>Age of Empires</li>
+                        </ul>
+                    </div>
+
+                    <h3>Survival & Open World</h3>
+                    <div class="interest-list">
+                        <ul>
+                            <li>Just Cause 2</li>
+                            <li>Dead Rising</li>
+                            <li>Project Zomboid</li>
+                            <li>RimWorld</li>
+                            <li>LISA: The Painful</li>
+                            <li>Green Hell</li>
+                            <li>Stranded Deep</li>
+                            <li>ARK: Survival Evolved</li>
+                        </ul>
+                    </div>
+
+                    <h3>Horror & Adventure Games</h3>
+                    <div class="interest-list">
+                        <ul>
+                            <li>Dark Seed</li>
+                            <li>Dark Seed II</li>
+                            <li>Harvester</li>
+                            <li>I Have No Mouth, and I Must Scream</li>
+                            <li>Sanitarium</li>
+                        </ul>
+                    </div>
+
+                    <h3>Other Games</h3>
+                    <div class="interest-list">
+                        <ul>
+                            <li>MX vs ATV (anything motocross)</li>
+                        </ul>
+                    </div>
+
+                    <h3>Movies & Franchises</h3>
+                    <div class="interest-list">
+                        <ul>
+                            <li>Predator / Yautja</li>
+                            <li>Alien</li>
+                            <li>Godzilla</li>
+                        </ul>
+                    </div>
+
+                    <h3>Anime</h3>
+                    <div class="interest-list">
+                        <ul>
+                            <li>Early 2000s anime (NOT Serial Experiments Lain)</li>
+                        </ul>
+                    </div>
+
+                    <h3>Music Genres</h3>
+                    <div class="interest-list">
+                        <ul>
+                            <li>Eurobeat</li>
+                            <li>Italo Disco</li>
+                            <li>Rock</li>
+                            <li>Nu Metal</li>
+                            <li>Power Metal</li>
+                        </ul>
+                    </div>
+
+                    <h3>Art & Aesthetics</h3>
+                    <div class="interest-list">
+                        <ul>
+                            <li>H.R. Giger works</li>
+                            <li>Piss / green / brown filter</li>
+                        </ul>
+                    </div>
+                </div>
+                <div id="guestbook-section" class="content-section">
+                    <h2>Guestbook</h2>
+                    <p>Sign my guestbook and leave a message!</p>
+
+                    <div class="guestbook-container"
+                        style="margin: 20px 0; padding: 10px; background: #f5f5dc; border: 2px solid #8B9862;">
+                        <iframe id="guestbook-iframe" src="https://yanri.atabook.org/" width="100%" height="2000"
+                            frameborder="0" scrolling="yes" style="border: none; background: #fff; overflow: hidden;">
+                        </iframe>
+                    </div>
                 </div>
 
-                <h3>Strategy & RTS Games</h3>
-                <div class="interest-list">
-                    <ul>
-                        <li>Men of War</li>
-                        <li>Company of Heroes</li>
-                        <li>Brothers in Arms</li>
-                        <li>Command & Conquer</li>
-                        <li>Blitzkrieg</li>
-                        <li>Age of Empires</li>
-                    </ul>
-                </div>
-
-                <h3>Survival & Open World</h3>
-                <div class="interest-list">
-                    <ul>
-                        <li>Just Cause 2</li>
-                        <li>Dead Rising</li>
-                        <li>Project Zomboid</li>
-                        <li>RimWorld</li>
-                        <li>LISA: The Painful</li>
-                        <li>Green Hell</li>
-                        <li>Stranded Deep</li>
-                        <li>ARK: Survival Evolved</li>
-                    </ul>
-                </div>
-
-                <h3>Horror & Adventure Games</h3>
-                <div class="interest-list">
-                    <ul>
-                        <li>Dark Seed</li>
-                        <li>Dark Seed II</li>
-                        <li>Harvester</li>
-                        <li>I Have No Mouth, and I Must Scream</li>
-                        <li>Sanitarium</li>
-                    </ul>
-                </div>
-
-                <h3>Other Games</h3>
-                <div class="interest-list">
-                    <ul>
-                        <li>MX vs ATV (anything motocross)</li>
-                    </ul>
-                </div>
-
-                <h3>Movies & Franchises</h3>
-                <div class="interest-list">
-                    <ul>
-                        <li>Predator / Yautja</li>
-                        <li>Alien</li>
-                        <li>Godzilla</li>
-                    </ul>
-                </div>
-
-                <h3>Anime</h3>
-                <div class="interest-list">
-                    <ul>
-                        <li>Early 2000s anime (NOT Serial Experiments Lain)</li>
-                    </ul>
-                </div>
-
-                <h3>Music Genres</h3>
-                <div class="interest-list">
-                    <ul>
-                        <li>Eurobeat</li>
-                        <li>Italo Disco</li>
-                        <li>Rock</li>
-                        <li>Nu Metal</li>
-                        <li>Power Metal</li>
-                    </ul>
-                </div>
-
-                <h3>Art & Aesthetics</h3>
-                <div class="interest-list">
-                    <ul>
-                        <li>H.R. Giger works</li>
-                        <li>Piss / green / brown filter</li>
-                    </ul>
-                </div>
-            </div>            <div id="guestbook-section" class="content-section">
-                <h2>Guestbook</h2>
-                <p>Sign my guestbook and leave a message!</p>
-
-                <div class="guestbook-container"
-                    style="margin: 20px 0; padding: 10px; background: #f5f5dc; border: 2px solid #8B9862;">
-                    <iframe id="guestbook-iframe" src="https://yanri.atabook.org/" width="100%" height="2000"
-                        frameborder="0" scrolling="yes" style="border: none; background: #fff; overflow: hidden;">
-                    </iframe>
-                </div>
             </div>
-
         </div>
-    </div>    <div id="footer">
-        <p>Copyright &copy; 2015 Yanri. All rights reserved.</p>
+        <div id="footer">
+            <p>Copyright &copy; 2015 Yanri. All rights reserved.</p>
+        </div>
     </div>
-    </div>    <div id="video-player-window" class="video-player-window" style="display: none;">
+    <div id="video-player-window" class="video-player-window" style="display: none;">
         <div class="video-player-header">
-            <span>Cool Videos Player 98</span>
             <span class="video-player-close" onclick="closeVideoPlayer()">X</span>
         </div>
         <div class="video-player-body">
@@ -617,7 +615,38 @@
             </div>
             <div class="video-playlist" id="video-playlist"></div>
         </div>
-    </div>    <div id="discord-modal" class="discord-modal">
+    </div>
+    <div id="audio-player-window" class="audio-player-window" style="display: none;">
+        <div class="audio-player-header">
+            <span class="audio-player-close" onclick="closeAudioPlayer()">X</span>
+        </div>
+        <div class="audio-player-body">
+            <div class="audio-main-area">
+                <div class="track-display" id="audio-track-display">No track loaded</div>
+                <div class="audio-controls-area">
+                    <div class="seek-bar-container" id="audio-seek-bar-container">
+                        <div class="seek-bar-fill" id="audio-seek-bar-fill"></div>
+                    </div>
+                    <div class="control-buttons">
+                        <button class="retro-btn" onclick="previousAudio()" title="Previous">|&lt;</button>
+                        <button class="retro-btn" onclick="toggleAudioPlayPause()" id="play-pause-btn-audio"
+                            title="Play/Pause">▶</button>
+                        <button class="retro-btn" onclick="stopAudio()" title="Stop">■</button>
+                        <button class="retro-btn" onclick="nextAudio()" title="Next">&gt;|</button>
+                        <div class="time-display" id="audio-time-display">00:00 / 00:00</div>
+                        <div class="volume-control">
+                            <span class="volume-icon">🔊</span>
+                            <input type="range" id="volume-slider" min="0" max="100" value="100" class="volume-slider"
+                                title="Volume">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="audio-playlist" id="audio-playlist"></div>
+        </div>
+        <audio id="audio-element"></audio>
+    </div>
+    <div id="discord-modal" class="discord-modal">
         <div class="discord-modal-content">
             <div class="discord-modal-close" onclick="closeDiscordModal()">X</div>
             <img src="images/Screenshot 2025-11-22 014357.jpg" alt="Discord Info" />
@@ -626,32 +655,128 @@
 
     <script>
         const imageFiles = [
-            "10games.jpg", "20230916_100112.jpg", "4 lo.jpg", "455454????.jpg", "Can someone redraw this with Boofys oc.jpg",
-            "G0yerrUW0AA9Zbd.jpg", "G26R4FdWkAAzo6b.jpg", "G26TN2oXIAANq5l.png", "G26f2F2XgAIJrx2.png", "G26fcbyXAAAEuo4.png",
-            "G26gdhZXYAEUcFZ.jpg", "G3Vk4BOWQAAfDMN.jpg", "G3bHwLIXwAAycat.png", "G3ft51BX0AEBKzT.png", "GdBD9nbWoAASmFV.jpg",
-            "Gn8Tj4gX0AAbUza.png", "GuInDnFWEAAO7z3.jpg", "GzXsI_KW0AI0Tni.jpg", "Illustration3.jpg", "Illustration42222.png",
-            "Illustration747555.jpg", "Illustrationhyhyjujjmmmnigga.jpg", "KARUS POOP CAT SMOKEY AHHH I POOP.jpg", "KUP.jpg",
-            "RGGG 2.jpg", "Screenshot 2025-03-07 004522.jpg", "Screenshot 2025-03-07 004654.jpg", "Screenshot 2025-03-07 004740.jpg",
-            "Screenshot 2025-03-07 005150.jpg", "Screenshot 2025-03-08 150559.jpg", "Screenshot 2025-04-01 185530.jpg",
-            "Screenshot 2025-09-29 004646.jpg", "Screenshot 2025-11-08 024255.jpg", "Screenshot 2025-11-08 042720.jpg",
-            "Screenshot 2025-11-22 005159.jpg", "Untitled.png2.png", "Vanity_638930613959391544.png", "albenian.jpg",
+            "10games.jpg",
+            "20230916_100112.jpg",
+            "4 lo.jpg",
+            "455454دذدد.jpg",
+            "Can someone redraw this with Boofys oc.jpg",
+            "EYE.jpg",
+            "G0yerrUW0AA9Zbd.jpg",
+            "G26R4FdWkAAzo6b.jpg",
+            "G26TN2oXIAANq5l.png",
+            "G26f2F2XgAIJrx2.png",
+            "G26fcbyXAAAEuo4.png",
+            "G26gdhZXYAEUcFZ.jpg",
+            "G3Vk4BOWQAAfDMN.jpg",
+            "G3bHwLIXwAAycat.png",
+            "G3ft51BX0AEBKzT.png",
+            "G57EHH1XIAADCrw.jpg",
+            "G8_juDzXsAAqa5W.jpg",
+            "G9C1LvFWwAAaarf.jpg",
+            "G9CU0b8W4AANMlj.jpg",
+            "G9Ccn0SXYAAeBZs.png",
+            "G9CjJ6GWsAAzgqY.jpg",
+            "G9CryVwXUAAnkLu.jpg",
+            "G9CtvG7WMAAeJu_.png",
+            "GPthMuUXUAAzCkG.png",
+            "GdBD9nbWoAASmFV.jpg",
+            "Gn8Tj4gX0AAbUza.png",
+            "GuInDnFWEAAO7z3.jpg",
+            "GwPAKVWWEAAVG2W.png",
+            "Gy7aC--XoAAgVDP.png",
+            "Gy7aFf1WEAADplC.jpg",
+            "Gy7aHX8XkAEWQMR.png",
+            "Gy7aJeAWsAAjM2E.png",
+            "GzXsI_KW0AI0Tni.jpg",
+            "Illustration3.jpg",
+            "Illustration42222.png",
+            "Illustration747555.jpg",
+            "Illustrationhyhyjujjmmmnigga.jpg",
+            "KARUS POOP CAT SMOKEY AHHH I POOP.jpg",
+            "KUP.jpg",
+            "RGGG 2.jpg",
+            "Screenshot 2025-03-07 004522.jpg",
+            "Screenshot 2025-03-07 004654.jpg",
+            "Screenshot 2025-03-07 004740.jpg",
+            "Screenshot 2025-03-07 005150.jpg",
+            "Screenshot 2025-03-08 150559.jpg",
+            "Screenshot 2025-04-01 185530.jpg",
+            "Screenshot 2025-09-29 004646.jpg",
+            "Screenshot 2025-11-08 024255.jpg",
+            "Screenshot 2025-11-08 042720.jpg",
+            "Screenshot 2025-11-22 005159.jpg",
+            "Untitled.png2.png",
+            "albenian.jpg",
             "balti n word ahh sigma troll god is real fuck you iran will win ahh oh mama i wanna kms so bad i wan't to be a woman so bad god please help me i'm sufring.jpg",
-            "big braping futa.jpg", "big butt futa fan art I FUCKING LOVE HALO! boohoo i poop myself.jpg", "booooooooo.jpg",
-            "broke ass nigga.png", "broke ass p.png", "bruh man.jpg", "bum fag ccp png.png", "bum fag ccp.jpg", "can flay 1.png",
-            "can flay 2.png", "chadacrack.jpg", "cs.jpg", "cup hair hate.png", "deltapoopolduhh.jpg", "dgdhhdf.png", "dp 2.jpg",
-            "en.jpg", "fuVHBGFHGH 2.jpg", "fuck your ass 2.jpg", "fuck your ass.jpg", "fur lo y pfp.jpg",
-            "get killed xeno lover fuck you.jpg", "gjjhgjgj.png", "gore poop.jpg", "gozzila halo.png",
-            "half life 2 beta sit pugzy.jpg", "halo ahhhhhh pooooooooooo.jpg", "halo reach.png", "hasan dog fuck.jpg",
-            "i can't.jpg", "i love jpeg's.jpg", "i suck at drawing part 1.jpg", "kup full.jpg", "mgs1 poopdec call uhh.jpg",
-            "my room uh i poooop my pooop ahhh.jpg", "nigel poop vs zilla.jpg", "nmghgkg.jpg", "please buy me halo wars.jpg",
-            "poop mmm.jpg", "poop.jpg", "pooper ass 2.jpg", "poopman.jpg", "poopn.jpg", "poops 2.png",
-            "postal fur fag liso oc ahh.jpg", "predahhh.jpg", "revoluion saaaaaasghh.jpg", "sassss sick pooooo rrrrr roarrrrr.jpg",
-            "scrim big mouth fuck ass ahh i hate all the hon troon boymoders.jpg", "shitting all over the place 2.jpg",
-            "stalingart fag ahh free free boohoo love trans hart.jpg", "stalingrad art uhhh i hate woman and trans people.jpg",
-            "tanky poopy head.jpg", "trans b ahhh pooooo oh mama.jpg", "uuuuuuuuuuuu free art ahhhh 3.png",
-            "uuuuuuuuuuuu free art ahhhh 566.png", "uuuuuuuuuuuu free art ahhhh.png", "vucic is so good man z.jpg",
-            "x.comshit f.png", "y2k tron skot ahh.jpg", "yanri predator 2.png", "yanri predator.png", "zobahhhhi.png",
-            "zooba2.png", "????.jpg", "??? ???.jpg", "????.jpg", "???? ????.jpg", "?? ??? ?? ???? ?????.png"
+            "big braping futa.jpg",
+            "big butt futa fan art I FUCKING LOVE HALO! boohoo i poop myself.jpg",
+            "booooooooo.jpg",
+            "broke ass nigga.png",
+            "broke ass p.png",
+            "bruh man.jpg",
+            "bum fag ccp png.png",
+            "bum fag ccp.jpg",
+            "can flay 1.png",
+            "can flay 2.png",
+            "chadacrack.jpg",
+            "cs.jpg",
+            "cup hair hate.png",
+            "deltapoopolduhh.jpg",
+            "dgdhhdf.png",
+            "dp 2.jpg",
+            "en.jpg",
+            "fuVHBGFHGH 2.jpg",
+            "fuck your ass 2.jpg",
+            "fuck your ass.jpg",
+            "fur lo y pfp.jpg",
+            "get killed xeno lover fuck you.jpg",
+            "gjjhgjgj.png",
+            "gore poop.jpg",
+            "gozzila halo.png",
+            "half life 2 beta sit pugzy.jpg",
+            "halo ahhhhhh pooooooooooo.jpg",
+            "halo reach.png",
+            "hasan dog fuck.jpg",
+            "i can't.jpg",
+            "i love jpeg's.jpg",
+            "i suck at drawing part 1.jpg",
+            "kup full.jpg",
+            "mgs1 poopdec call uhh.jpg",
+            "my room uh i poooop my pooop ahhh.jpg",
+            "nigel poop vs zilla.jpg",
+            "nmghgkg.jpg",
+            "please buy me halo wars.jpg",
+            "poop mmm.jpg",
+            "poop.jpg",
+            "pooper ass 2.jpg",
+            "poopman.jpg",
+            "poopn.jpg",
+            "poops 2.png",
+            "postal fur fag liso oc ahh.jpg",
+            "predahhh.jpg",
+            "revoluion saaaaaasghh.jpg",
+            "sassss sick pooooo rrrrr roarrrrr.jpg",
+            "scrim big mouth fuck ass ahh i hate all the hon troon boymoders.jpg",
+            "shitting all over the place 2.jpg",
+            "stalingart fag ahh free free boohoo love trans hart.jpg",
+            "stalingrad art uhhh i hate woman and trans people.jpg",
+            "tanky poopy head.jpg",
+            "trans b ahhh pooooo oh mama.jpg",
+            "uuuuuuuuuuuu free art ahhhh 3.png",
+            "uuuuuuuuuuuu free art ahhhh 566.png",
+            "uuuuuuuuuuuu free art ahhhh.png",
+            "vucic is so good man z.jpg",
+            "x.comshit f.png",
+            "y2k tron skot ahh.jpg",
+            "yanri predator 2.png",
+            "yanri predator.png",
+            "zobahhhhi.png",
+            "zooba2.png",
+            "حخخخ.jpg",
+            "دين مان.jpg",
+            "زووط.jpg",
+            "واحد بدوي.jpg",
+            "يا زول دا انتا خليجي.png"
         ];
 
         let currentIndex = 0;
@@ -703,10 +828,13 @@
 
             updateInfo();
 
-            if (isAutoplayRunning && !autoplayInterval) {
-                autoplayInterval = setInterval(nextImage, 4000);
-                console.log('Autoplay started');
-            }
+            requestAnimationFrame(() => {
+                setTimeout(() => { showImage(0); }, 100);
+                if (isAutoplayRunning && !autoplayInterval) {
+                    autoplayInterval = setInterval(nextImage, 4000);
+                    console.log('Autoplay started');
+                }
+            });
         }
 
         function showImage(index) {
@@ -891,73 +1019,205 @@
             }
         }
 
-        // Custom Audio Player Logic
-        const audioTrack = document.getElementById('custom-audio-track');
-        const playPauseBtn = document.getElementById('play-pause-btn');
-        const progressBar = document.getElementById('progress-bar');
-        const progressContainer = document.getElementById('progress-container');
+        // Audio Player Window Logic
+        const audioFiles = [
+            'Windows XP Installation Music.ogg',
+            'A Passage in Time.mp3',
+            'ABC Monday Night Football Alternate Theme (1989-2005) [UxKZttu0pDM].mp3',
+            'Ace Combat 3 Electrosphere - Music - Mission (Briefing).mp3',
+            'Ace Warrior - Blem Blem [JGTC Special 2002 Mixed Version].mp3',
+            'Adam Sandler - At a Medium Pace [zLm5oSJRxIU].mp3',
+            'Alvin - Dream of You.mp3',
+            'As I Lay Dying - The Sound of Truth (OFFICIAL).mp3',
+            'Atrium _+_Week-End (Extended Version).mp3',
+            'Authority Zero - Destiny and Demise (From The Vaults).mp3',
+            'Authority Zero - Ollie Ollie Oxen Free (Official Video).mp3',
+            'Broken Dreams.mp3',
+            'Bruce & Bongo - Geil (Extended Version, 1986).mp3',
+            'Casanova - I Don\'t Wanna Waste My Time [ITALO-DISCO] [1987].mp3',
+            'Casanova - That\'s Not Enough [ITALO-DISCO] [1987].mp3',
+            'Cold.mp3',
+            'Darkwood Dub - U novoj epizodi.mp3',
+            'Darkwood Dub, Srebrna Kap 2002.  B92 Samizdat [uT7D6DmUZI8].mp4',
+            'Darkwood dub - M. Jugin [tAczCBC1axY].mp4',
+            'Dave Rodgers - Black Fire.mp3',
+            'EUROBEAT MIX.mp3',
+            'Everyday.mp3',
+            'Lying Awake.mp3',
+            'Tom Hooker - Looking for love.mp3',
+            'Wrestling Revolution theme song \'Broke\' by Sick Logic.mp3',
+            'ahahahhhh ahh disco.mp3',
+            'ΠΙΣΣΑ ΚΑΙ ΠΟΥΠΟΥΛΑ - Ξυπνάτε Πεθαίνω.mp3'
+        ];
+        let currentAudioIndex = 0;
 
-        function togglePlay() {
-            if (audioTrack.paused) {
-                audioTrack.play();
-                playPauseBtn.textContent = '▶';
-                sessionStorage.setItem('is_playing', 'true');
+        function initAudioPlaylist() {
+            const p = document.getElementById('audio-playlist');
+            if (!p) return;
+            p.innerHTML = '';
+            audioFiles.forEach((f, i) => {
+                const d = document.createElement('div');
+                d.className = 'playlist-item';
+                if (i === currentAudioIndex) d.classList.add('active');
+                let n = f.replace('.ogg', '');
+                if (n.length > 28) n = n.substring(0, 25) + '...';
+                d.textContent = (i + 1) + '. ' + n;
+                d.onclick = () => loadAudio(i);
+                p.appendChild(d);
+            });
+        }
+
+        function toggleAudioPlayer() {
+            const w = document.getElementById('audio-player-window');
+            if (w.style.display === 'none' || !w.style.display) {
+                w.style.display = 'flex';
+                initAudioPlaylist();
+                if (!document.getElementById('audio-element').src) loadAudio(0);
             } else {
-                audioTrack.pause();
-                playPauseBtn.textContent = '▶';
-                sessionStorage.setItem('is_playing', 'false');
+                w.style.display = 'none';
+                document.getElementById('audio-element').pause();
             }
         }
 
-        if (audioTrack) {
-            audioTrack.addEventListener('timeupdate', function () {
-                const progress = (audioTrack.currentTime / audioTrack.duration) * 100;
-                progressBar.style.width = progress + '%';
-                sessionStorage.setItem('audio_time', audioTrack.currentTime);
+        function closeAudioPlayer() {
+            document.getElementById('audio-element').pause();
+            document.getElementById('audio-player-window').style.display = 'none';
+        }
+
+        function loadAudio(i) {
+            if (i >= 0 && i < audioFiles.length) {
+                currentAudioIndex = i;
+                const a = document.getElementById('audio-element');
+                a.src = 'images/music/' + encodeURI(audioFiles[i]);
+                a.load();
+                a.play().catch(e => console.log('play prevented'));
+
+                const trackName = audioFiles[i].replace('.ogg', '');
+                document.getElementById('audio-track-display').textContent = trackName;
+
+                document.querySelectorAll('#audio-playlist .playlist-item').forEach((item, idx) => {
+                    if (idx === i) item.classList.add('active');
+                    else item.classList.remove('active');
+                });
+                updateAudioPlayPauseIcon();
+            }
+        }
+
+        function toggleAudioPlayPause() {
+            const a = document.getElementById('audio-element');
+            if (!a) return;
+            if (a.paused) {
+                a.play();
+            } else {
+                a.pause();
+            }
+            updateAudioPlayPauseIcon();
+        }
+
+        function stopAudio() {
+            const a = document.getElementById('audio-element');
+            if (!a) return;
+            a.pause();
+            a.currentTime = 0;
+            updateAudioPlayPauseIcon();
+        }
+
+        function updateAudioPlayPauseIcon() {
+            const a = document.getElementById('audio-element');
+            const b = document.getElementById('play-pause-btn-audio');
+            if (!b || !a) return;
+            b.textContent = a.paused ? '▶' : '❚❚';
+        }
+
+        function nextAudio() {
+            currentAudioIndex = (currentAudioIndex + 1) % audioFiles.length;
+            loadAudio(currentAudioIndex);
+        }
+
+        function previousAudio() {
+            currentAudioIndex = (currentAudioIndex - 1 + audioFiles.length) % audioFiles.length;
+            loadAudio(currentAudioIndex);
+        }
+
+        const ae = document.getElementById('audio-element');
+        if (ae) {
+            ae.addEventListener('timeupdate', () => {
+                if (!ae.duration) return;
+                const p = (ae.currentTime / ae.duration) * 100;
+                const f = document.getElementById('audio-seek-bar-fill');
+                if (f) f.style.width = p + '%';
+                const t = document.getElementById('audio-time-display');
+                if (t) t.textContent = formatTime(ae.currentTime) + ' / ' + formatTime(ae.duration);
             });
+            ae.addEventListener('ended', nextAudio);
+            ae.addEventListener('play', updateAudioPlayPauseIcon);
+            ae.addEventListener('pause', updateAudioPlayPauseIcon);
+        }
 
-            progressContainer.addEventListener('click', function (e) {
-                const width = progressContainer.clientWidth;
-                const clickX = e.offsetX;
-                const duration = audioTrack.duration;
-                audioTrack.currentTime = (clickX / width) * duration;
-            });
-
-            audioTrack.addEventListener('play', function () {
-                playPauseBtn.textContent = '▶';
-            });
-
-            audioTrack.addEventListener('pause', function () {
-                playPauseBtn.textContent = '▶';
-            });
-
-            window.addEventListener('load', function () {
-                const savedTime = sessionStorage.getItem('audio_time');
-                const isPlaying = sessionStorage.getItem('is_playing');
-
-                if (savedTime) {
-                    audioTrack.currentTime = parseFloat(savedTime);
-                }
-
-                if (isPlaying === 'true' || audioTrack.autoplay) {
-                    const playPromise = audioTrack.play();
-                    if (playPromise !== undefined) {
-                        playPromise.then(function () {
-                            playPauseBtn.textContent = '▶';
-                            sessionStorage.setItem('is_playing', 'true');
-                        }).catch(function (error) {
-                            console.log("Autoplay prevented");
-                            playPauseBtn.textContent = '▶';
-                        });
-                    }
-                }
-            });
-
-            window.addEventListener('beforeunload', function () {
-                sessionStorage.setItem('audio_time', audioTrack.currentTime);
-                sessionStorage.setItem('is_playing', !audioTrack.paused);
+        const asc = document.getElementById('audio-seek-bar-container');
+        if (asc) {
+            asc.addEventListener('click', (e) => {
+                if (!ae || !ae.duration) return;
+                const r = asc.getBoundingClientRect();
+                const x = e.clientX - r.left;
+                const p = x / r.width;
+                ae.currentTime = p * ae.duration;
             });
         }
+
+        // Volume slider control
+        const volumeSlider = document.getElementById('volume-slider');
+        if (volumeSlider && ae) {
+            volumeSlider.addEventListener('input', (e) => {
+                ae.volume = e.target.value / 100;
+            });
+        }
+
+        // Make Audio Player Window Draggable
+        const aw = document.getElementById('audio-player-window');
+        const ah = document.querySelector('.audio-player-header');
+        if (aw && ah) {
+            let isDragA = false, cxA, cyA, ixA, iyA, xoA = 0, yoA = 0;
+            ah.addEventListener('mousedown', (e) => {
+                if (e.target.classList.contains('audio-player-close')) return;
+                ixA = e.clientX - xoA;
+                iyA = e.clientY - yoA;
+                if (e.target === ah || ah.contains(e.target)) {
+                    isDragA = true;
+                    ah.style.cursor = 'grabbing';
+                }
+            });
+            document.addEventListener('mousemove', (e) => {
+                if (isDragA) {
+                    e.preventDefault();
+                    cxA = e.clientX - ixA;
+                    cyA = e.clientY - iyA;
+                    xoA = cxA;
+                    yoA = cyA;
+                    aw.style.transform = 'translate(' + cxA + 'px, ' + cyA + 'px)';
+                }
+            });
+            document.addEventListener('mouseup', () => {
+                ixA = cxA;
+                iyA = cyA;
+                isDragA = false;
+                ah.style.cursor = 'grab';
+            });
+            ah.style.cursor = 'grab';
+        }
+
+        // Auto-show and auto-play music player on page load
+        window.addEventListener('DOMContentLoaded', function () {
+            // Small delay to ensure everything is loaded
+            setTimeout(function () {
+                const w = document.getElementById('audio-player-window');
+                if (w) {
+                    w.style.display = 'flex';
+                    initAudioPlaylist();
+                    loadAudio(0);
+                }
+            }, 500);
+        });
 
         // Video files - automatically loads all .mp4 files from the images folder
         // To add new videos: Just drop .mp4 files into C:\Users\akoda\Documents\GitHub\my-website\images
